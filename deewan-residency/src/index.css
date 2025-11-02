@@ -1,48 +1,16 @@
+@import url('/fonts/space-grotesk.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Performance optimized font loading */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiA.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiA.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYAZ9hiA.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+/* Space Grotesk Font Optimization */
+/* Font loading is handled via /fonts/space-grotesk.css for better performance */
 
 /* Critical CSS - Above the fold styles */
 @layer base {
   html {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -196,6 +164,430 @@
   
   .contain-strict {
     contain: strict;
+  }
+  
+  /* Hero section specific optimizations */
+  .hero-gradient {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+  
+  .hero-card-shadow {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .backdrop-blur-custom {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  /* Mobile-optimized touch targets */
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* Smooth scrolling for mobile */
+  @media (max-width: 768px) {
+    html {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  
+  /* Custom animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-slide-in-up {
+    animation: slideInUp 0.6s ease-out;
+  }
+  
+  /* CountUp animation enhancements */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+  
+  /* Stats section animations */
+  @keyframes statsPulse {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% { 
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+  
+  .stats-pulse {
+    animation: statsPulse 2s ease-in-out infinite;
+  }
+  
+  /* Enhanced glow effect for stats */
+  .stats-glow {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .stats-glow:hover {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+  }
+  
+  /* Smooth number transitions */
+  .count-up-number {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  
+  .count-up-number:hover {
+    transform: translateY(-1px);
+  }
+  
+  /* SplitText animation enhancements */
+  .split-parent {
+    overflow: visible !important;
+  }
+  
+  .split-char {
+    display: inline-block;
+    transform-origin: center bottom;
+    will-change: transform, opacity;
+  }
+  
+  .split-word {
+    display: inline-block;
+    transform-origin: center bottom;
+    will-change: transform, opacity;
+    margin-right: 0.25em;
+  }
+  
+  .split-line {
+    display: block;
+    transform-origin: left center;
+    will-change: transform, opacity;
+  }
+  
+  /* Enhanced text rendering for animations */
+  .split-parent * {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Prevent layout shift during animation */
+  .split-parent {
+    min-height: 1em;
+  }
+  
+  /* Custom easing for text animations */
+  .text-reveal-fast {
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .text-reveal-smooth {
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  /* Space Grotesk Font Utilities */
+  .font-grotesk {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 400;
+  }
+  
+  /* Space Grotesk hierarchy utilities using size and color variations */
+  .font-grotesk-subtle {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 400;
+    @apply text-sm text-gray-600;
+  }
+  
+  .font-grotesk-emphasis {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 400;
+    @apply text-lg text-gray-900;
+  }
+  
+  .font-grotesk-strong {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 400;
+    @apply text-xl text-gray-900 tracking-wide;
+  }
+  
+  .font-grotesk-heading {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 400;
+    @apply text-2xl text-gray-900 uppercase;
+  }
+  
+  /* Space Grotesk font optimization for better rendering */
+  .grotesk-optimized {
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Glassmorphism Navbar Styles */
+  .glassmorphism-navbar {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Enhanced glassmorphism on scroll */
+  .glassmorphism-navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.15),
+      0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  }
+  
+  /* Mobile menu glassmorphism */
+  .glassmorphism-mobile-menu {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      0 1px 0 rgba(255, 255, 255, 0.4) inset;
+  }
+  
+  /* Glassmorphism hover effects for navigation items */
+  .glassmorphism-nav-item {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glassmorphism-nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -8px;
+    right: -8px;
+    bottom: 0;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 8px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+  
+  .glassmorphism-nav-item:hover::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* Glassmorphism CTA button */
+  .glassmorphism-cta {
+    background: rgba(59, 130, 246, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 
+      0 8px 32px rgba(59, 130, 246, 0.3),
+      0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glassmorphism-cta:hover {
+    background: rgba(37, 99, 235, 0.95);
+    box-shadow: 
+      0 12px 40px rgba(59, 130, 246, 0.4),
+      0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    transform: translateY(-1px);
+  }
+  
+  /* Mobile hamburger menu glassmorphism */
+  .glassmorphism-hamburger {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glassmorphism-hamburger:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
+  
+  /* Logo glassmorphism enhancement */
+  .glassmorphism-logo {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glassmorphism-logo:hover {
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transform: translateY(-1px);
+  }
+  
+  /* Enhanced mobile menu animations */
+  .glassmorphism-mobile-menu-item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glassmorphism-mobile-menu-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transform: translateX(4px);
+  }
+  
+  /* Glassmorphism active state enhancement */
+  .glassmorphism-active {
+    background: rgba(59, 130, 246, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    box-shadow: 
+      0 4px 16px rgba(59, 130, 246, 0.2),
+      0 1px 0 rgba(255, 255, 255, 0.3) inset;
+  }
+  
+  /* Enhanced Resizable Navbar Glassmorphism */
+  .glassmorphism-enhanced-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+  }
+  
+  .glassmorphism-nav-body {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      0 1px 0 rgba(255, 255, 255, 0.5) inset !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glassmorphism-nav-items {
+    backdrop-filter: none !important;
+  }
+  
+  .glassmorphism-nav-items a {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  
+  .glassmorphism-nav-items a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -8px;
+    right: -8px;
+    bottom: 0;
+    background: rgba(59, 130, 246, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 8px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+  
+  .glassmorphism-nav-items a:hover::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .glassmorphism-mobile-nav {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      0 1px 0 rgba(255, 255, 255, 0.4) inset !important;
+  }
+  
+  /* Enhanced CTA button for resizable navbar */
+  .glassmorphism-enhanced-navbar .glassmorphism-cta {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 0.95)) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 
+      0 8px 32px rgba(59, 130, 246, 0.3),
+      0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: white !important;
+  }
+  
+  .glassmorphism-enhanced-navbar .glassmorphism-cta:hover {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(29, 78, 216, 1)) !important;
+    box-shadow: 
+      0 12px 40px rgba(59, 130, 246, 0.4),
+      0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    transform: translateY(-2px);
+  }
+  
+  /* Mobile menu enhancements */
+  .glassmorphism-mobile-menu {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.15),
+      0 1px 0 rgba(255, 255, 255, 0.5) inset !important;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .glassmorphism-nav-body {
+      min-width: auto !important;
+      width: 95% !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .glassmorphism-enhanced-navbar {
+      padding: 0 1rem;
+    }
+    
+    .glassmorphism-mobile-nav {
+      width: 100% !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+    }
   }
 }
 

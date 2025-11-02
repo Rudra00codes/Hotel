@@ -16,7 +16,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        grotesk: ['Space Grotesk', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         '8xl': '88rem',
