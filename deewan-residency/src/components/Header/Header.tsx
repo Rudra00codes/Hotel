@@ -4,11 +4,20 @@ import { getTouchFriendlyClasses, getThumbFriendlyNavClasses, addMobileEventList
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  // Initialize mobile optimizations
+  // Initialize mobile optimizations and scroll detection
   useEffect(() => {
     addMobileEventListeners();
+    
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navigationItems = [
@@ -34,13 +43,13 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
+    <header className={`glassmorphism-navbar sticky top-0 z-50 ${isScrolled ? 'scrolled' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
-              <h1 className="text-xl lg:text-2xl font-bold text-gray-900">
+            <Link to="/" className="flex items-center glassmorphism-logo" onClick={closeMobileMenu}>
+              <h1 className="text-xl lg:text-2xl font-grotesk text-gray-900 tracking-wide uppercase">
                 Deewan Residency
               </h1>
             </Link>
@@ -52,9 +61,9 @@ export default function Header() {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-blue-600 ${
+                className={`glassmorphism-nav-item text-sm font-grotesk font-medium transition-all duration-300 hover:text-blue-600 tracking-wide px-2 py-1 ${
                   isActivePage(item.path)
-                    ? 'text-blue-600 border-b-2 border-blue-600 pb-1'
+                    ? 'text-blue-600 glassmorphism-active border-b-2 border-blue-600 pb-1'
                     : 'text-gray-700'
                 }`}
               >
@@ -67,7 +76,7 @@ export default function Header() {
           <div className="hidden lg:flex">
             <Link
               to="/#booking-form"
-              className={`${getTouchFriendlyClasses('medium')} bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 shadow-md hover:shadow-lg`}
+              className={`${getTouchFriendlyClasses('medium')} glassmorphism-cta text-white rounded-lg font-grotesk font-medium tracking-wide`}
             >
               Check Availability
             </Link>
@@ -77,7 +86,7 @@ export default function Header() {
           <div className="lg:hidden">
             <button
               onClick={toggleMobileMenu}
-              className={`${getTouchFriendlyClasses('medium')} inline-flex items-center justify-center rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500`}
+              className={`${getTouchFriendlyClasses('medium')} glassmorphism-hamburger inline-flex items-center justify-center rounded-md text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500`}
               aria-expanded={isMobileMenuOpen}
               aria-label={isMobileMenuOpen ? 'Close main menu' : 'Open main menu'}
             >
@@ -127,16 +136,16 @@ export default function Header() {
             : 'max-h-0 opacity-0 overflow-hidden'
         }`}
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 shadow-lg">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glassmorphism-mobile-menu border-t border-white/20">
           {navigationItems.map((item) => (
             <Link
               key={item.name}
               to={item.path}
               onClick={closeMobileMenu}
-              className={`${getThumbFriendlyNavClasses()} block rounded-md text-base font-medium transition-colors duration-200 ${
+              className={`${getThumbFriendlyNavClasses()} glassmorphism-mobile-menu-item block rounded-md text-base font-grotesk font-medium transition-all duration-300 tracking-wide ${
                 isActivePage(item.path)
-                  ? 'text-blue-600 bg-blue-50'
-                  : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                  ? 'text-blue-600 glassmorphism-active'
+                  : 'text-gray-700 hover:text-blue-600'
               }`}
             >
               {item.name}
@@ -148,7 +157,7 @@ export default function Header() {
             <Link
               to="/#booking-form"
               onClick={closeMobileMenu}
-              className={`${getTouchFriendlyClasses('large')} block w-full text-center bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 shadow-md`}
+              className={`${getTouchFriendlyClasses('large')} glassmorphism-cta block w-full text-center text-white rounded-lg font-grotesk font-medium tracking-wide`}
             >
               Check Availability
             </Link>

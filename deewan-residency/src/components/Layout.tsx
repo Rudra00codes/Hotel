@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import type { ReactNode } from 'react';
-import Header from './Header';
+import { EnhancedHeader } from './Header';
 import Footer from './Footer';
 import ErrorBoundary from './ErrorBoundary';
 import LoadingSpinner from './LoadingSpinner';
@@ -14,10 +14,10 @@ export default function Layout({ children }: LayoutProps) {
     <ErrorBoundary>
       <div className="min-h-screen flex flex-col bg-gray-50">
         {/* Header */}
-        <Header />
+        <EnhancedHeader />
         
         {/* Main Content */}
-        <main className="flex-grow">
+        <main className="flex-grow pt-20">
           <Suspense fallback={<LoadingSpinner fullScreen message="Loading page..." />}>
             <ErrorBoundary>
               {children}

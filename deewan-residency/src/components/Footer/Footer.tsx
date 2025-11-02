@@ -20,8 +20,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Hotel Information */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">Deewan Residency</h3>
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <h3 className="text-2xl font-grotesk mb-4 tracking-wide uppercase">Deewan Residency</h3>
+            <p className="text-gray-300 mb-6 leading-relaxed font-grotesk">
               Experience comfort and luxury at Deewan Residency, conveniently located on 
               Amb-Chd Highway in Derabassi, Mohali. We offer exceptional hospitality 
               with modern amenities for both business and leisure travelers.
@@ -35,7 +35,7 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <div>
-                  <p className="text-gray-300">
+                  <p className="text-gray-300 font-grotesk">
                     Amb-Chd Highway, Sukhmani College<br />
                     Derabassi (Mohali), Punjab, India
                   </p>
@@ -68,7 +68,7 @@ export default function Footer() {
                 <svg className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:thedeewanhotel@gmail.com" className="text-gray-300 hover:text-blue-400 transition-colors">
+                <a href="mailto:thedeewanhotel@gmail.com" className="text-gray-300 hover:text-blue-400 transition-colors font-grotesk">
                   thedeewanhotel@gmail.com
                 </a>
               </div>
@@ -77,13 +77,13 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-grotesk mb-4 tracking-wide text-gray-200">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200 font-grotesk"
                   >
                     {link.name}
                   </Link>
@@ -94,8 +94,8 @@ export default function Footer() {
 
           {/* Business Hours & Social Media */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Business Hours</h4>
-            <div className="space-y-2 text-gray-300 mb-6">
+            <h4 className="text-lg font-grotesk mb-4 tracking-wide text-gray-200">Business Hours</h4>
+            <div className="space-y-2 text-gray-300 mb-6 font-grotesk">
               <div className="flex justify-between">
                 <span>Reception:</span>
                 <span>24/7</span>
@@ -115,7 +115,7 @@ export default function Footer() {
             </div>
 
             {/* Social Media Links */}
-            <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
+            <h4 className="text-lg font-grotesk mb-4 tracking-wide text-gray-200">Follow Us</h4>
             <div className="flex space-x-4">
               <a
                 href="#"
@@ -151,14 +151,14 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-sm font-grotesk">
               &copy; {currentYear} Deewan Residency. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-gray-400 hover:text-blue-400 text-sm transition-colors">
+              <Link to="/privacy" className="text-gray-400 hover:text-blue-400 text-sm transition-colors font-grotesk">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-gray-400 hover:text-blue-400 text-sm transition-colors">
+              <Link to="/terms" className="text-gray-400 hover:text-blue-400 text-sm transition-colors font-grotesk">
                 Terms of Service
               </Link>
             </div>

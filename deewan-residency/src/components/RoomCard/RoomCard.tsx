@@ -40,7 +40,7 @@ export default function RoomCard({ room, onViewDetails, onInquiry }: RoomCardPro
         
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
-          <span className={`px-3 py-1 rounded-full text-sm font-medium text-white ${
+          <span className={`px-3 py-1 rounded-full text-sm font-grotesk font-medium text-white tracking-wide ${
             room.category === 'standard' ? 'bg-blue-600' :
             room.category === 'deluxe' ? 'bg-purple-600' :
             'bg-gold-600'
@@ -51,7 +51,7 @@ export default function RoomCard({ room, onViewDetails, onInquiry }: RoomCardPro
 
         {/* Price Range */}
         <div className="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded">
-          <span className="text-sm font-medium">{room.priceRange}</span>
+          <span className="text-sm font-grotesk font-medium">{room.priceRange}</span>
         </div>
       </div>
 
@@ -59,7 +59,7 @@ export default function RoomCard({ room, onViewDetails, onInquiry }: RoomCardPro
       <div className="p-6">
         {/* Room Name and Occupancy */}
         <div className="flex justify-between items-start mb-3">
-          <h3 className="text-xl font-bold text-gray-900">{room.name}</h3>
+          <h3 className="text-xl font-grotesk text-gray-900 tracking-wide uppercase">{room.name}</h3>
           <div className="flex items-center text-gray-600 text-sm">
             <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
@@ -85,13 +85,13 @@ export default function RoomCard({ room, onViewDetails, onInquiry }: RoomCardPro
             {room.features.slice(0, 3).map((feature, index) => (
               <span
                 key={index}
-                className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+                className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-grotesk font-medium bg-gray-100 text-gray-800"
               >
                 {feature}
               </span>
             ))}
             {room.features.length > 3 && (
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-grotesk font-medium bg-gray-100 text-gray-800">
                 +{room.features.length - 3} more
               </span>
             )}
@@ -102,13 +102,13 @@ export default function RoomCard({ room, onViewDetails, onInquiry }: RoomCardPro
         <div className="flex gap-3">
           <button
             onClick={() => onViewDetails(room.id)}
-            className="flex-1 bg-white border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors duration-200"
+            className="flex-1 bg-white border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-grotesk font-medium hover:bg-blue-50 transition-colors duration-200 tracking-wide"
           >
             View Details
           </button>
           <button
             onClick={() => onInquiry(room.id)}
-            className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200"
+            className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg font-grotesk font-medium hover:bg-blue-700 transition-colors duration-200 tracking-wide"
           >
             Book Now
           </button>

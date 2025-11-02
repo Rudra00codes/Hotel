@@ -198,7 +198,7 @@ export default function RoomGallery({ images, roomName, className = '' }: RoomGa
             
             {/* Image Info */}
             <div className="text-center mt-4">
-              <p className="text-white text-lg font-medium">{roomName}</p>
+              <p className="text-white text-lg font-grotesk font-medium tracking-wide">{roomName}</p>
               <p className="text-gray-300 text-sm mt-1">
                 Image {selectedImageIndex + 1} of {images.length}
               </p>
