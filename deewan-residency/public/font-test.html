@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stardom Font Test - Deewan Residency</title>
+    <link rel="stylesheet" href="/fonts/stardom.css">
+    <style>
+        body {
+            font-family: 'Stardom', system-ui, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .font-test {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-left: 4px solid #3b82f6;
+            background: #f8fafc;
+        }
+        
+        .weight-300 { font-weight: 300; }
+        .weight-400 { font-weight: 400; }
+        .weight-500 { font-weight: 500; }
+        .weight-600 { font-weight: 600; }
+        .weight-700 { font-weight: 700; }
+        
+        .stardom-emphasis {
+            font-family: 'Stardom', system-ui, sans-serif;
+            font-size: 1.125rem;
+            color: #1f2937;
+        }
+        
+        .hero-text {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #3b82f6;
+            margin-bottom: 2rem;
+        }
+        
+        .body-text {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-text {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="hero-text">Stardom Font Test</h1>
+        <p class="subtitle">Deewan Residency Typography</p>
+        
+        <div class="font-test">
+            <h2>Stardom Regular (400) - Visual Hierarchy Test</h2>
+            <p style="font-size: 0.875rem; color: #6b7280;">Small text: Welcome to Deewan Residency - Premium Hotel Experience</p>
+            <p style="font-size: 1rem; color: #4b5563;">Regular text: Experience luxury accommodation on Amb-Chd Highway</p>
+            <p style="font-size: 1.125rem; color: #374151;">Large text: Modern rooms with exceptional service in Derabassi</p>
+            <p style="font-size: 1.25rem; color: #1f2937;">Extra large: Book your perfect stay in Mohali, Punjab</p>
+            <p style="font-size: 1.5rem; color: #111827; text-transform: uppercase; letter-spacing: 0.05em;">Emphasized: Reserve Your Ideal Holiday Today</p>
+        </div>
+        
+        <div class="font-test">
+            <h2>Color & Size Hierarchy Test</h2>
+            <p class="stardom-emphasis">Stardom Regular with size and color variations for visual hierarchy</p>
+        </div>
+        
+        <div class="font-test">
+            <h2>Real Content Example</h2>
+            <h3 class="weight-600" style="font-size: 2rem; color: #1f2937; margin-bottom: 1rem;">
+                Reserve Your Ideal Holiday
+            </h3>
+            <p class="weight-500" style="font-size: 1.25rem; color: #3b82f6; margin-bottom: 1rem;">
+                Let's get acquainted!
+            </p>
+            <p class="body-text">
+                We specialize in providing exceptional hotel accommodation, offering an unparalleled level of comfort, privacy, and convenience for your perfect stay in Derabassi.
+            </p>
+        </div>
+        
+        <div class="font-test">
+            <h2>Character Set Test</h2>
+            <p class="weight-400">
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                abcdefghijklmnopqrstuvwxyz<br>
+                0123456789<br>
+                !@#$%^&*()_+-=[]{}|;:'",./<>?
+            </p>
+        </div>
+        
+        <div style="margin-top: 2rem; padding: 1rem; background: #f0f9ff; border-radius: 0.5rem;">
+            <p style="margin: 0; font-size: 0.875rem; color: #0369a1;">
+                <strong>Font Status:</strong> If you can see distinct size and color variations above, Stardom is loading correctly!
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Check if fonts are loaded
+        document.fonts.ready.then(() => {
+            console.log('✅ All fonts loaded successfully');
+            
+            // Check if Stardom is available
+            const testElement = document.createElement('div');
+            testElement.style.fontFamily = 'Stardom, monospace';
+            testElement.style.position = 'absolute';
+            testElement.style.visibility = 'hidden';
+            testElement.textContent = 'Test';
+            document.body.appendChild(testElement);
+            
+            const computedFont = window.getComputedStyle(testElement).fontFamily;
+            document.body.removeChild(testElement);
+            
+            if (computedFont.includes('Stardom')) {
+                console.log('✅ Stardom font is active');
+            } else {
+                console.warn('⚠️ Stardom font may not be loading properly');
+            }
+        });
+    </script>
+</body>
+</html>

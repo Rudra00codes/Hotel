@@ -5,15 +5,23 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:network": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "ip": "node -e \"const os = require('os'); const nets = os.networkInterfaces(); Object.keys(nets).forEach(name => { nets[name].forEach(net => { if (net.family === 'IPv4' && !net.internal) console.log('Your IP:', net.address); }); });\""
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@gsap/react": "^2.1.2",
+    "@tabler/icons-react": "^3.35.0",
+    "clsx": "^2.1.1",
+    "gsap": "^3.13.0",
+    "motion": "^12.23.24",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.9.5"
+    "react-router-dom": "^7.9.5",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

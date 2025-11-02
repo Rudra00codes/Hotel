@@ -16,7 +16,10 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    host: '0.0.0.0', // Expose to all network interfaces
     open: true,
+    strictPort: true, // Exit if port 3000 is already in use
+    cors: true, // Enable CORS for cross-origin requests
   },
   build: {
     outDir: 'dist',
