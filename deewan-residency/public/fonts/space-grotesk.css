@@ -1,0 +1,54 @@
+/**
+ * Space Grotesk Font Family
+ * Designed by: Florian Karsten
+ * URL: https://www.fontshare.com/fonts/space-grotesk
+ * © 2025 Indian Type Foundry
+ * 
+ * Optimized for Deewan Residency Hotel Website
+ * Font weights: Light (300), Regular (400), Medium (500), SemiBold (600), Bold (700)
+ */
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Light.woff2') format('woff2'),
+       url('/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Light.woff') format('woff');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Regular.woff2') format('woff2'),
+       url('/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Regular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Medium.woff2') format('woff2'),
+       url('/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Medium.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-SemiBold.woff2') format('woff2'),
+       url('/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Bold.woff2') format('woff2'),
+       url('/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Bold.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
