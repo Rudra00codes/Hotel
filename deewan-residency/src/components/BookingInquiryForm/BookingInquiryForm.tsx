@@ -256,7 +256,7 @@ export default function BookingInquiryForm({ onSuccess }: BookingInquiryFormProp
         {/* Date Selection Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="checkIn" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="checkIn" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Check-in Date *
             </label>
             <input
@@ -275,7 +275,7 @@ export default function BookingInquiryForm({ onSuccess }: BookingInquiryFormProp
           </div>
 
           <div>
-            <label htmlFor="checkOut" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="checkOut" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Check-out Date *
             </label>
             <input
@@ -297,7 +297,7 @@ export default function BookingInquiryForm({ onSuccess }: BookingInquiryFormProp
         {/* Guests and Room Type Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="guests" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Number of Guests *
             </label>
             <select
@@ -320,7 +320,7 @@ export default function BookingInquiryForm({ onSuccess }: BookingInquiryFormProp
           </div>
 
           <div>
-            <label htmlFor="roomType" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="roomType" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Room Preference
             </label>
             <select
@@ -341,7 +341,7 @@ export default function BookingInquiryForm({ onSuccess }: BookingInquiryFormProp
         {/* Contact Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="name" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Full Name *
             </label>
             <input
@@ -360,7 +360,7 @@ export default function BookingInquiryForm({ onSuccess }: BookingInquiryFormProp
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="phone" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Phone Number *
             </label>
             <input
@@ -380,7 +380,7 @@ export default function BookingInquiryForm({ onSuccess }: BookingInquiryFormProp
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
             Email Address *
           </label>
           <input
@@ -400,7 +400,7 @@ export default function BookingInquiryForm({ onSuccess }: BookingInquiryFormProp
 
         {/* Special Requests */}
         <div>
-          <label htmlFor="specialRequests" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="specialRequests" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
             Special Requests
           </label>
           <textarea

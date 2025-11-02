@@ -196,7 +196,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
 
   return (
     <div className="bg-white rounded-lg shadow-xl p-6 md:p-8">
-      <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+      <h3 className="text-2xl font-grotesk text-gray-800 mb-6 text-center uppercase tracking-wide">
         Check Availability
       </h3>
       
@@ -220,12 +220,12 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
               )}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium">{submitStatus.message}</p>
+              <p className="text-sm font-grotesk font-medium">{submitStatus.message}</p>
               {submitStatus.type === 'error' && (
                 <p className="text-xs mt-1">
                   You can also reach us directly at{' '}
-                  <a href="tel:01762506147" className="underline font-medium">01762-506147</a> or{' '}
-                  <a href="tel:01762506146" className="underline font-medium">01762-506146</a>
+                  <a href="tel:01762506147" className="underline font-grotesk font-medium">01762-506147</a> or{' '}
+                  <a href="tel:01762506146" className="underline font-grotesk font-medium">01762-506146</a>
                 </p>
               )}
             </div>
@@ -237,7 +237,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
         {/* Date Selection Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="checkIn" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="checkIn" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Check-in Date *
             </label>
             <input
@@ -256,7 +256,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
           </div>
 
           <div>
-            <label htmlFor="checkOut" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="checkOut" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Check-out Date *
             </label>
             <input
@@ -278,7 +278,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
         {/* Guests and Room Type Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="guests" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Number of Guests *
             </label>
             <select
@@ -301,7 +301,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
           </div>
 
           <div>
-            <label htmlFor="roomType" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="roomType" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Room Preference
             </label>
             <select
@@ -322,7 +322,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
         {/* Contact Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="name" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Full Name *
             </label>
             <input
@@ -341,7 +341,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="phone" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Phone Number *
             </label>
             <input
@@ -361,7 +361,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
             Email Address *
           </label>
           <input
@@ -381,7 +381,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
 
         {/* Special Requests */}
         <div>
-          <label htmlFor="specialRequests" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="specialRequests" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
             Special Requests
           </label>
           <textarea
@@ -399,7 +399,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full py-3 px-6 rounded-md font-semibold text-white transition-colors ${
+          className={`w-full py-3 px-6 rounded-md font-grotesk font-semibold text-white transition-colors tracking-wide ${
             isSubmitting
               ? 'bg-gray-400 cursor-not-allowed'
               : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500'
@@ -411,12 +411,12 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
 
       {/* Contact Information */}
       <div className="mt-6 pt-6 border-t border-gray-200 text-center text-sm text-gray-600">
-        <p>Or call us directly:</p>
+        <p className="font-grotesk">Or call us directly:</p>
         <div className="flex justify-center space-x-4 mt-2">
-          <a href="tel:01762506147" className="text-blue-600 hover:text-blue-800 font-medium">
+          <a href="tel:01762506147" className="text-blue-600 hover:text-blue-800 font-grotesk font-medium">
             01762-506147
           </a>
-          <a href="tel:01762506146" className="text-blue-600 hover:text-blue-800 font-medium">
+          <a href="tel:01762506146" className="text-blue-600 hover:text-blue-800 font-grotesk font-medium">
             01762-506146
           </a>
         </div>

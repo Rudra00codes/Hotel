@@ -80,18 +80,18 @@ ${formData.specialRequests || 'None'}
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <h3 className="text-xl font-bold text-gray-900 mb-6">Make a Dining Reservation</h3>
+      <h3 className="text-xl font-grotesk text-gray-900 mb-6 uppercase tracking-wide">Make a Dining Reservation</h3>
       
       {submitStatus === 'success' && (
         <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-          <p className="font-medium">Reservation request sent successfully!</p>
+          <p className="font-grotesk font-medium">Reservation request sent successfully!</p>
           <p className="text-sm mt-1">We'll contact you within 24 hours to confirm your reservation.</p>
         </div>
       )}
       
       {submitStatus === 'error' && (
         <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-          <p className="font-medium">Failed to send reservation request.</p>
+          <p className="font-grotesk font-medium">Failed to send reservation request.</p>
           <p className="text-sm mt-1">Please call us directly at 01762-506147 or try again later.</p>
         </div>
       )}
@@ -99,7 +99,7 @@ ${formData.specialRequests || 'None'}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="name" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Full Name *
             </label>
             <input
@@ -114,7 +114,7 @@ ${formData.specialRequests || 'None'}
           </div>
           
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Email Address *
             </label>
             <input
@@ -131,7 +131,7 @@ ${formData.specialRequests || 'None'}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="phone" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Phone Number *
             </label>
             <input
@@ -146,7 +146,7 @@ ${formData.specialRequests || 'None'}
           </div>
           
           <div>
-            <label htmlFor="diningOption" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="diningOption" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Dining Option
             </label>
             <select
@@ -166,7 +166,7 @@ ${formData.specialRequests || 'None'}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="date" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Reservation Date *
             </label>
             <input
@@ -182,7 +182,7 @@ ${formData.specialRequests || 'None'}
           </div>
           
           <div>
-            <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="time" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Preferred Time *
             </label>
             <input
@@ -197,7 +197,7 @@ ${formData.specialRequests || 'None'}
           </div>
           
           <div>
-            <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="guests" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
               Number of Guests *
             </label>
             <select
@@ -216,7 +216,7 @@ ${formData.specialRequests || 'None'}
         </div>
 
         <div>
-          <label htmlFor="specialRequests" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="specialRequests" className="block text-sm font-grotesk font-medium text-gray-700 mb-1">
             Special Requests
           </label>
           <textarea
@@ -233,7 +233,7 @@ ${formData.specialRequests || 'None'}
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+          className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-grotesk font-medium hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors tracking-wide"
         >
           {isSubmitting ? 'Sending Request...' : 'Submit Reservation Request'}
         </button>

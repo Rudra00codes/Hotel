@@ -156,7 +156,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
 
   return (
     <div className="bg-gray-800 rounded-lg p-6 md:p-8 border border-gray-700">
-      <h3 className="text-2xl font-bold text-white mb-6 text-center">
+      <h3 className="text-2xl font-grotesk text-white mb-6 text-center uppercase tracking-wide">
         Send us a Message
       </h3>
       
@@ -180,7 +180,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
               )}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium">{submitStatus.message}</p>
+              <p className="text-sm font-grotesk font-medium">{submitStatus.message}</p>
               {submitStatus.type === 'error' && (
                 <p className="text-xs mt-1">
                   You can also reach us directly at{' '}
@@ -190,9 +190,9 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
                     variant="primary"
                     size="small"
                     showIcon={false}
-                    className="underline font-medium text-red-300 inline"
+                    className="underline font-grotesk font-medium text-red-300 inline"
                   /> or{' '}
-                  <a href="mailto:thedeewanhotel@gmail.com" className="underline font-medium text-red-300">thedeewanhotel@gmail.com</a>
+                  <a href="mailto:thedeewanhotel@gmail.com" className="underline font-grotesk font-medium text-red-300">thedeewanhotel@gmail.com</a>
                 </p>
               )}
             </div>
@@ -202,7 +202,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="name" className="block text-sm font-grotesk font-medium text-gray-300 mb-2">
             Your Name *
           </label>
           <input
@@ -221,7 +221,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="email" className="block text-sm font-grotesk font-medium text-gray-300 mb-2">
             Email Address *
           </label>
           <input
@@ -240,7 +240,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="phone" className="block text-sm font-grotesk font-medium text-gray-300 mb-2">
             Phone Number
           </label>
           <input
@@ -258,7 +258,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="message" className="block text-sm font-grotesk font-medium text-gray-300 mb-2">
             Message *
           </label>
           <textarea
@@ -285,7 +285,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full ${getTouchFriendlyClasses('large')} rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center ${
+          className={`w-full ${getTouchFriendlyClasses('large')} rounded-lg font-grotesk font-semibold transition-colors duration-200 flex items-center justify-center tracking-wide ${
             isSubmitting
               ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
               : 'bg-white text-gray-900 hover:bg-gray-100'
