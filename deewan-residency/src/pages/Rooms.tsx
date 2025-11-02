@@ -36,10 +36,10 @@ export default function Rooms() {
       <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl font-grotesk mb-4 uppercase tracking-wide">
               Rooms & Suites
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto font-grotesk">
               Discover comfort and luxury in our thoughtfully designed accommodations at Deewan Residency
             </p>
           </div>
@@ -55,7 +55,7 @@ export default function Rooms() {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
+                className={`px-6 py-3 rounded-full font-grotesk font-medium transition-all duration-200 tracking-wide ${
                   selectedCategory === category.id
                     ? 'bg-blue-600 text-white shadow-lg'
                     : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
@@ -84,10 +84,10 @@ export default function Rooms() {
         {filteredRooms.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-400 text-6xl mb-4">🏨</div>
-            <h3 className="text-xl font-medium text-gray-900 mb-2">
+            <h3 className="text-xl font-grotesk font-medium text-gray-900 mb-2 tracking-wide">
               No rooms found
             </h3>
-            <p className="text-gray-600">
+            <p className="text-gray-600 font-grotesk">
               Try selecting a different category to see available rooms.
             </p>
           </div>
@@ -95,22 +95,22 @@ export default function Rooms() {
 
         {/* Call to Action */}
         <div className="mt-16 bg-blue-600 rounded-2xl p-8 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">
+          <h2 className="text-3xl font-grotesk mb-4 uppercase tracking-wide">
             Need Help Choosing the Perfect Room?
           </h2>
-          <p className="text-xl text-blue-100 mb-6 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 mb-6 max-w-2xl mx-auto font-grotesk">
             Our team is here to help you find the ideal accommodation for your stay at Deewan Residency.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => navigate('/contact')}
-              className="bg-white text-blue-600 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200"
+              className="bg-white text-blue-600 px-8 py-3 rounded-lg font-grotesk font-medium hover:bg-gray-100 transition-colors duration-200 tracking-wide"
             >
               Contact Us
             </button>
             <a
               href="tel:01762-506147"
-              className="bg-blue-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition-colors duration-200"
+              className="bg-blue-700 text-white px-8 py-3 rounded-lg font-grotesk font-medium hover:bg-blue-800 transition-colors duration-200 tracking-wide"
             >
               Call: 01762-506147
             </a>

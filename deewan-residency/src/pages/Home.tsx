@@ -11,10 +11,10 @@ export default function Home() {
       {/* Additional homepage content will be added in future tasks */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl font-grotesk text-gray-800 mb-4 grotesk-optimized uppercase tracking-wide">
             Welcome to Deewan Residency
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg font-grotesk text-gray-600 max-w-2xl mx-auto grotesk-optimized">
             Experience exceptional hospitality at our hotel located on the Amb-Chd Highway in Derabassi, Mohali. 
             We offer comfortable accommodations and excellent service for both business and leisure travelers.
           </p>

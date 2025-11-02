@@ -11,10 +11,10 @@ export default function Contact() {
       <div className="bg-gray-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+            <h1 className="text-4xl md:text-6xl font-grotesk mb-6 text-white uppercase tracking-wide">
               Get in Touch
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto font-grotesk">
               Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
             </p>
           </div>
@@ -29,10 +29,10 @@ export default function Contact() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold text-white mb-8">
+                <h2 className="text-3xl font-grotesk text-white mb-8 uppercase tracking-wide">
                   Contact Information
                 </h2>
-                <p className="text-gray-400 mb-8 leading-relaxed">
+                <p className="text-gray-400 mb-8 leading-relaxed font-grotesk">
                   Reach out to us through any of the following channels. Our team is here to help you find your perfect stay.
                 </p>
               </div>
@@ -50,22 +50,22 @@ export default function Contact() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">Phone</h3>
+                    <h3 className="text-lg font-grotesk text-white mb-2 tracking-wide">Phone</h3>
                     <div className="space-y-1">
                       <a 
                         href="tel:01762506147" 
-                        className="block text-white hover:text-gray-300 font-medium text-lg transition-colors"
+                        className="block text-white hover:text-gray-300 font-grotesk font-medium text-lg transition-colors"
                       >
                         01762-506147
                       </a>
                       <a 
                         href="tel:01762506146" 
-                        className="block text-white hover:text-gray-300 font-medium text-lg transition-colors"
+                        className="block text-white hover:text-gray-300 font-grotesk font-medium text-lg transition-colors"
                       >
                         01762-506146
                       </a>
                     </div>
-                    <p className="text-sm text-gray-400 mt-2">Mon-Fri 8am to 6pm</p>
+                    <p className="text-sm text-gray-400 mt-2 font-grotesk">Mon-Fri 8am to 6pm</p>
                   </div>
                 </div>
 
@@ -79,14 +79,14 @@ export default function Contact() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
+                    <h3 className="text-lg font-grotesk text-white mb-2 tracking-wide">Email</h3>
                     <a 
                       href="mailto:thedeewanhotel@gmail.com" 
-                      className="text-white hover:text-gray-300 font-medium text-lg transition-colors"
+                      className="text-white hover:text-gray-300 font-grotesk font-medium text-lg transition-colors"
                     >
                       thedeewanhotel@gmail.com
                     </a>
-                    <p className="text-sm text-gray-400 mt-2">We'll respond within 24 hours</p>
+                    <p className="text-sm text-gray-400 mt-2 font-grotesk">We'll respond within 24 hours</p>
                   </div>
                 </div>
 
@@ -101,8 +101,8 @@ export default function Contact() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">Office</h3>
-                    <address className="text-gray-300 not-italic leading-relaxed">
+                    <h3 className="text-lg font-grotesk text-white mb-2 tracking-wide">Office</h3>
+                    <address className="text-gray-300 not-italic leading-relaxed font-grotesk">
                       Amb-Chd Highway<br />
                       Near Sukhmani College<br />
                       Derabassi, Mohali, Punjab
@@ -113,19 +113,19 @@ export default function Contact() {
 
               {/* Operating Hours */}
               <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                <h3 className="text-lg font-semibold text-white mb-4">Operating Hours</h3>
+                <h3 className="text-lg font-grotesk text-white mb-4 tracking-wide">Operating Hours</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Monday - Friday</span>
-                    <span className="text-white font-medium">9:00 AM - 6:00 PM</span>
+                    <span className="text-gray-300 font-grotesk">Monday - Friday</span>
+                    <span className="text-white font-grotesk font-medium">9:00 AM - 6:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Saturday</span>
-                    <span className="text-white font-medium">10:00 AM - 4:00 PM</span>
+                    <span className="text-gray-300 font-grotesk">Saturday</span>
+                    <span className="text-white font-grotesk font-medium">10:00 AM - 4:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Sunday</span>
-                    <span className="text-gray-400">Closed</span>
+                    <span className="text-gray-300 font-grotesk">Sunday</span>
+                    <span className="text-gray-400 font-grotesk">Closed</span>
                   </div>
                 </div>
               </div>
@@ -141,10 +141,10 @@ export default function Contact() {
       <div className="py-16 bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">
+            <h2 className="text-3xl font-grotesk text-white mb-4 uppercase tracking-wide">
               Our Location
             </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto font-grotesk">
               Find us on Amb-Chd Highway in Derabassi, Mohali. Easily accessible from major cities with excellent connectivity.
             </p>
           </div>
