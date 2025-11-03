@@ -35,10 +35,10 @@ export default function SimpleNavbar() {
 
   return (
     <header 
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky z-50 transition-all duration-500 ease-in-out ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-lg'
-          : 'bg-white/80 backdrop-blur-sm shadow-sm'
+          ? 'top-2 bg-white/20 backdrop-blur-md shadow-lg'
+          : 'top-0 bg-white/20 backdrop-blur-sm shadow-sm'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
