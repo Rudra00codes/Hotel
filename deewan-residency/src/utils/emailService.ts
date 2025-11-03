@@ -1,12 +1,21 @@
 import emailjs from '@emailjs/browser';
 
-// EmailJS configuration
-const EMAILJS_SERVICE_ID = 'service_jybq1jn';  
-const EMAILJS_TEMPLATE_ID = 'template_6y357c5';  
-const  = '_yNUBjYWoGpoQA7HQ'; 
+// EmailJS configuration - Use environment variables for security
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
+const HOTEL_EMAIL = import.meta.env.VITE_HOTEL_EMAIL || 'thedeewanhotel@gmail.com';
+
+// Validate environment variables
+if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+  console.error('EmailJS configuration is missing. Please check your environment variables.');
+  console.error('Required variables: VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY');
+}
 
 // Initialize EmailJS
-emailjs.init(EMAILJS_PUBLIC_KEY);
+if (EMAILJS_PUBLIC_KEY) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
 
 export interface BookingInquiry {
   checkIn: string;
@@ -34,66 +43,52 @@ export interface EmailResponse {
 }
 
 /**
+ * Validate EmailJS configuration
+ */
+export const validateEmailConfig = (): boolean => {
+  return !!(EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY);
+};
+
+/**
  * Send booking inquiry email to hotel management
  */
 export const sendBookingInquiry = async (inquiryData: BookingInquiry): Promise<EmailResponse> => {
   try {
-    // Format the inquiry data for email template
+    if (!validateEmailConfig()) {
+      throw new Error('EmailJS is not properly configured. Please check environment variables.');
+    }
+
     const templateParams = {
-      to_email: 'thedeewanhotel@gmail.com',
+      to_email: HOTEL_EMAIL,
       from_name: inquiryData.name,
       from_email: inquiryData.email,
       phone: inquiryData.phone,
       check_in: inquiryData.checkIn,
       check_out: inquiryData.checkOut,
       guests: inquiryData.guests.toString(),
-      room_type: inquiryData.roomType || 'Any Room Type',
+      room_type: inquiryData.roomType,
       special_requests: inquiryData.specialRequests || 'None',
       inquiry_date: new Date().toLocaleDateString(),
       inquiry_time: new Date().toLocaleTimeString(),
-      subject: `New Booking Inquiry from ${inquiryData.name}`,
-      message: `
-        New booking inquiry received:
-        
-        Guest Information:
-        - Name: ${inquiryData.name}
-        - Email: ${inquiryData.email}
-        - Phone: ${inquiryData.phone}
-        
-        Booking Details:
-        - Check-in: ${inquiryData.checkIn}
-        - Check-out: ${inquiryData.checkOut}
-        - Number of Guests: ${inquiryData.guests}
-        - Room Preference: ${inquiryData.roomType || 'Any Room Type'}
-        
-        Special Requests:
-        ${inquiryData.specialRequests || 'None'}
-        
-        Please respond to this inquiry promptly.
-      `
     };
 
-    // Send email using EmailJS
-    const response = await emailjs.send(
+    await emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID,
-      templateParams
+      templateParams,
+      EMAILJS_PUBLIC_KEY
     );
 
-    if (response.status === 200) {
-      return {
-        success: true,
-        message: 'Your inquiry has been sent successfully! We will contact you within 24 hours.'
-      };
-    } else {
-      throw new Error('Failed to send email');
-    }
+    return {
+      success: true,
+      message: 'Booking inquiry sent successfully! We will contact you soon.',
+    };
   } catch (error) {
-    console.error('Email sending error:', error);
+    console.error('EmailJS Error:', error);
     return {
       success: false,
-      message: 'Sorry, there was an error sending your inquiry. Please try calling us directly.',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      message: 'Failed to send booking inquiry. Please try again or contact us directly.',
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
     };
   }
 };
@@ -103,59 +98,39 @@ export const sendBookingInquiry = async (inquiryData: BookingInquiry): Promise<E
  */
 export const sendGuestConfirmation = async (inquiryData: BookingInquiry): Promise<EmailResponse> => {
   try {
+    if (!validateEmailConfig()) {
+      throw new Error('EmailJS is not properly configured. Please check environment variables.');
+    }
+
     const templateParams = {
       to_email: inquiryData.email,
-      to_name: inquiryData.name,
-      hotel_name: 'Deewan Residency',
-      hotel_phone: '01762-506147',
-      hotel_email: 'thedeewanhotel@gmail.com',
+      guest_name: inquiryData.name,
       check_in: inquiryData.checkIn,
       check_out: inquiryData.checkOut,
       guests: inquiryData.guests.toString(),
-      room_type: inquiryData.roomType || 'Any Room Type',
-      inquiry_date: new Date().toLocaleDateString(),
-      subject: 'Booking Inquiry Confirmation - Deewan Residency',
-      message: `
-        Dear ${inquiryData.name},
-        
-        Thank you for your interest in Deewan Residency! We have received your booking inquiry with the following details:
-        
-        Booking Details:
-        - Check-in: ${inquiryData.checkIn}
-        - Check-out: ${inquiryData.checkOut}
-        - Number of Guests: ${inquiryData.guests}
-        - Room Preference: ${inquiryData.roomType || 'Any Room Type'}
-        
-        Our team will review your request and contact you within 24 hours with availability and pricing information.
-        
-        If you have any urgent questions, please feel free to call us at:
-        - 01762-506147
-        - 01762-506146
-        
-        We look forward to hosting you at Deewan Residency!
-        
-        Best regards,
-        Deewan Residency Team
-        Amb-Chd Highway, Derabassi, Mohali
-      `
+      room_type: inquiryData.roomType,
+      hotel_name: 'Deewan Residency',
+      hotel_email: HOTEL_EMAIL,
+      hotel_phone: '+91-XXXXXXXXXX', // Add your hotel phone
     };
 
-    const response = await emailjs.send(
+    await emailjs.send(
       EMAILJS_SERVICE_ID,
-      'template_guest_confirmation', // Different template for guest confirmation
-      templateParams
+      'template_confirmation', // You'll need to create this template
+      templateParams,
+      EMAILJS_PUBLIC_KEY
     );
 
     return {
-      success: response.status === 200,
-      message: response.status === 200 ? 'Confirmation sent' : 'Failed to send confirmation'
+      success: true,
+      message: 'Confirmation email sent to guest.',
     };
   } catch (error) {
-    console.error('Guest confirmation error:', error);
+    console.error('EmailJS Confirmation Error:', error);
     return {
       success: false,
-      message: 'Failed to send confirmation email',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      message: 'Failed to send confirmation email.',
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
     };
   }
 };
@@ -165,61 +140,38 @@ export const sendGuestConfirmation = async (inquiryData: BookingInquiry): Promis
  */
 export const sendGeneralInquiry = async (inquiryData: GeneralInquiry): Promise<EmailResponse> => {
   try {
-    // Format the inquiry data for email template
+    if (!validateEmailConfig()) {
+      throw new Error('EmailJS is not properly configured. Please check environment variables.');
+    }
+
     const templateParams = {
-      to_email: 'thedeewanhotel@gmail.com',
+      to_email: HOTEL_EMAIL,
       from_name: inquiryData.name,
       from_email: inquiryData.email,
       phone: inquiryData.phone,
-      subject: `General Inquiry: ${inquiryData.subject} - ${inquiryData.name}`,
-      inquiry_subject: inquiryData.subject,
+      subject: inquiryData.subject,
+      message: inquiryData.message,
       inquiry_date: new Date().toLocaleDateString(),
       inquiry_time: new Date().toLocaleTimeString(),
-      message: `
-        New general inquiry received:
-        
-        Guest Information:
-        - Name: ${inquiryData.name}
-        - Email: ${inquiryData.email}
-        - Phone: ${inquiryData.phone}
-        
-        Subject: ${inquiryData.subject}
-        
-        Message:
-        ${inquiryData.message}
-        
-        Please respond to this inquiry promptly.
-      `
     };
 
-    // Send email using EmailJS
-    const response = await emailjs.send(
+    await emailjs.send(
       EMAILJS_SERVICE_ID,
-      'template_general_inquiry', // Different template for general inquiries
-      templateParams
+      EMAILJS_TEMPLATE_ID,
+      templateParams,
+      EMAILJS_PUBLIC_KEY
     );
 
-    if (response.status === 200) {
-      return {
-        success: true,
-        message: 'Your message has been sent successfully! We will get back to you within 24 hours.'
-      };
-    } else {
-      throw new Error('Failed to send email');
-    }
+    return {
+      success: true,
+      message: 'Your inquiry has been sent successfully! We will get back to you soon.',
+    };
   } catch (error) {
-    console.error('Email sending error:', error);
+    console.error('EmailJS Error:', error);
     return {
       success: false,
-      message: 'Sorry, there was an error sending your message. Please try calling us directly or sending an email.',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      message: 'Failed to send inquiry. Please try again or contact us directly.',
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
     };
   }
-};
-
-/**
- * Validate EmailJS configuration
- */
-export const validateEmailConfig = (): boolean => {
-  return !!(EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY);
 };
