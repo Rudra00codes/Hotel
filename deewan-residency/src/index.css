@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* View Transition API for Theme Toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 /* Space Grotesk Font Optimization */
 /* Font loading is handled via /fonts/space-grotesk.css for better performance */
 

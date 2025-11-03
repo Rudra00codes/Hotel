@@ -1,9 +1,9 @@
 import emailjs from '@emailjs/browser';
 
 // EmailJS configuration
-const EMAILJS_SERVICE_ID = 'service_deewan_hotel'; // Replace with actual service ID
-const EMAILJS_TEMPLATE_ID = 'template_booking_inquiry'; // Replace with actual template ID
-const EMAILJS_PUBLIC_KEY = 'your_public_key_here'; // Replace with actual public key
+const EMAILJS_SERVICE_ID = 'service_jybq1jn';  
+const EMAILJS_TEMPLATE_ID = 'template_6y357c5';  
+const  = '_yNUBjYWoGpoQA7HQ'; 
 
 // Initialize EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY);
