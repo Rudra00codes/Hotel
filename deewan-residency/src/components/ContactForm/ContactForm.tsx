@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useRef, type FormEvent } from 'react';
 import { sendGeneralInquiry, type GeneralInquiry } from '../../utils/emailService';
 import { getTouchFriendlyClasses, getTouchFriendlyInputClasses } from '../../utils/mobileOptimization';
 import MobilePhone from '../MobilePhone';
@@ -38,6 +38,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+  
+  const statusMessageRef = useRef<HTMLDivElement>(null);
 
 
 
@@ -99,6 +101,11 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
+    // Prevent default form behavior and navigation
+    if (e.target) {
+      (e.target as HTMLFormElement).setAttribute('data-submitting', 'true');
+    }
+    
     if (!validateForm()) {
       return;
     }
@@ -124,31 +131,55 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
           type: 'success',
           message: emailResult.message
         });
+        
+        // Reset form on successful submission
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        });
+        setErrors({});
+        
+        // Scroll to success message after a brief delay
+        setTimeout(() => {
+          statusMessageRef.current?.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+        }, 100);
+        
+        // Call success callback if provided
+        onSuccess?.();
       } else {
         setSubmitStatus({
           type: 'error',
           message: emailResult.message
         });
+        
+        // Scroll to error message
+        setTimeout(() => {
+          statusMessageRef.current?.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+        }, 100);
       }
-
-      // Reset form on successful submission
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      });
-      setErrors({});
-      
-      // Call success callback if provided
-      onSuccess?.();
     } catch (error) {
       console.error('Submission error:', error);
       setSubmitStatus({
         type: 'error',
         message: 'An unexpected error occurred. Please try again or contact us directly.'
       });
+      
+      // Scroll to error message
+      setTimeout(() => {
+        statusMessageRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+      }, 100);
     } finally {
       setIsSubmitting(false);
     }
@@ -162,7 +193,9 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
       
       {/* Status Messages */}
       {submitStatus.type && (
-        <div className={`p-4 rounded-md mb-4 ${
+        <div 
+          ref={statusMessageRef}
+          className={`p-4 rounded-md mb-4 ${
           submitStatus.type === 'success' 
             ? 'bg-green-900 border border-green-700 text-green-200' 
             : 'bg-red-900 border border-red-700 text-red-200'
@@ -200,7 +233,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4" onReset={(e) => e.preventDefault()}>
         <div>
           <label htmlFor="name" className="block text-sm font-grotesk font-medium text-gray-300 mb-2">
             Your Name *
