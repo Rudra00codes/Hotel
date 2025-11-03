@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stardom Font Test - Deewan Residency</title>
-    <link rel="stylesheet" href="/fonts/stardom.css">
+    <title>Space Grotesk Font Test - Deewan Residency</title>
+    <link rel="stylesheet" href="/fonts/space-grotesk.css">
     <style>
         body {
-            font-family: 'Stardom', system-ui, sans-serif;
+            font-family: 'Space Grotesk', system-ui, sans-serif;
             margin: 0;
             padding: 2rem;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -36,8 +36,8 @@
         .weight-600 { font-weight: 600; }
         .weight-700 { font-weight: 700; }
         
-        .stardom-emphasis {
-            font-family: 'Stardom', system-ui, sans-serif;
+        .Space Grotesk-emphasis {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
             font-size: 1.125rem;
             color: #1f2937;
         }
@@ -76,11 +76,11 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="hero-text">Stardom Font Test</h1>
+        <h1 class="hero-text">Space Grotesk Font Test</h1>
         <p class="subtitle">Deewan Residency Typography</p>
         
         <div class="font-test">
-            <h2>Stardom Regular (400) - Visual Hierarchy Test</h2>
+            <h2>Space Grotesk Regular (400) - Visual Hierarchy Test</h2>
             <p style="font-size: 0.875rem; color: #6b7280;">Small text: Welcome to Deewan Residency - Premium Hotel Experience</p>
             <p style="font-size: 1rem; color: #4b5563;">Regular text: Experience luxury accommodation on Amb-Chd Highway</p>
             <p style="font-size: 1.125rem; color: #374151;">Large text: Modern rooms with exceptional service in Derabassi</p>
@@ -90,7 +90,7 @@
         
         <div class="font-test">
             <h2>Color & Size Hierarchy Test</h2>
-            <p class="stardom-emphasis">Stardom Regular with size and color variations for visual hierarchy</p>
+            <p class="Space Grotesk-emphasis">Space Grotesk Regular with size and color variations for visual hierarchy</p>
         </div>
         
         <div class="font-test">
@@ -118,7 +118,7 @@
         
         <div style="margin-top: 2rem; padding: 1rem; background: #f0f9ff; border-radius: 0.5rem;">
             <p style="margin: 0; font-size: 0.875rem; color: #0369a1;">
-                <strong>Font Status:</strong> If you can see distinct size and color variations above, Stardom is loading correctly!
+                <strong>Font Status:</strong> If you can see distinct size and color variations above, Space Grotesk is loading correctly!
             </p>
         </div>
     </div>
@@ -128,9 +128,9 @@
         document.fonts.ready.then(() => {
             console.log('✅ All fonts loaded successfully');
             
-            // Check if Stardom is available
+            // Check if Space Grotesk is available
             const testElement = document.createElement('div');
-            testElement.style.fontFamily = 'Stardom, monospace';
+            testElement.style.fontFamily = 'Space Grotesk, monospace';
             testElement.style.position = 'absolute';
             testElement.style.visibility = 'hidden';
             testElement.textContent = 'Test';
@@ -139,10 +139,10 @@
             const computedFont = window.getComputedStyle(testElement).fontFamily;
             document.body.removeChild(testElement);
             
-            if (computedFont.includes('Stardom')) {
-                console.log('✅ Stardom font is active');
+            if (computedFont.includes('Space Grotesk')) {
+                console.log('✅ Space Grotesk font is active');
             } else {
-                console.warn('⚠️ Stardom font may not be loading properly');
+                console.warn('⚠️ Space Grotesk font may not be loading properly');
             }
         });
     </script>
