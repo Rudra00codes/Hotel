@@ -5,6 +5,7 @@ import Footer from './Footer';
 import ErrorBoundary from './ErrorBoundary';
 import LoadingSpinner from './LoadingSpinner';
 import { SmoothCursor } from './ui/cursor';
+import { ScrollToTop } from './ui/ScrollToTop';
 
 interface LayoutProps {
   children: ReactNode;
@@ -46,6 +47,9 @@ export default function Layout({ children }: LayoutProps) {
         
         {/* Footer */}
         <Footer />
+        
+        {/* Scroll to Top Button */}
+        <ScrollToTop showAfter={400} smoothDuration={800} />
       </div>
     </ErrorBoundary>
   );
