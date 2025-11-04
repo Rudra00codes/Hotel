@@ -45,8 +45,8 @@ export default function SimpleNavbar() {
       <div 
         className={`transition-all duration-300 ${
           scrolled
-            ? 'bg-white/20 backdrop-blur-md shadow-lg'
-            : 'bg-white/20 backdrop-blur-sm shadow-sm'
+            ? 'bg-white/50 backdrop-blur-md shadow-lg'
+            : 'bg-white/50 backdrop-blur-sm shadow-sm'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +58,7 @@ export default function SimpleNavbar() {
             className="flex items-center group"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            <h1 className="text-xl font-grotesk font-bold text-gray-900 uppercase tracking-wide transition-all group-hover:text-blue-600">
+            <h1 className="text-xl font-grotesk font-extrabold text-gray-900 uppercase tracking-wide transition-all group-hover:text-blue-600">
               Deewan Residency
             </h1>
           </Link>

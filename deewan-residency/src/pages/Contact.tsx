@@ -11,7 +11,7 @@ export default function Contact() {
       <div className="bg-gray-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-grotesk mb-6 text-white uppercase tracking-wide">
+            <h1 className="text-4xl md:text-6xl font-grotesk font-extrabold mb-6 text-white uppercase tracking-wide">
               Get in Touch
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto font-grotesk">

@@ -49,7 +49,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center glassmorphism-logo" onClick={closeMobileMenu}>
-              <h1 className="text-xl lg:text-2xl font-grotesk text-gray-900 tracking-wide uppercase">
+              <h1 className="text-xl lg:text-2xl font-grotesk font-extrabold text-gray-900 tracking-wide uppercase">
                 Deewan Residency
               </h1>
             </Link>

@@ -4,7 +4,7 @@ export default function NavbarDemo() {
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl font-grotesk font-bold text-gray-900 mb-6">
+          <h1 className="text-5xl font-grotesk font-extrabold text-gray-900 mb-6">
             Enhanced Resizable Navbar
           </h1>
           <p className="text-xl text-gray-600 mb-8 leading-relaxed">

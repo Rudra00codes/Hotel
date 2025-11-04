@@ -20,7 +20,7 @@ export default function About() {
       <div className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white py-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-grotesk mb-6 uppercase tracking-wide">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-grotesk font-extrabold mb-6 uppercase tracking-wide">
             About Deewan Residency
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto font-grotesk leading-relaxed">
