@@ -1,5 +1,4 @@
 import ContactForm from '../components/ContactForm';
-import Map from '../components/Map';
 import { useSEO } from '../utils/seo';
 
 export default function Contact() {
@@ -133,24 +132,6 @@ export default function Contact() {
 
             {/* Contact Form */}
             <ContactForm />
-          </div>
-        </div>
-      </div>
-
-      {/* Location & Map Section */}
-      <div className="py-16 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-grotesk text-white mb-4 uppercase tracking-wide">
-              Our Location
-            </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto font-grotesk">
-              Find us on Amb-Chd Highway in Derabassi, Mohali. Easily accessible from major cities with excellent connectivity.
-            </p>
-          </div>
-          
-          <div className="max-w-5xl mx-auto">
-            <Map />
           </div>
         </div>
       </div>
