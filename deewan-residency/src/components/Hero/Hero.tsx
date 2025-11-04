@@ -4,7 +4,7 @@ import { CountUp, SplitText } from '../ui';
 
 export default function Hero() {
   const [roomType, setRoomType] = useState('');
-  const [location, setLocation] = useState('');
+  const [guests, setGuests] = useState('1');
   const navigate = useNavigate();
 
   const handleSearch = () => {
@@ -12,7 +12,7 @@ export default function Hero() {
     navigate('/rooms', {
       state: {
         roomType: roomType || 'all',
-        location: location || 'derabassi'
+        guests: guests || '1'
       }
     });
   };
@@ -254,19 +254,21 @@ export default function Hero() {
                   </div>
                   <div className="relative">
                     <select
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
+                      value={guests}
+                      onChange={(e) => setGuests(e.target.value)}
                       className="w-full px-4 py-3 bg-white/90 backdrop-blur-sm rounded-xl border-0 text-gray-900 font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none cursor-pointer touch-target"
-                      aria-label="Select location"
+                      aria-label="Select number of guests"
                     >
-                      <option value="">Location</option>
-                      <option value="derabassi">Derabassi</option>
-                      <option value="mohali">Mohali</option>
-                      <option value="chandigarh">Near Chandigarh</option>
+                      <option value="">Guests</option>
+                      <option value="1">1 Guest</option>
+                      <option value="2">2 Guests</option>
+                      <option value="3">3 Guests</option>
+                      <option value="4">4 Guests</option>
+                      <option value="5">5+ Guests</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
                     </div>
                   </div>

@@ -92,17 +92,17 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const buttonSizes = {
-    sm: "w-10 h-10",
-    md: "w-12 h-12",
-    lg: "w-16 h-16",
+    sm: "w-10 h-10 text-sm",
+    md: "w-12 h-12 text-base",
+    lg: "w-14 h-14 text-lg",
   };
 
   const fontSizes = {
-    sm: "text-2xl md:text-3xl",
-    md: "text-3xl md:text-4xl",
-    lg: "text-4xl md:text-5xl",
-    xl: "text-5xl md:text-6xl",
-    "2xl": "text-6xl md:text-7xl",
+    sm: "text-xl sm:text-2xl md:text-3xl",
+    md: "text-2xl sm:text-3xl md:text-4xl",
+    lg: "text-3xl sm:text-4xl md:text-5xl",
+    xl: "text-4xl sm:text-5xl md:text-6xl",
+    "2xl": "text-5xl sm:text-6xl md:text-7xl",
   };
 
   const toggleMenu = () => {
@@ -116,18 +116,59 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
     }
   };
 
-  const handleItemClick = (item: MenuItem) => {
-    if (item.onClick) {
-      item.onClick();
+  const handleItemClick = async (item: MenuItem) => {
+    // If the menu should remain open on click, execute immediately
+    if (keepOpenOnItemClick) {
+      if (item.onClick) item.onClick();
+      if (item.href && !item.onClick) window.location.href = item.href;
+      return;
     }
 
+    // Start closing animation
+    setIsOpen(false);
+    onClose?.();
+
+    // Run any provided onClick handler immediately
+    if (item.onClick) item.onClick();
+
+    // If navigation is required, wait for the overlay closing transition to finish.
     if (item.href && !item.onClick) {
-      window.location.href = item.href;
-    }
+      const el = navRef.current;
 
-    if (!keepOpenOnItemClick) {
-      setIsOpen(false);
-      onClose?.();
+      if (el) {
+        // Wait for the clip-path transitionend event (precise) with a small fallback timeout
+        await new Promise<void>((resolve) => {
+          let resolved = false;
+          let fallback: number;
+
+          const onEnd = (_e: TransitionEvent) => {
+            // Accept any transitionend for better cross-browser compatibility
+            if (!resolved) {
+              resolved = true;
+              clearTimeout(fallback);
+              el.removeEventListener('transitionend', onEnd);
+              resolve();
+            }
+          };
+
+          el.addEventListener('transitionend', onEnd, { passive: true });
+
+          // Shorter fallback for production (just enough buffer)
+          fallback = window.setTimeout(() => {
+            if (!resolved) {
+              resolved = true;
+              el.removeEventListener('transitionend', onEnd);
+              resolve();
+            }
+          }, animationDuration * 1000 + 100);
+        });
+      } else {
+        // If no element ref, fallback to timeout
+        await new Promise((r) => setTimeout(r, animationDuration * 1000));
+      }
+
+      // Navigate after animation completes
+      window.location.href = item.href;
     }
   };
 
@@ -144,6 +185,27 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
     return () => document.removeEventListener("keydown", handleEscape);
   }, [isOpen, onClose]);
 
+  // Prevent body scroll when overlay is open (mobile optimization)
+  useEffect(() => {
+    if (isOpen) {
+      // Store current scroll position
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      
+      return () => {
+        // Restore scroll position
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [isOpen]);
+
   return (
     <div ref={containerRef} className={cn("relative", className)}>
       <style>
@@ -156,6 +218,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             right: 0;
             width: 100%;
             height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile */
             display: flex;
             justify-content: ${menuAlignment === "right" ? "flex-end" : menuAlignment === "center" ? "center" : "flex-start"};
             align-items: center;
@@ -163,7 +226,9 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             z-index: ${zIndex};
             clip-path: circle(0px at calc(100% - 40px) 40px);
             transition: clip-path ${animationDuration}s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            ${enableBlur ? "backdrop-filter: blur(10px);" : ""}
+            ${enableBlur ? "backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);" : ""}
+            overscroll-behavior: contain; /* Prevent scroll chaining on mobile */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
           }
           
           .hamburger-overlay-${zIndex}.open {
@@ -178,10 +243,16 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+            touch-action: manipulation; /* Optimize touch performance */
           }
           
           .hamburger-button-${zIndex}:hover {
             transform: scale(1.1);
+          }
+          
+          .hamburger-button-${zIndex}:active {
+            transform: scale(0.95); /* Better mobile feedback */
           }
           
           .hamburger-button-${zIndex}:focus {
@@ -198,15 +269,17 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
           .menu-item-${zIndex} {
             position: relative;
             list-style: none;
-            padding: 0.5rem 0;
+            padding: 0.75rem 0; /* Larger touch targets */
             cursor: pointer;
             transform: ${menuAlignment === "right" ? "translateX(200px)" : "translateX(-200px)"};
             opacity: 0;
-            transition: all 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
             font-family: ${fontFamily};
             font-weight: ${fontWeight};
             color: ${textColor};
             ${menuDirection === "horizontal" ? "display: inline-block; margin: 0 1rem;" : ""}
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+            touch-action: manipulation; /* Better touch response */
           }
           
           .menu-item-${zIndex}.visible {
@@ -227,6 +300,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             opacity: 0;
             transition: all 0.25s ease;
             pointer-events: none;
+            will-change: transform, opacity; /* Performance hint */
           }
           
           .menu-item-${zIndex}:hover::before {
@@ -242,7 +316,8 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             gap: 0.5rem;
           }
           
-          .menu-item-${zIndex}:hover span {
+          .menu-item-${zIndex}:hover span,
+          .menu-item-${zIndex}:active span {
             opacity: 1;
           }
           
@@ -254,20 +329,40 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
           
           /* Mobile responsiveness */
           @media (max-width: 768px) {
+            .hamburger-overlay-${zIndex} {
+              clip-path: circle(0px at calc(100% - 30px) 30px);
+            }
+            
+            .hamburger-overlay-${zIndex}.open {
+              clip-path: circle(150% at calc(100% - 30px) 30px);
+            }
+            
             .menu-items-${zIndex} {
-              padding: 1rem;
-              max-height: 80vh;
+              padding: 1.5rem;
+              max-height: 85vh;
+              max-height: 85dvh;
               overflow-y: auto;
+              overscroll-behavior: contain;
             }
             
             .menu-item-${zIndex} {
-              padding: 1rem 0;
+              padding: 1rem 0; /* Larger touch target on mobile */
             }
           }
           
           @media (max-width: 480px) {
+            .hamburger-overlay-${zIndex} {
+              clip-path: circle(0px at calc(100% - 25px) 25px);
+            }
+            
+            .hamburger-overlay-${zIndex}.open {
+              clip-path: circle(150% at calc(100% - 25px) 25px);
+            }
+            
             .menu-items-${zIndex} {
               ${menuDirection === "horizontal" ? "flex-direction: column; gap: 0;" : ""}
+              padding: 1rem;
+            }
             }
             
             .menu-item-${zIndex} {
@@ -283,19 +378,22 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
         className={cn(`flex flex-col justify-center h-full
            hamburger-overlay-${zIndex}`, 
            isOpen && "open",
-           menuAlignment === "right" ? "items-end pr-8" : menuAlignment === "center" ? "items-center" : "items-start pl-8"
+           menuAlignment === "right" ? "items-end pr-4 sm:pr-8" : menuAlignment === "center" ? "items-center px-4" : "items-start pl-4 sm:pl-8"
         )}
         aria-hidden={!isOpen}
+        role="navigation"
+        aria-label="Mobile navigation menu"
       >
         <ul
           className={cn(
             `menu-items-${zIndex}`,
             menuDirection === "horizontal" && "flex flex-wrap "
           )}
+          role="menu"
         >
           {items.map((item, index) => (
             <li
-              key={index}
+              key={`menu-item-${index}-${item.label}`}
               className={cn(
                 `menu-item-${zIndex}`,
                 fontSizes[fontSize],
@@ -303,7 +401,10 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
                 menuItemClassName
               )}
               style={{
-                transitionDelay: isOpen ? `${index * staggerDelay}s` : "0s",
+                transitionDelay: isOpen 
+                  ? `${index * staggerDelay}s` 
+                  : `${(items.length - index - 1) * (staggerDelay * 0.5)}s`, // Reverse stagger on close
+                willChange: isOpen ? 'transform, opacity' : 'auto', // Performance optimization
               }}
               onClick={() => handleItemClick(item)}
               onKeyDown={(e) => {
@@ -313,11 +414,11 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
                 }
               }}
               tabIndex={isOpen ? 0 : -1}
-              role="button"
+              role="menuitem"
               aria-label={`Navigate to ${item.label}`}
             >
               <span>
-                {item.icon && <span className="menu-icon">{item.icon}</span>}
+                {item.icon && <span className="menu-icon" aria-hidden="true">{item.icon}</span>}
                 {item.label}
               </span>
             </li>
