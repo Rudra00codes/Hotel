@@ -102,12 +102,14 @@ export default function RoomCard({ room, onViewDetails, onInquiry }: RoomCardPro
         <div className="flex gap-3">
           <button
             onClick={() => onViewDetails(room.id)}
+            data-magnetic
             className="flex-1 bg-white border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-grotesk font-medium hover:bg-blue-50 transition-colors duration-200 tracking-wide"
           >
             View Details
           </button>
           <button
             onClick={() => onInquiry(room.id)}
+            data-magnetic
             className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg font-grotesk font-medium hover:bg-blue-700 transition-colors duration-200 tracking-wide"
           >
             Book Now

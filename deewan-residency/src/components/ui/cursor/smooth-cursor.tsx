@@ -1,11 +1,28 @@
 "use client";
 
-import { motion, useSpring } from "framer-motion";
+import { motion, useSpring } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import type { FC, JSX } from "react";
+
 // Utility function 'cn' (classnames) - implemented directly to resolve import error
 function cn(...inputs: (string | undefined | null | boolean)[]) {
   return inputs.filter(Boolean).join(" ");
+}
+
+// Check if device is desktop (not mobile/tablet)
+function isDesktop(): boolean {
+  if (typeof window === 'undefined') return false;
+  
+  // Check for touch support
+  const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  
+  // Check screen width (desktop typically > 1024px)
+  const isWideScreen = window.innerWidth >= 1024;
+  
+  // Check user agent for mobile indicators
+  const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  return !hasTouch && isWideScreen && !isMobileUA;
 }
 
 interface Position {
@@ -132,6 +149,7 @@ export function SmoothCursor({
 }: SmoothCursorProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [trail, setTrail] = useState<Position[]>([]);
+  const [isDesktopDevice, setIsDesktopDevice] = useState(false);
 
   const lastMousePos = useRef<Position>({ x: 0, y: 0 });
   const velocity = useRef<Position>({ x: 0, y: 0 });
@@ -155,8 +173,21 @@ export function SmoothCursor({
   const defaultCursor = <DefaultCursorSVG size={size} color={color} />;
   const cursorElement = cursor || defaultCursor;
 
+  // Check if desktop on mount
   useEffect(() => {
-    if (disabled) return;
+    setIsDesktopDevice(isDesktop());
+    
+    // Recheck on resize (orientation change, etc.)
+    const handleResize = () => {
+      setIsDesktopDevice(isDesktop());
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (disabled || !isDesktopDevice) return;
 
     const updateVelocity = (currentPos: Position) => {
       const currentTime = Date.now();
@@ -315,10 +346,11 @@ export function SmoothCursor({
     magneticElements,
     onCursorMove,
     onCursorEnter,
-    onCursorLeave
+    onCursorLeave,
+    isDesktopDevice
   ]);
 
-  if (disabled || !isVisible) return null;
+  if (disabled || !isVisible || !isDesktopDevice) return null;
 
   return (
     <>

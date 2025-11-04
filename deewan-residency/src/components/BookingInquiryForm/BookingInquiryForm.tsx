@@ -417,6 +417,7 @@ export default function BookingInquiryForm({ onSuccess }: BookingInquiryFormProp
         {/* Submit Button */}
         <button
           type="submit"
+          data-magnetic
           disabled={isSubmitting}
           className={`w-full ${getTouchFriendlyClasses('large')} rounded-md font-semibold text-white transition-colors ${
             isSubmitting

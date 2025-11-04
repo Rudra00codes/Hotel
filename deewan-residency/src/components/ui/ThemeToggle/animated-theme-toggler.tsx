@@ -88,6 +88,7 @@ export const AnimatedThemeToggler = ({
     <button
       ref={buttonRef}
       onClick={toggleTheme}
+      data-magnetic
       className={cn(
         "relative inline-flex items-center justify-center rounded-lg p-2.5",
         "transition-colors duration-200",

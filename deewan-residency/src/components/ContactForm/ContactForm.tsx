@@ -317,6 +317,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
         {/* Submit Button */}
         <button
           type="submit"
+          data-magnetic
           disabled={isSubmitting}
           className={`w-full ${getTouchFriendlyClasses('large')} rounded-lg font-grotesk font-semibold transition-colors duration-200 flex items-center justify-center tracking-wide ${
             isSubmitting

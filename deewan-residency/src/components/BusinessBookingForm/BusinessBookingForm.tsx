@@ -315,6 +315,7 @@ ${formData.specialRequirements || 'None'}
 
         <button
           type="submit"
+          data-magnetic
           disabled={isSubmitting}
           className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-grotesk font-medium hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors tracking-wide"
         >

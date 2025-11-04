@@ -398,6 +398,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
         {/* Submit Button */}
         <button
           type="submit"
+          data-magnetic
           disabled={isSubmitting}
           className={`w-full py-3 px-6 rounded-md font-grotesk font-semibold text-white transition-colors tracking-wide ${
             isSubmitting
