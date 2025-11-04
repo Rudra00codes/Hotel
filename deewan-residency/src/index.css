@@ -26,6 +26,7 @@
   
   body {
     @apply text-gray-900 bg-gray-50;
+    @apply dark:text-gray-100 dark:bg-gray-900;
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -82,10 +83,12 @@
 @layer components {
   .btn-primary {
     @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 min-h-[44px] flex items-center justify-center;
+    @apply dark:bg-blue-500 dark:hover:bg-blue-600;
   }
   
   .btn-secondary {
     @apply bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-200 min-h-[44px] flex items-center justify-center;
+    @apply dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-200;
   }
   
   /* Container with responsive padding */

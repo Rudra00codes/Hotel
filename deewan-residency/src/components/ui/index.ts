@@ -28,7 +28,7 @@ export { default as Tooltip } from './Tooltip';
 
 // Navigation Components
 export { default as Tabs } from './Tabs';
-export { default as Breadcrumb } from './Breadcrumb';
+export { default as Breadcrumb } from './Menu';
 export { default as Pagination } from './Pagination';
 
 // Data Display Components

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ToggleTheme } from '../ui/ThemeToggle';
+import HamburgerMenuOverlay from '../ui/Menu/hamburger-menu-overlay';
 
 /**
  * Glassmorphism Navbar Component
@@ -18,7 +18,6 @@ const navLinks = [
 ];
 
 export default function SimpleNavbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -33,6 +32,11 @@ export default function SimpleNavbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const menuItems = [
+    ...navLinks.map((l) => ({ label: l.label, href: l.path })),
+    { label: 'Book Now', href: '/contact' },
+  ];
 
   return (
     <header 
@@ -56,7 +60,6 @@ export default function SimpleNavbar() {
           <Link 
             to="/" 
             className="flex items-center group"
-            onClick={() => setIsMobileMenuOpen(false)}
           >
             <h1 className="text-xl font-grotesk font-extrabold text-gray-900 uppercase tracking-wide transition-all group-hover:text-blue-600">
               Deewan Residency
@@ -85,14 +88,6 @@ export default function SimpleNavbar() {
 
           {/* Desktop Actions - Right Side */}
           <div className="hidden md:flex items-center space-x-4">
-            {/* Theme Toggle Button - Desktop */}
-            <ToggleTheme
-              data-magnetic
-              animationType="circle-spread"
-              duration={400}
-              className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 group [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-gray-700 [&>svg]:group-hover:text-blue-600 [&>svg]:transition-colors"
-            />
-
             <Link
               to="/contact"
               data-magnetic
@@ -102,69 +97,21 @@ export default function SimpleNavbar() {
             </Link>
           </div>
 
-          {/* Mobile Actions */}
-          <div className="md:hidden flex items-center space-x-2">
-            {/* Theme Toggle Button - Mobile */}
-            <ToggleTheme
-              data-magnetic
-              animationType="circle-spread"
-              duration={400}
-              className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-gray-700"
+          {/* Mobile Actions: Hamburger Menu on Right Side */}
+          <div className="md:hidden">
+            <HamburgerMenuOverlay
+              items={menuItems}
+              buttonSize="md"
+              buttonColor="#2563eb"
+              overlayBackground="linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)"
+              textColor="#ffffff"
+              menuAlignment="right"
+              ariaLabel="Open navigation menu"
+              enableBlur={true}
             />
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100/80 transition-all duration-200"
-              type="button"
-              aria-label="Toggle menu"
-            >
-              <svg
-                className="w-6 h-6 text-gray-700 transition-transform duration-200"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                style={{ transform: isMobileMenuOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}
-              >
-                {isMobileMenuOpen ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-gray-200/50 backdrop-blur-sm bg-white/95">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block py-3 px-4 text-base font-grotesk font-medium rounded-lg transition-all duration-200 ${
-                  isActive(link.path)
-                    ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-600'
-                    : 'text-gray-700 hover:bg-gray-50/80'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              to="/contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block mt-4 py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center text-base font-grotesk font-medium rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md"
-            >
-              Book Now
-            </Link>
-          </nav>
-        )}
+        
         </div>
       </div>
     </header>

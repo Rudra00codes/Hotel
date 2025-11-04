@@ -39,34 +39,43 @@ export const ToggleTheme = ({
     animationType = "circle-spread",
     ...props
 }: ToggleThemeProps) => {
-    const [isDark, setIsDark] = useState(false)
+    const [isDark, setIsDark] = useState(() => {
+        // Initialize theme from localStorage or system preference
+        if (typeof window === 'undefined') return false
+        
+        const stored = localStorage.getItem("theme")
+        if (stored) {
+            return stored === "dark"
+        }
+        
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+    })
     const buttonRef = useRef<HTMLButtonElement>(null)
 
+    // Apply theme on mount and when isDark changes
     useEffect(() => {
-        const updateTheme = () => {
-            setIsDark(document.documentElement.classList.contains("dark"))
+        if (isDark) {
+            document.documentElement.classList.add("dark")
+        } else {
+            document.documentElement.classList.remove("dark")
         }
-
-        updateTheme()
-
-        const observer = new MutationObserver(updateTheme)
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ["class"],
-        })
-
-        return () => observer.disconnect()
-    }, [])
+        localStorage.setItem("theme", isDark ? "dark" : "light")
+    }, [isDark])
 
     const toggleTheme = useCallback(async () => {
         if (!buttonRef.current) return
 
+        const newTheme = !isDark
+
         // Check if View Transition API is supported
         if (!document.startViewTransition || animationType === 'none') {
             // Fallback for browsers without View Transition API
-            const newTheme = !isDark
             setIsDark(newTheme)
-            document.documentElement.classList.toggle("dark")
+            if (newTheme) {
+                document.documentElement.classList.add("dark")
+            } else {
+                document.documentElement.classList.remove("dark")
+            }
             localStorage.setItem("theme", newTheme ? "dark" : "light")
             return
         }
@@ -74,9 +83,12 @@ export const ToggleTheme = ({
         // Wait for the DOM update to complete within the View Transition
         await document.startViewTransition(() => {
             flushSync(() => {
-                const newTheme = !isDark
                 setIsDark(newTheme)
-                document.documentElement.classList.toggle("dark")
+                if (newTheme) {
+                    document.documentElement.classList.add("dark")
+                } else {
+                    document.documentElement.classList.remove("dark")
+                }
                 localStorage.setItem("theme", newTheme ? "dark" : "light")
             })
         }).ready
@@ -312,9 +324,12 @@ export const ToggleTheme = ({
             <button
                 ref={buttonRef}
                 onClick={toggleTheme}
+                aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
                 className={cn(
                     "p-2 rounded-full transition-colors duration-300",
-                    isDark ? "hover:text-amber-400" : "hover:text-blue-500",
+                    isDark 
+                        ? "text-yellow-400 hover:text-yellow-300" 
+                        : "text-gray-700 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400",
                     className
                 )}
                 {...props}
