@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { AnimatedThemeToggler } from '../ui/ThemeToggle';
+import { ToggleTheme } from '../ui/ThemeToggle';
 
 /**
  * Glassmorphism Navbar Component
@@ -86,9 +86,11 @@ export default function SimpleNavbar() {
           {/* Desktop Actions - Right Side */}
           <div className="hidden md:flex items-center space-x-4">
             {/* Theme Toggle Button - Desktop */}
-            <AnimatedThemeToggler
-              className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 group [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-gray-700 [&>svg]:group-hover:text-blue-600 [&>svg]:transition-colors"
+            <ToggleTheme
+              data-magnetic
+              animationType="circle-spread"
               duration={400}
+              className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 group [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-gray-700 [&>svg]:group-hover:text-blue-600 [&>svg]:transition-colors"
             />
 
             <Link
@@ -103,9 +105,11 @@ export default function SimpleNavbar() {
           {/* Mobile Actions */}
           <div className="md:hidden flex items-center space-x-2">
             {/* Theme Toggle Button - Mobile */}
-            <AnimatedThemeToggler
-              className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-gray-700"
+            <ToggleTheme
+              data-magnetic
+              animationType="circle-spread"
               duration={400}
+              className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-200 [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-gray-700"
             />
 
             {/* Mobile Menu Button */}
