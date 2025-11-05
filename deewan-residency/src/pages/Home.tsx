@@ -23,9 +23,9 @@ export default function Home() {
       </section>
 
       {/* Location & Map Section */}
-      <section className="py-16 bg-gray-800">
+      <section className="py-16" style={{ backgroundColor: '#000000' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 slide-top-normal">
             <h2 className="text-3xl font-grotesk text-white mb-4 uppercase tracking-wide">
               Our Location
             </h2>
@@ -34,7 +34,7 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-5xl mx-auto slide-top-normal">
             <Map />
           </div>
         </div>

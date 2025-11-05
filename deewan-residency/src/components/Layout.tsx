@@ -17,7 +17,7 @@ export default function Layout({ children }: LayoutProps) {
       {/* Custom Cursor - Desktop Only */}
       <SmoothCursor
         size={20}
-        color="#2563eb"
+        color="#000000"
         rotateOnMove={true}
         scaleOnClick={true}
         glowEffect={true}

@@ -5,6 +5,7 @@ import { getTouchFriendlyClasses, getThumbFriendlyNavClasses, addMobileEventList
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDarkSection, setIsDarkSection] = useState(false);
   const location = useLocation();
 
   // Initialize mobile optimizations and scroll detection
@@ -14,9 +15,73 @@ export default function Header() {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 20);
+
+      // Check if navbar is over a dark section
+      const navbar = document.querySelector('header');
+      if (navbar) {
+        const navbarRect = navbar.getBoundingClientRect();
+        const navbarCenter = navbarRect.top + navbarRect.height / 2;
+        
+        // Get element at navbar center position
+        const elementAtCenter = document.elementFromPoint(
+          window.innerWidth / 2,
+          navbarCenter
+        );
+        
+        if (elementAtCenter) {
+          // Check if the element or its parents have dark backgrounds
+          let currentElement: Element | null = elementAtCenter;
+          let maxDepth = 10; // Prevent infinite loops
+          
+          while (currentElement && maxDepth > 0) {
+            const styles = window.getComputedStyle(currentElement);
+            const bgColor = styles.backgroundColor;
+            const bgImage = styles.backgroundImage;
+            
+            // Check for dark background colors or specific dark section classes
+            if (
+              bgColor !== 'rgba(0, 0, 0, 0)' && 
+              bgColor !== 'transparent'
+            ) {
+              // Parse RGB values to determine if background is dark
+              const rgb = bgColor.match(/\d+/g);
+              if (rgb) {
+                const [r, g, b] = rgb.map(Number);
+                const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+                
+                if (brightness < 128) {
+                  setIsDarkSection(true);
+                  return;
+                }
+              }
+            }
+            
+            // Check for dark gradient backgrounds or specific dark section attributes
+            const htmlElement = currentElement as HTMLElement;
+            if (
+              bgImage.includes('gradient') ||
+              currentElement.classList.contains('bg-gray-900') ||
+              currentElement.classList.contains('bg-gray-800') ||
+              currentElement.classList.contains('bg-black') ||
+              htmlElement.style?.backgroundColor === '#000000' ||
+              htmlElement.style?.backgroundColor === 'rgb(0, 0, 0)'
+            ) {
+              setIsDarkSection(true);
+              return;
+            }
+            
+            currentElement = currentElement.parentElement;
+            maxDepth--;
+          }
+        }
+        
+        setIsDarkSection(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -49,7 +114,9 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center glassmorphism-logo" onClick={closeMobileMenu}>
-              <h1 className="text-xl lg:text-2xl font-grotesk font-extrabold text-gray-900 tracking-wide uppercase">
+              <h1 className={`text-xl lg:text-2xl font-grotesk font-extrabold tracking-wide uppercase transition-colors duration-300 ${
+                isDarkSection ? 'text-white' : 'text-gray-900'
+              }`}>
                 Deewan Residency
               </h1>
             </Link>
@@ -61,11 +128,14 @@ export default function Header() {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`glassmorphism-nav-item text-sm font-grotesk font-medium transition-all duration-300 hover:text-blue-600 tracking-wide px-2 py-1 ${
+                className={`glassmorphism-nav-item text-sm font-grotesk font-medium transition-all duration-300 hover:text-blue-600 tracking-wide px-3 py-1 inline-flex items-center justify-center ${
                   isActivePage(item.path)
-                    ? 'text-blue-600 glassmorphism-active border-b-2 border-blue-600 pb-1'
+                    ? 'text-blue-600 glassmorphism-active border-b-2 border-blue-600 pb-0.5'
+                    : isDarkSection
+                    ? 'text-white'
                     : 'text-gray-700'
                 }`}
+                style={{ lineHeight: '1.5' }}
               >
                 {item.name}
               </Link>

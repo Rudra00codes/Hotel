@@ -251,6 +251,20 @@
     animation: statsPulse 2s ease-in-out infinite;
   }
   
+  /* Slide top normal animation */
+  @keyframes slide-top-normal {
+    0% { 
+      transform: translateY(0); 
+    } 
+    100% { 
+      transform: translateY(-100px);
+    } 
+  }
+
+  .slide-top-normal { 
+    animation: slide-top-normal 1s ease 0s 1 normal none; 
+  }
+  
   /* Enhanced glow effect for stats */
   .stats-glow {
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
@@ -365,6 +379,10 @@
       0 8px 32px rgba(0, 0, 0, 0.1),
       0 1px 0 rgba(255, 255, 255, 0.5) inset;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Squircle border */
+    border-radius: 20px;
+    margin: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
   
   /* Enhanced glassmorphism on scroll */
@@ -375,6 +393,8 @@
     box-shadow: 
       0 12px 40px rgba(0, 0, 0, 0.15),
       0 1px 0 rgba(255, 255, 255, 0.6) inset;
+    /* Enhanced squircle on scroll */
+    border-radius: 24px;
   }
   
   /* Mobile menu glassmorphism */
@@ -385,6 +405,9 @@
     box-shadow: 
       0 8px 32px rgba(0, 0, 0, 0.1),
       0 1px 0 rgba(255, 255, 255, 0.4) inset;
+    /* Squircle border for mobile menu */
+    border-radius: 0 0 16px 16px;
+    margin: 0 1rem;
   }
   
   /* Glassmorphism hover effects for navigation items */
@@ -415,20 +438,20 @@
   
   /* Glassmorphism CTA button */
   .glassmorphism-cta {
-    background: rgba(59, 130, 246, 0.9);
+    background: linear-gradient(to bottom, #06b6d4, #2563eb, #6366f1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(59, 130, 246, 0.3);
+    border: 1px solid rgba(99, 102, 241, 0.3);
     box-shadow: 
-      0 8px 32px rgba(59, 130, 246, 0.3),
+      0 8px 32px rgba(99, 102, 241, 0.3),
       0 1px 0 rgba(255, 255, 255, 0.2) inset;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .glassmorphism-cta:hover {
-    background: rgba(37, 99, 235, 0.95);
+    background: linear-gradient(to bottom, #0891b2, #1d4ed8, #4f46e5);
     box-shadow: 
-      0 12px 40px rgba(59, 130, 246, 0.4),
+      0 12px 40px rgba(99, 102, 241, 0.4),
       0 1px 0 rgba(255, 255, 255, 0.3) inset;
     transform: translateY(-1px);
   }

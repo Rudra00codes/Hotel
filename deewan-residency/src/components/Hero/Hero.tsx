@@ -17,6 +17,17 @@ export default function Hero() {
     });
   };
 
+  const handleMoreClick = () => {
+    navigate('/about');
+    // Use setTimeout to ensure navigation completes before scrolling
+    setTimeout(() => {
+      const element = document.getElementById('location-advantage');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   const stats = [
     {
       number: 150,
@@ -47,8 +58,19 @@ export default function Hero() {
       <div className="flex flex-col lg:flex-row min-h-screen">
 
         {/* Left Content Section */}
-        <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-12 xl:px-16 py-8 lg:py-16 order-last lg:order-first">
-          <div className="max-w-xl mx-auto lg:mx-0 animate-slide-in-up">
+        <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-12 xl:px-16 py-8 lg:py-16 order-last lg:order-first relative">
+          {/* Morning Haze - Flipped Vertically */}
+          <div
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage: `
+                radial-gradient(circle at 50% 0%, rgba(253, 224, 71, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.4) 0%, transparent 70%),
+                radial-gradient(circle at 50% 0%, rgba(244, 114, 182, 0.5) 0%, transparent 80%)
+              `,
+            }}
+          />
+          <div className="max-w-xl mx-auto lg:mx-0 animate-slide-in-up relative z-10">
 
             {/* Main Heading with SplitText Animation */}
             <div className="mb-8">
@@ -118,7 +140,7 @@ export default function Hero() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 mb-8">
                 <button
-                  onClick={() => navigate('/contact')}
+                  onClick={handleMoreClick}
                   className="inline-flex items-center justify-center px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors duration-200 group touch-target"
                 >
                   More

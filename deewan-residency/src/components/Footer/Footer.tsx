@@ -15,8 +15,14 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer className="relative text-white">
+      <div 
+        className="absolute inset-0 z-0" 
+        style={{
+          background: "radial-gradient(125% 125% at 50% 10%, #000000 40%, #0d1a36 100%)"
+        }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Hotel Information */}
           <div className="lg:col-span-2">

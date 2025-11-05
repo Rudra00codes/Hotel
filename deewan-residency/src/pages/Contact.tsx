@@ -9,7 +9,7 @@ export default function Contact() {
       {/* Hero Section */}
       <div className="bg-gray-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div className="text-center slide-top-normal">
             <h1 className="text-4xl md:text-6xl font-grotesk font-extrabold mb-6 text-white uppercase tracking-wide">
               Get in Touch
             </h1>
@@ -26,7 +26,7 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-8 slide-top-normal">
               <div>
                 <h2 className="text-3xl font-grotesk text-white mb-8 uppercase tracking-wide">
                   Contact Information
@@ -131,7 +131,9 @@ export default function Contact() {
             </div>
 
             {/* Contact Form */}
-            <ContactForm />
+            <div className="slide-top-normal">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </div>
