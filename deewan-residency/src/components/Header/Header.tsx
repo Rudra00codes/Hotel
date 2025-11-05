@@ -145,7 +145,24 @@ export default function Header() {
           {/* Check Availability CTA Button - Desktop */}
           <div className="hidden lg:flex">
             <Link
-              to="/#booking-form"
+              to="/"
+              onClick={(e) => {
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  const bookingForm = document.getElementById('booking-form');
+                  if (bookingForm) {
+                    bookingForm.scrollIntoView({ behavior: 'smooth' });
+                  }
+                } else {
+                  // Will navigate to home, then scroll handled by useEffect
+                  setTimeout(() => {
+                    const bookingForm = document.getElementById('booking-form');
+                    if (bookingForm) {
+                      bookingForm.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }, 100);
+                }
+              }}
               className={`${getTouchFriendlyClasses('medium')} glassmorphism-cta text-white rounded-lg font-grotesk font-medium tracking-wide`}
             >
               Check Availability
@@ -225,8 +242,25 @@ export default function Header() {
           {/* Check Availability CTA Button - Mobile */}
           <div className="px-3 pt-4">
             <Link
-              to="/#booking-form"
-              onClick={closeMobileMenu}
+              to="/"
+              onClick={(e) => {
+                closeMobileMenu();
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  const bookingForm = document.getElementById('booking-form');
+                  if (bookingForm) {
+                    bookingForm.scrollIntoView({ behavior: 'smooth' });
+                  }
+                } else {
+                  // Will navigate to home, then scroll handled by useEffect
+                  setTimeout(() => {
+                    const bookingForm = document.getElementById('booking-form');
+                    if (bookingForm) {
+                      bookingForm.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }, 100);
+                }
+              }}
               className={`${getTouchFriendlyClasses('large')} glassmorphism-cta block w-full text-center text-white rounded-lg font-grotesk font-medium tracking-wide`}
             >
               Check Availability
