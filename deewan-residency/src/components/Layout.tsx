@@ -6,6 +6,7 @@ import ErrorBoundary from './ErrorBoundary';
 import LoadingSpinner from './LoadingSpinner';
 import { SmoothCursor } from './ui/cursor';
 import { ScrollToTop } from './ui/ScrollToTop';
+import WhatsAppButton from './WhatsAppButton';
 
 interface LayoutProps {
   children: ReactNode;
@@ -50,6 +51,9 @@ export default function Layout({ children }: LayoutProps) {
         
         {/* Scroll to Top Button */}
         <ScrollToTop showAfter={400} smoothDuration={800} />
+        
+        {/* WhatsApp Click-to-Chat Button */}
+        <WhatsAppButton phoneNumber="01762506147" />
       </div>
     </ErrorBoundary>
   );
