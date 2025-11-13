@@ -3,9 +3,7 @@ import { useSEO } from '../utils/seo';
 import { 
   brandStory, 
   awards, 
-  sustainabilityInitiatives, 
   teamMembers, 
-  companyCulture,
   locationHighlights,
   certifications 
 } from '../data/about';
@@ -17,7 +15,7 @@ export default function About() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="w-full relative bg-black" style={{ minHeight: '30vh' }}>
+      <div className="w-full relative bg-black " style={{ minHeight: '30vh' }}>
         {/* Pearl Mist Background with Top Glow */}
         <div
           className="absolute inset-0 z-0"
@@ -27,7 +25,7 @@ export default function About() {
         />
         
         {/* Content */}
-        <div className="relative z-10 text-white py-20 overflow-hidden">
+        <div className="relative z-10 text-white pt-44 pb-28  overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center slide-top-normal">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-grotesk font-extrabold mb-6 uppercase tracking-wide">
               About Deewan Residency
@@ -40,7 +38,7 @@ export default function About() {
       </div>
 
       {/* Brand Story Section */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#000000' }}>
+      <section className="py-18 md:py-24" style={{ backgroundColor: '#000000ff' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
             <h2 className="text-3xl md:text-4xl font-grotesk text-white mb-4 uppercase tracking-wide">
@@ -165,41 +163,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Sustainability Initiatives Section */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: '#000000' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 slide-top-normal">
-            <h2 className="text-3xl md:text-4xl font-grotesk text-white mb-4 uppercase tracking-wide">
-              Sustainability Initiatives
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto font-grotesk">
-              Committed to environmental responsibility and community welfare
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 slide-top-normal">
-            {sustainabilityInitiatives.map((initiative) => (
-              <div 
-                key={initiative.id}
-                className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300 border border-green-100"
-              >
-                <div className="text-4xl mb-4">{initiative.icon}</div>
-                <h3 className="text-xl font-grotesk text-white mb-3 uppercase tracking-wide">
-                  {initiative.title}
-                </h3>
-                <p className="text-gray-300 leading-relaxed mb-4 font-grotesk">
-                  {initiative.description}
-                </p>
-                <div className="bg-gray-900 rounded-lg p-3 border-l-4 border-green-500">
-                  <p className="text-sm font-grotesk text-green-400 font-semibold">
-                    Impact: {initiative.impact}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Team Introduction Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-gray-50">
@@ -245,31 +208,6 @@ export default function About() {
             ))}
           </div>
 
-          {/* Company Culture */}
-          <div className="rounded-2xl p-8 md:p-12 shadow-lg slide-top-normal" style={{ backgroundColor: '#1a1a1a' }}>
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-grotesk text-white mb-4 uppercase tracking-wide">
-                {companyCulture.title}
-              </h3>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto font-grotesk">
-                {companyCulture.description}
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {companyCulture.highlights.map((highlight, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-4xl mb-3">{highlight.icon}</div>
-                  <h4 className="text-lg font-grotesk text-gray-900 mb-2 uppercase tracking-wide">
-                    {highlight.title}
-                  </h4>
-                  <p className="text-sm text-gray-600 font-grotesk">
-                    {highlight.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

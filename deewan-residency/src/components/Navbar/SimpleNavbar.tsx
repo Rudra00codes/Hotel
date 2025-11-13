@@ -3,9 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import HamburgerMenuOverlay from '../ui/Menu/hamburger-menu-overlay';
 
 /**
- * Glassmorphism Navbar Component
- * Phase 3: Modern design with backdrop blur and scroll effects
- */
+ * Glassmorphism Navbar Component */
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -49,8 +47,8 @@ export default function SimpleNavbar() {
       <div 
         className={`transition-all duration-300 ${
           scrolled
-            ? 'bg-white/50 backdrop-blur-md shadow-lg'
-            : 'bg-white/50 backdrop-blur-sm shadow-sm'
+            ? 'bg-white/80 backdrop-blur-md shadow-lg'
+            : 'bg-white/80 backdrop-blur-sm shadow-sm'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

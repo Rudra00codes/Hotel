@@ -1,32 +1,75 @@
+import { useEffect, useRef } from 'react';
 import Hero from '../components/Hero';
 import Map from '../components/Map';
+import { ClipPathCarousel } from '../components/ui/Carousel';
+import { ProgressiveBlur } from '../components/ui/ProgressiveBlur';
 import { useSEO } from '../utils/seo';
 
 export default function Home() {
   // Apply SEO for home page
   useSEO('home');
+
+  // Animation refs
+  const sectionsRef = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('slide-top-normal');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    sectionsRef.current.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div>
-      <Hero />
+    <div className="relative">
+      {/* Progressive Blur Effect - Top */}
+      <ProgressiveBlur position="top" backgroundColor="#000000e8" blurAmount="10px" />
       
-      {/* Additional homepage content will be added in future tasks */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-grotesk text-gray-800 mb-4 grotesk-optimized uppercase tracking-wide">
-            Welcome to Deewan Residency
-          </h2>
-          <p className="text-lg font-grotesk text-gray-600 max-w-2xl mx-auto grotesk-optimized">
-            Experience exceptional hospitality at our hotel located on the Amb-Chd Highway in Derabassi, Mohali. 
-            We offer comfortable accommodations and excellent service for both business and leisure travelers.
-          </p>
+      <Hero />
+
+      {/* Carousel Section */}
+      <section className="py-16 md:py-24 bg-[#f5f4f3]" id="carousel-section">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-32 md:mb-32">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-stardom text-gray-900 mb-4">
+              Explore Our Hotel
+            </h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto font-grotesk">
+              Experience luxury and comfort on the Chandigarh-Ambala Highway
+            </p>
+          </div>
+          <div
+            ref={(el) => {
+              if (el && !sectionsRef.current.includes(el)) {
+                sectionsRef.current.push(el);
+              }
+            }}
+            className="opacity-0 transition-all duration-1000"
+          >
+            <ClipPathCarousel autoplay={true} loop={true} />
+          </div>
         </div>
       </section>
 
       {/* Location & Map Section */}
-      <section className="py-16" style={{ backgroundColor: '#000000' }}>
+      <section className="py-44" style={{ backgroundColor: '#000000' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
-            <h2 className="text-3xl font-grotesk text-white mb-4 uppercase tracking-wide">
+            <h2 className="text-3xl font-grotesk text-white mb-6 uppercase tracking-wide">
               Our Location
             </h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto font-grotesk">

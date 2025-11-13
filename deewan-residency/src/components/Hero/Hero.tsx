@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { CountUp, SplitText } from '../ui';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { CountUp, SplitText } from "../ui";
 
 export default function Hero() {
-  const [roomType, setRoomType] = useState('');
-  const [guests, setGuests] = useState('1');
+  const [roomType, setRoomType] = useState("");
+  const [guests, setGuests] = useState("1");
   const navigate = useNavigate();
 
   const handleSearch = () => {
     // Navigate to rooms page with filters
-    navigate('/rooms', {
+    navigate("/rooms", {
       state: {
-        roomType: roomType || 'all',
-        guests: guests || '1'
-      }
+        roomType: roomType || "all",
+        guests: guests || "1",
+      },
     });
   };
 
   const handleMoreClick = () => {
-    navigate('/about');
+    navigate("/about");
     // Use setTimeout to ensure navigation completes before scrolling
     setTimeout(() => {
-      const element = document.getElementById('location-advantage');
+      const element = document.getElementById("location-advantage");
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }, 100);
   };
@@ -31,35 +31,34 @@ export default function Hero() {
   const stats = [
     {
       number: 150,
-      suffix: '+',
-      label: 'Happy Guests',
+      suffix: "+",
+      label: "Happy Guests",
       delay: 0.2,
-      duration: 2.5
+      duration: 2.5,
     },
     {
       number: 25,
-      suffix: '+',
-      label: 'Comfortable Rooms',
+      suffix: "+",
+      label: "Comfortable Rooms",
       delay: 0.4,
-      duration: 2.0
+      duration: 2.0,
     },
     {
       number: 15,
-      suffix: '+',
-      label: 'Premium Amenities',
+      suffix: "+",
+      label: "Premium Amenities",
       delay: 0.6,
-      duration: 1.8
-    }
+      duration: 1.8,
+    },
   ];
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Split Layout Container */}
       <div className="flex flex-col lg:flex-row min-h-screen">
-
         {/* Left Content Section */}
         <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-12 xl:px-16 py-8 lg:py-16 order-last lg:order-first relative">
-          {/* Morning Haze - Flipped Vertically */}
+          {/* Morning Haze */}
           <div
             className="absolute inset-0 z-0"
             style={{
@@ -71,7 +70,6 @@ export default function Hero() {
             }}
           />
           <div className="max-w-xl mx-auto lg:mx-0 animate-slide-in-up relative z-10">
-
             {/* Main Heading with SplitText Animation */}
             <div className="mb-8">
               <div className="mb-4">
@@ -88,7 +86,9 @@ export default function Hero() {
                   to={{ opacity: 1, y: 0, rotationX: 0 }}
                   threshold={0.2}
                   rootMargin="-50px"
-                  onLetterAnimationComplete={() => console.log('Reserve Your animation complete')}
+                  onLetterAnimationComplete={() =>
+                    console.log("Reserve Your animation complete")
+                  }
                 />
                 <SplitText
                   text="Ideal Holiday"
@@ -103,12 +103,14 @@ export default function Hero() {
                   to={{ opacity: 1, y: 0, scale: 1 }}
                   threshold={0.2}
                   rootMargin="-50px"
-                  onLetterAnimationComplete={() => console.log('Ideal Holiday animation complete')}
+                  onLetterAnimationComplete={() =>
+                    console.log("Ideal Holiday animation complete")
+                  }
                 />
               </div>
-              
+
               <SplitText
-                text="Let's get acquainted!"
+                text="Your Highway Haven Between Chandigarh & Ambala"
                 tag="p"
                 className="text-lg sm:text-xl font-grotesk text-gray-700 mb-6 grotesk-optimized tracking-wide"
                 textAlign="left"
@@ -121,7 +123,7 @@ export default function Hero() {
                 threshold={0.3}
                 rootMargin="-30px"
               />
-              
+
               <SplitText
                 text="We specialize in providing exceptional hotel accommodation, offering an unparalleled level of comfort, privacy, and convenience for your perfect stay in Derabassi."
                 tag="p"
@@ -144,16 +146,36 @@ export default function Hero() {
                   className="inline-flex items-center justify-center px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors duration-200 group touch-target"
                 >
                   More
-                  <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </button>
                 <a
                   href="tel:01762506147"
                   className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors duration-200 touch-target sm:hidden"
                 >
-                  <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  <svg
+                    className="mr-2 w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
                   </svg>
                   Call Now
                 </a>
@@ -163,7 +185,10 @@ export default function Hero() {
             {/* Statistics with CountUp Animation */}
             <div className="grid grid-cols-3 gap-4 sm:gap-8 mb-8">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center lg:text-left group relative">
+                <div
+                  key={index}
+                  className="text-center lg:text-left group relative"
+                >
                   {/* Background glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 -m-2"></div>
 
@@ -176,8 +201,12 @@ export default function Hero() {
                       delay={stat.delay}
                       className="inline-block tabular-nums"
                       separator=","
-                      onStart={() => console.log(`Started counting ${stat.label}`)}
-                      onEnd={() => console.log(`Finished counting ${stat.label}`)}
+                      onStart={() =>
+                        console.log(`Started counting ${stat.label}`)
+                      }
+                      onEnd={() =>
+                        console.log(`Finished counting ${stat.label}`)
+                      }
                     />
                     <span className="text-blue-600 ml-0.5">{stat.suffix}</span>
                   </div>
@@ -204,11 +233,15 @@ export default function Hero() {
                 </div>
                 <div className="flex-1">
                   <div className="text-sm text-gray-500">Derabassi, Punjab</div>
-                  <div className="font-semibold text-gray-900">Premium Location</div>
+                  <div className="font-semibold text-gray-900">
+                    Premium Location
+                  </div>
                 </div>
                 <div className="flex items-center space-x-1 bg-yellow-50 px-2 py-1 rounded-full">
                   <span className="text-yellow-500 text-sm">⭐</span>
-                  <span className="text-xs font-medium text-yellow-700">Popular</span>
+                  <span className="text-xs font-medium text-yellow-700">
+                    Popular
+                  </span>
                 </div>
               </div>
             </div>
@@ -229,27 +262,87 @@ export default function Hero() {
           </div>
 
           {/* Location Badge */}
-          <div className="absolute top-4 right-4 lg:top-6 lg:right-6 bg-white/90 backdrop-blur-sm rounded-xl p-2 lg:p-3 shadow-lg">
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 lg:w-8 lg:h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <svg className="w-3 h-3 lg:w-4 lg:h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+          <div className="absolute top-3 md-left-3 lg:top-6 lg:left-6 bg-white/20 backdrop-blur-md rounded-xl lg:rounded-2xl p-2 lg:p-3 shadow-xl border border-white/30 hover:border-white/50 transition-all duration-300 hover:scale-105 z-50">
+            <div className="flex items-center space-x-1.5 lg:space-x-2">
+              <div className="w-7 h-7 lg:w-8 lg:h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg
+                  className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </div>
               <div className="hidden sm:block">
-                <div className="text-xs text-gray-500">Derabassi, Punjab</div>
-                <div className="text-sm font-semibold text-gray-900">India</div>
+                <div className="text-xs text-white/80">Derabassi, Punjab</div>
+                <div className="text-sm font-semibold text-white">India</div>
               </div>
               <div className="sm:hidden">
-                <div className="text-xs font-semibold text-gray-900">Derabassi</div>
+                <div className="text-[11px] font-semibold text-white leading-tight">
+                  Derabassi
+                </div>
               </div>
             </div>
           </div>
 
+          {/* Best Price Guarantee Badge */}
+          <div className="absolute top-3 right-3 lg:top-6 lg:right-6 group z-50">
+            <div className="relative">
+              {/* Glassmorphism container */}
+              <div className="bg-white/20 backdrop-blur-md rounded-xl lg:rounded-2xl p-2 lg:p-3 shadow-xl border border-white/30 hover:border-white/50 transition-all duration-300 hover:scale-105">
+                {/* Gradient glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+
+                {/* Content */}
+                <div className="relative z-10 flex items-center space-x-1.5 lg:space-x-3">
+                  {/* Icon */}
+                  <div className="w-7 h-7 lg:w-10 lg:h-10 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-lg lg:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                    <svg
+                      className="w-3.5 h-3.5 lg:w-5 lg:h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.5}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+
+                  {/* Text */}
+                  <div>
+                    <div className="text-[9px] lg:text-xs text-white/90 font-medium uppercase tracking-wide lg:tracking-wider leading-tight">
+                      Best Price
+                    </div>
+                    <div className="text-[11px] lg:text-sm text-white font-bold leading-tight">
+                      Guarantee
+                    </div>
+                  </div>
+                </div>
+
+                {/* Shimmer effect */}
+                {/* <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer rounded-xl lg:rounded-2xl"></div> */}
+              </div>
+
+              {/* Liquid blob effect on hover */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition-opacity duration-500 -z-10"></div>
+            </div>
+          </div>
+
           {/* Content Overlay */}
+
           <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
             <p className="text-lg sm:text-xl font-medium mb-6 leading-relaxed">
-              Enjoy a luxurious stay in Derabassi with breathtaking highway views and easy access to the vibrant city life and culinary delights.
+              Enjoy a luxurious stay in Derabassi with breathtaking highway
+              views and easy access to the vibrant city life and culinary
+              delights.
             </p>
 
             {/* Search Form */}
@@ -269,8 +362,18 @@ export default function Hero() {
                       <option value="suite">Suite</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      <svg
+                        className="w-5 h-5 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </div>
                   </div>
@@ -289,8 +392,18 @@ export default function Hero() {
                       <option value="5">5+ Guests</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      <svg
+                        className="w-5 h-5 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
                       </svg>
                     </div>
                   </div>
@@ -299,8 +412,18 @@ export default function Hero() {
                   onClick={handleSearch}
                   className="w-full px-8 py-3 bg-black text-white rounded-xl font-medium hover:bg-gray-800 transition-colors duration-200 touch-target flex items-center justify-center space-x-2"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
                   </svg>
                   <span>Search Rooms</span>
                 </button>

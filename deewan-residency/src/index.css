@@ -254,15 +254,32 @@
   /* Slide top normal animation */
   @keyframes slide-top-normal {
     0% { 
-      transform: translateY(0); 
+      transform: translateY(0);
+      opacity: 0;
     } 
     100% { 
       transform: translateY(-100px);
+      opacity: 1;
     } 
   }
 
   .slide-top-normal { 
-    animation: slide-top-normal 1s ease 0s 1 normal none; 
+    animation: slide-top-normal 1s ease 0s 1 normal forwards;
+    opacity: 1;
+  }
+  
+  /* Shimmer animation for liquid glass badge */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s ease-in-out;
   }
   
   /* Enhanced glow effect for stats */
