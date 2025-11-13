@@ -1,17 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import Layout from './components/Layout';
-import Home from './pages/Home';
-import Rooms from './pages/Rooms';
-import RoomDetail from './pages/RoomDetail';
-import Amenities from './pages/Amenities';
-import Dining from './pages/Dining';
-import Gallery from './pages/Gallery';
-import About from './pages/About';
-import Contact from './pages/Contact';
+import ErrorBoundary from './components/ErrorBoundary';
+import LoadingSpinner from './components/LoadingSpinner';
 import PerformanceMonitor from './components/PerformanceMonitor';
 import { addMobileEventListeners } from './utils/mobileOptimization';
 import { initializePerformanceOptimizations } from './utils/performance';
+
+// Lazy load pages for better performance
+const Home = lazy(() => import('./pages/Home'));
+const Rooms = lazy(() => import('./pages/Rooms'));
+const RoomDetail = lazy(() => import('./pages/RoomDetail'));
+const Amenities = lazy(() => import('./pages/Amenities'));
+const Dining = lazy(() => import('./pages/Dining'));
+const Gallery = lazy(() => import('./pages/Gallery'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
   // Initialize optimizations
@@ -21,21 +25,57 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <PerformanceMonitor />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/rooms" element={<Rooms />} />
-          <Route path="/rooms/:roomId" element={<RoomDetail />} />
-          <Route path="/amenities" element={<Amenities />} />
-          <Route path="/dining" element={<Dining />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <PerformanceMonitor />
+        <Layout>
+          <Suspense fallback={<LoadingSpinner fullScreen message="Loading page..." />}>
+            <Routes>
+              <Route path="/" element={
+                <ErrorBoundary>
+                  <Home />
+                </ErrorBoundary>
+              } />
+              <Route path="/rooms" element={
+                <ErrorBoundary>
+                  <Rooms />
+                </ErrorBoundary>
+              } />
+              <Route path="/rooms/:roomId" element={
+                <ErrorBoundary>
+                  <RoomDetail />
+                </ErrorBoundary>
+              } />
+              <Route path="/amenities" element={
+                <ErrorBoundary>
+                  <Amenities />
+                </ErrorBoundary>
+              } />
+              <Route path="/dining" element={
+                <ErrorBoundary>
+                  <Dining />
+                </ErrorBoundary>
+              } />
+              <Route path="/gallery" element={
+                <ErrorBoundary>
+                  <Gallery />
+                </ErrorBoundary>
+              } />
+              <Route path="/about" element={
+                <ErrorBoundary>
+                  <About />
+                </ErrorBoundary>
+              } />
+              <Route path="/contact" element={
+                <ErrorBoundary>
+                  <Contact />
+                </ErrorBoundary>
+              } />
+            </Routes>
+          </Suspense>
+        </Layout>
+      </Router>
+    </ErrorBoundary>
   );
 }
 

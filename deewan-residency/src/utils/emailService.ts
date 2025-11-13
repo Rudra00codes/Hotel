@@ -1,4 +1,5 @@
 import emailjs from '@emailjs/browser';
+import { retryEmailSend } from './retryLogic';
 
 // EmailJS configuration - Use environment variables for security
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
@@ -40,6 +41,7 @@ export interface EmailResponse {
   success: boolean;
   message: string;
   error?: string;
+  retryCount?: number;
 }
 
 /**
@@ -50,9 +52,11 @@ export const validateEmailConfig = (): boolean => {
 };
 
 /**
- * Send booking inquiry email to hotel management
+ * Send booking inquiry email to hotel management with retry logic
  */
 export const sendBookingInquiry = async (inquiryData: BookingInquiry): Promise<EmailResponse> => {
+  let retryCount = 0;
+
   try {
     if (!validateEmailConfig()) {
       throw new Error('EmailJS is not properly configured. Please check environment variables.');
@@ -72,16 +76,22 @@ export const sendBookingInquiry = async (inquiryData: BookingInquiry): Promise<E
       inquiry_time: new Date().toLocaleTimeString(),
     };
 
-    await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams,
-      EMAILJS_PUBLIC_KEY
+    await retryEmailSend(
+      () => emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      ),
+      (attempt) => {
+        retryCount = attempt;
+      }
     );
 
     return {
       success: true,
       message: 'Booking inquiry sent successfully! We will contact you soon.',
+      retryCount,
     };
   } catch (error) {
     console.error('EmailJS Error:', error);
@@ -89,6 +99,7 @@ export const sendBookingInquiry = async (inquiryData: BookingInquiry): Promise<E
       success: false,
       message: 'Failed to send booking inquiry. Please try again or contact us directly.',
       error: error instanceof Error ? error.message : 'Unknown error occurred',
+      retryCount,
     };
   }
 };
@@ -136,9 +147,11 @@ export const sendGuestConfirmation = async (inquiryData: BookingInquiry): Promis
 };
 
 /**
- * Send general inquiry email to hotel management
+ * Send general inquiry email to hotel management with retry logic
  */
 export const sendGeneralInquiry = async (inquiryData: GeneralInquiry): Promise<EmailResponse> => {
+  let retryCount = 0;
+
   try {
     if (!validateEmailConfig()) {
       throw new Error('EmailJS is not properly configured. Please check environment variables.');
@@ -155,16 +168,22 @@ export const sendGeneralInquiry = async (inquiryData: GeneralInquiry): Promise<E
       inquiry_time: new Date().toLocaleTimeString(),
     };
 
-    await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams,
-      EMAILJS_PUBLIC_KEY
+    await retryEmailSend(
+      () => emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      ),
+      (attempt) => {
+        retryCount = attempt;
+      }
     );
 
     return {
       success: true,
       message: 'Your inquiry has been sent successfully! We will get back to you soon.',
+      retryCount,
     };
   } catch (error) {
     console.error('EmailJS Error:', error);
@@ -172,6 +191,7 @@ export const sendGeneralInquiry = async (inquiryData: GeneralInquiry): Promise<E
       success: false,
       message: 'Failed to send inquiry. Please try again or contact us directly.',
       error: error instanceof Error ? error.message : 'Unknown error occurred',
+      retryCount,
     };
   }
 };
