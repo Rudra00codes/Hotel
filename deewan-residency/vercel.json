@@ -1,4 +1,9 @@
 {
+  "dev": {
+    "command": "npm run dev:network",
+    "port": 3000,
+    "debug": false
+  },
   "rewrites": [
     {
       "source": "/(.*)",
