@@ -61,24 +61,27 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
           return 'Check-out date must be after check-in date';
         }
         break;
-      case 'guests':
+      case 'guests': {
         const guestCount = typeof value === 'number' ? value : parseInt(value as string) || 0;
         if (!value || guestCount < 1) return 'At least 1 guest is required';
         if (guestCount > 10) return 'Maximum 10 guests allowed';
         break;
+      }
       case 'name':
         if (!value || (value as string).trim().length < 2) return 'Name must be at least 2 characters';
         break;
-      case 'email':
+      case 'email': {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!value) return 'Email is required';
         if (!emailRegex.test(value as string)) return 'Please enter a valid email address';
         break;
-      case 'phone':
-        const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,15}$/;
+      }
+      case 'phone': {
+        const phoneRegex = /^[+]?[0-9\s\-()]{10,15}$/;
         if (!value) return 'Phone number is required';
         if (!phoneRegex.test(value as string)) return 'Please enter a valid phone number';
         break;
+      }
     }
     return undefined;
   };

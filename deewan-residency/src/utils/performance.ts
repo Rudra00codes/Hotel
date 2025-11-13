@@ -95,7 +95,7 @@ export const measureCoreWebVitals = () => {
         }
       });
       observer.observe({ entryTypes: ['largest-contentful-paint'] });
-    } catch (e) {
+    } catch {
       console.warn('LCP measurement not supported');
     }
   };
@@ -106,7 +106,7 @@ export const measureCoreWebVitals = () => {
       const observer = new PerformanceObserver((list) => {
         const entries = list.getEntries();
         entries.forEach((entry) => {
-          const fidEntry = entry as any; // Type assertion for FID entry
+          const fidEntry = entry as PerformanceEntry & { processingStart: number; startTime: number };
           const fid = fidEntry.processingStart - fidEntry.startTime;
           console.log('FID:', fid);
           
@@ -116,7 +116,7 @@ export const measureCoreWebVitals = () => {
         });
       });
       observer.observe({ entryTypes: ['first-input'] });
-    } catch (e) {
+    } catch {
       console.warn('FID measurement not supported');
     }
   };
@@ -127,7 +127,7 @@ export const measureCoreWebVitals = () => {
       let clsValue = 0;
       const observer = new PerformanceObserver((list) => {
         const entries = list.getEntries();
-        entries.forEach((entry: any) => {
+        entries.forEach((entry: PerformanceEntry & { value: number; hadRecentInput?: boolean }) => {
           if (!entry.hadRecentInput) {
             clsValue += entry.value;
           }
@@ -139,7 +139,7 @@ export const measureCoreWebVitals = () => {
         }
       });
       observer.observe({ entryTypes: ['layout-shift'] });
-    } catch (e) {
+    } catch {
       console.warn('CLS measurement not supported');
     }
   };
@@ -186,7 +186,7 @@ export const addResourceHints = () => {
 };
 
 // Debounce utility for performance-sensitive operations
-export const debounce = <T extends (...args: any[]) => any>(
+export const debounce = <T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): ((...args: Parameters<T>) => void) => {
@@ -199,7 +199,7 @@ export const debounce = <T extends (...args: any[]) => any>(
 };
 
 // Throttle utility for scroll and resize events
-export const throttle = <T extends (...args: any[]) => any>(
+export const throttle = <T extends (...args: unknown[]) => unknown>(
   func: T,
   limit: number
 ): ((...args: Parameters<T>) => void) => {
@@ -255,7 +255,7 @@ export const createOptimizedImageProps = (
 ) => {
   const { lazy = true, sizes, priority = false } = options;
   
-  const props: any = {
+  const props: Record<string, string | boolean> = {
     alt,
     loading: priority ? 'eager' : lazy ? 'lazy' : 'auto',
     decoding: 'async'

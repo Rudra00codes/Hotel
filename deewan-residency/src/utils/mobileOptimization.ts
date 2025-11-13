@@ -125,7 +125,7 @@ export const optimizeScrollForMobile = (): void => {
   if (typeof document === 'undefined' || !isMobileDevice()) return;
   
   // Add momentum scrolling for iOS
-  (document.body.style as any).webkitOverflowScrolling = 'touch';
+  (document.body.style as Record<string, string>).webkitOverflowScrolling = 'touch';
   
   // Prevent overscroll bounce on iOS
   document.body.style.overscrollBehavior = 'none';

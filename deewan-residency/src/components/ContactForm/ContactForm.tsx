@@ -49,16 +49,18 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
       case 'name':
         if (!value || value.trim().length < 2) return 'Name must be at least 2 characters';
         break;
-      case 'email':
+      case 'email': {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!value) return 'Email is required';
         if (!emailRegex.test(value)) return 'Please enter a valid email address';
         break;
-      case 'phone':
-        const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,15}$/;
+      }
+      case 'phone': {
+        const phoneRegex = /^[+]?[0-9\s\-()]{10,15}$/;
         if (!value) return 'Phone number is required';
         if (!phoneRegex.test(value)) return 'Please enter a valid phone number';
         break;
+      }
       case 'subject':
         if (!value) return 'Please select a subject';
         break;

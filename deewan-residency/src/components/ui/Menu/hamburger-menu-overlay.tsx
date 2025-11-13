@@ -63,7 +63,9 @@ export interface HamburgerMenuOverlayProps {
 
 export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
   items = [],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   buttonTop: _buttonTop = "60px",
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   buttonLeft: _buttonLeft = "60px",
   buttonSize = "md",
   buttonColor = "#6c8cff",
@@ -139,9 +141,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
         // Wait for the clip-path transitionend event (precise) with a small fallback timeout
         await new Promise<void>((resolve) => {
           let resolved = false;
-          let fallback: number;
-
-          const onEnd = (_e: TransitionEvent) => {
+          const onEnd = () => {
             // Accept any transitionend for better cross-browser compatibility
             if (!resolved) {
               resolved = true;
@@ -154,7 +154,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
           el.addEventListener('transitionend', onEnd, { passive: true });
 
           // Shorter fallback for production (just enough buffer)
-          fallback = window.setTimeout(() => {
+          const fallback = window.setTimeout(() => {
             if (!resolved) {
               resolved = true;
               el.removeEventListener('transitionend', onEnd);

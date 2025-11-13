@@ -228,9 +228,9 @@ export const ToggleTheme = ({
                         pseudoElement: "::view-transition-old(root)",
                     }
                 )
-                break
+                break;
 
-            case "flip-x-in":
+            case "flip-x-in": {
                 const styleElement = document.createElement('style');
                 styleElement.textContent = `
                     ::view-transition-group(root) { perspective: 1000px; }
@@ -241,7 +241,8 @@ export const ToggleTheme = ({
                     @keyframes flip-in { from { transform: rotateY(90deg); opacity: 0; } to { transform: rotateY(0deg); opacity: 1; } }
                 `;
                 document.head.appendChild(styleElement);
-                break
+                break;
+            }
 
             case "split-vertical":
                 document.documentElement.animate(

@@ -10,7 +10,9 @@ interface PerformanceMetrics {
 
 // Extend global types for gtag
 declare global {
-  function gtag(...args: any[]): void;
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
 }
 
 export default function PerformanceMonitor() {
@@ -27,7 +29,7 @@ export default function PerformanceMonitor() {
       try {
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          const lastEntry = entries[entries.length - 1] as any;
+          const lastEntry = entries[entries.length - 1] as PerformanceEntry & { startTime: number };
           metrics.lcp = lastEntry.startTime;
           
           // Report if above threshold
@@ -41,7 +43,7 @@ export default function PerformanceMonitor() {
         });
         
         observer.observe({ entryTypes: ['largest-contentful-paint'] });
-      } catch (e) {
+      } catch {
         console.warn('LCP measurement not supported');
       }
     };
@@ -52,7 +54,7 @@ export default function PerformanceMonitor() {
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
           entries.forEach((entry) => {
-            const fidEntry = entry as any; // Type assertion for FID entry
+            const fidEntry = entry as PerformanceEntry & { processingStart: number; startTime: number };
             const fid = fidEntry.processingStart - fidEntry.startTime;
             metrics.fid = fid;
             
@@ -67,7 +69,7 @@ export default function PerformanceMonitor() {
         });
         
         observer.observe({ entryTypes: ['first-input'] });
-      } catch (e) {
+      } catch {
         console.warn('FID measurement not supported');
       }
     };
@@ -78,7 +80,7 @@ export default function PerformanceMonitor() {
         let clsValue = 0;
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          entries.forEach((entry: any) => {
+          entries.forEach((entry: PerformanceEntry & { value: number; hadRecentInput?: boolean }) => {
             if (!entry.hadRecentInput) {
               clsValue += entry.value;
             }
@@ -96,7 +98,7 @@ export default function PerformanceMonitor() {
         });
         
         observer.observe({ entryTypes: ['layout-shift'] });
-      } catch (e) {
+      } catch {
         console.warn('CLS measurement not supported');
       }
     };
@@ -106,7 +108,7 @@ export default function PerformanceMonitor() {
       try {
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          entries.forEach((entry: any) => {
+          entries.forEach((entry: PerformanceEntry & { startTime: number }) => {
             metrics.fcp = entry.startTime;
             
             if (entry.startTime > 3000) {
@@ -120,7 +122,7 @@ export default function PerformanceMonitor() {
         });
         
         observer.observe({ entryTypes: ['paint'] });
-      } catch (e) {
+      } catch {
         console.warn('FCP measurement not supported');
       }
     };
@@ -130,9 +132,9 @@ export default function PerformanceMonitor() {
       try {
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          entries.forEach((entry: any) => {
+          entries.forEach((entry: PerformanceEntry & { responseStart?: number; requestStart?: number }) => {
             if (entry.entryType === 'navigation') {
-              const ttfb = entry.responseStart - entry.requestStart;
+              const ttfb = (entry.responseStart || 0) - (entry.requestStart || 0);
               metrics.ttfb = ttfb;
               
               if (ttfb > 800) {
@@ -147,7 +149,7 @@ export default function PerformanceMonitor() {
         });
         
         observer.observe({ entryTypes: ['navigation'] });
-      } catch (e) {
+      } catch {
         console.warn('TTFB measurement not supported');
       }
     };
@@ -162,8 +164,8 @@ export default function PerformanceMonitor() {
       });
 
       // Example: Send to Google Analytics 4
-      if (typeof window !== 'undefined' && 'gtag' in window) {
-        (window as any).gtag('event', 'web_vitals', {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'web_vitals', {
           event_category: 'Performance',
           event_label: name,
           value: Math.round(value),
@@ -209,13 +211,13 @@ export default function PerformanceMonitor() {
 
     // Report resource loading performance
     const reportResourceTiming = () => {
-      const resources = performance.getEntriesByType('resource');
-      const slowResources = resources.filter((resource: any) => 
+      const resources = performance.getEntriesByType('resource') as (PerformanceEntry & { duration: number; name: string; transferSize?: number })[];
+      const slowResources = resources.filter((resource) => 
         resource.duration > 1000 && 
         (resource.name.includes('.js') || resource.name.includes('.css') || resource.name.includes('.jpg') || resource.name.includes('.png'))
       );
 
-      slowResources.forEach((resource: any) => {
+      slowResources.forEach((resource) => {
         console.warn('Slow resource detected:', {
           name: resource.name,
           duration: Math.round(resource.duration),

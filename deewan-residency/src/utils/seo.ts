@@ -8,7 +8,7 @@ export interface SEOData {
   image?: string;
   url?: string;
   type?: 'website' | 'article';
-  structuredData?: any;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 // Hotel information for structured data
@@ -263,10 +263,10 @@ export const updateSEO = (seoData: SEOData) => {
 // Hook for easy SEO management in React components
 export const useSEO = (pageKey: keyof typeof SEO_CONFIGS, customData?: Partial<SEOData>) => {
   const seoConfig = SEO_CONFIGS[pageKey];
-  const finalSEOData = { ...seoConfig, ...customData };
   
   // Update SEO when component mounts or data changes
   useEffect(() => {
+    const finalSEOData = { ...seoConfig, ...customData };
     updateSEO(finalSEOData);
-  }, [finalSEOData]);
+  }, [seoConfig, customData]);
 };
