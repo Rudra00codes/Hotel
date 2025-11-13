@@ -127,9 +127,10 @@ export const measureCoreWebVitals = () => {
       let clsValue = 0;
       const observer = new PerformanceObserver((list) => {
         const entries = list.getEntries();
-        entries.forEach((entry: PerformanceEntry & { value: number; hadRecentInput?: boolean }) => {
-          if (!entry.hadRecentInput) {
-            clsValue += entry.value;
+        entries.forEach((entry) => {
+          const clsEntry = entry as PerformanceEntry & { value: number; hadRecentInput?: boolean };
+          if (!clsEntry.hadRecentInput) {
+            clsValue += clsEntry.value;
           }
         });
         console.log('CLS:', clsValue);
@@ -253,12 +254,21 @@ export const createOptimizedImageProps = (
     priority?: boolean;
   } = {}
 ) => {
-  const { lazy = true, sizes, priority = false } = options;
+  const { sizes, priority = false } = options;
   
-  const props: Record<string, string | boolean> = {
+  const props: {
+    alt: string;
+    loading: 'eager' | 'lazy';
+    decoding: 'async';
+    sizes?: string;
+    src: string;
+    srcSet: string;
+  } = {
     alt,
-    loading: priority ? 'eager' : lazy ? 'lazy' : 'auto',
-    decoding: 'async'
+    loading: priority ? 'eager' : 'lazy',
+    decoding: 'async',
+    src,
+    srcSet: ''
   };
 
   // Add sizes attribute for responsive images
@@ -270,10 +280,7 @@ export const createOptimizedImageProps = (
   const baseName = src.replace(/\.[^/.]+$/, '');
   const extension = src.split('.').pop();
   
-  props.srcSet = `
-    ${baseName}.${extension} 1x,
-    ${baseName}@2x.${extension} 2x
-  `.trim();
+  props.srcSet = `${baseName}.${extension} 1x, ${baseName}@2x.${extension} 2x`;
 
   // Use WebP if supported
   props.src = getOptimizedImageSrc(src, 'webp');

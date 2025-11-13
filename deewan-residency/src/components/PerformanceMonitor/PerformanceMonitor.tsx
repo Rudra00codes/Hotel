@@ -80,9 +80,10 @@ export default function PerformanceMonitor() {
         let clsValue = 0;
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          entries.forEach((entry: PerformanceEntry & { value: number; hadRecentInput?: boolean }) => {
-            if (!entry.hadRecentInput) {
-              clsValue += entry.value;
+          entries.forEach((entry) => {
+            const clsEntry = entry as PerformanceEntry & { value: number; hadRecentInput?: boolean };
+            if (!clsEntry.hadRecentInput) {
+              clsValue += clsEntry.value;
             }
           });
           
