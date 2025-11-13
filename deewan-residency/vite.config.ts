@@ -29,12 +29,16 @@ export default defineConfig({
       output: {
         // Code splitting configuration
         manualChunks: {
-          // Vendor chunk for React and related libraries
-          vendor: ['react', 'react-dom', 'react-router-dom'],
+          // React core libraries
+          'react-vendor': ['react', 'react-dom'],
+          // Router library
+          'router': ['react-router-dom'],
+          // UI libraries (framer-motion and lucide-react)
+          'ui': ['framer-motion', 'lucide-react'],
           // EmailJS chunk for contact functionality
-          email: ['@emailjs/browser'],
+          'email': ['@emailjs/browser'],
           // Utils chunk for utility functions
-          utils: ['./src/utils/seo.ts', './src/utils/sitemap.ts']
+          'utils': ['./src/utils/seo.ts', './src/utils/sitemap.ts']
         },
         // Optimize chunk file names
         chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -52,8 +56,20 @@ export default defineConfig({
         }
       }
     },
-    // Minification
-    minify: 'esbuild',
+    // CSS code splitting
+    cssCodeSplit: true,
+    // Minification with Terser for better compression
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true, // Remove console.logs in production
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn']
+      },
+      format: {
+        comments: false // Remove comments
+      }
+    },
     // Chunk size warnings
     chunkSizeWarningLimit: 1000,
     // Asset inlining threshold
@@ -61,6 +77,6 @@ export default defineConfig({
   },
   // Performance optimizations for development
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', '@emailjs/browser']
+    include: ['react', 'react-dom', 'react-router-dom', '@emailjs/browser', 'framer-motion', 'lucide-react']
   }
 })
