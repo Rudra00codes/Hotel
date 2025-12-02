@@ -16,6 +16,8 @@ const Dining = lazy(() => import('./pages/Dining'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
+const SanityTest = lazy(() => import('./pages/SanityTest'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   // Initialize optimizations
@@ -69,6 +71,16 @@ function App() {
               <Route path="/contact" element={
                 <ErrorBoundary>
                   <Contact />
+                </ErrorBoundary>
+              } />
+              <Route path="/sanity-test" element={
+                <ErrorBoundary>
+                  <SanityTest />
+                </ErrorBoundary>
+              } />
+              <Route path="*" element={
+                <ErrorBoundary>
+                  <NotFound />
                 </ErrorBoundary>
               } />
             </Routes>

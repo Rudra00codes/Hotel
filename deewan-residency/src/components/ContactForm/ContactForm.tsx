@@ -188,7 +188,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
   };
 
   return (
-    <div className="bg-gray-800 rounded-lg p-6 md:p-8 border border-gray-700">
+    <div className="bg-white/10 backdrop-blur-2xl rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl">
       <h3 className="text-2xl font-grotesk text-white mb-6 text-center uppercase tracking-wide">
         Send us a Message
       </h3>
@@ -247,8 +247,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
             value={formData.name}
             onChange={handleInputChange}
             placeholder="John Doe"
-            className={`w-full ${getTouchFriendlyInputClasses()} bg-gray-700 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-              errors.name ? 'border-red-500' : 'border-gray-600'
+            className={`w-full ${getTouchFriendlyInputClasses()} bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+              errors.name ? 'border-red-500' : 'border-white/10'
             }`}
             required
           />
@@ -266,8 +266,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
             value={formData.email}
             onChange={handleInputChange}
             placeholder="john@example.com"
-            className={`w-full ${getTouchFriendlyInputClasses()} bg-gray-700 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-              errors.email ? 'border-red-500' : 'border-gray-600'
+            className={`w-full ${getTouchFriendlyInputClasses()} bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+              errors.email ? 'border-red-500' : 'border-white/10'
             }`}
             required
           />
@@ -285,8 +285,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
             value={formData.phone}
             onChange={handleInputChange}
             placeholder="+1 (555) 123-4567"
-            className={`w-full ${getTouchFriendlyInputClasses()} bg-gray-700 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-              errors.phone ? 'border-red-500' : 'border-gray-600'
+            className={`w-full ${getTouchFriendlyInputClasses()} bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+              errors.phone ? 'border-red-500' : 'border-white/10'
             }`}
           />
           {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
@@ -303,8 +303,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
             onChange={handleInputChange}
             placeholder="Tell us how we can help you..."
             rows={5}
-            className={`w-full ${getTouchFriendlyInputClasses()} bg-gray-700 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${
-              errors.message ? 'border-red-500' : 'border-gray-600'
+            className={`w-full ${getTouchFriendlyInputClasses()} bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${
+              errors.message ? 'border-red-500' : 'border-white/10'
             }`}
             required
           />
