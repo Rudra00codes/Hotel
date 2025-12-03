@@ -32,7 +32,7 @@ export default function Contact() {
             alt="" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 via-gray-900/80 to-gray-900/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-500/50 via-gray-800/90 to-gray-900/90"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,10 +41,10 @@ export default function Contact() {
             {/* Contact Information */}
             <div className="space-y-8 slide-top-normal">
               <div>
-                <h2 className="text-3xl font-grotesk text-white mb-8 uppercase tracking-wide drop-shadow-lg">
+                <h2 className="text-3xl font-grotesk text-white mb-8 uppercase tracking-wide drop-shadow-2xl">
                   Contact Information
                 </h2>
-                <p className="text-gray-300 mb-8 leading-relaxed font-grotesk text-lg">
+                <p className="text-gray-100 mb-8 leading-relaxed font-grotesk text-lg">
                   Reach out to us through any of the following channels. Our team is here to help you find your perfect stay.
                 </p>
               </div>
