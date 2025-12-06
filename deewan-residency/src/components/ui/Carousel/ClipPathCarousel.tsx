@@ -1,13 +1,11 @@
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
-import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
 interface CarouselImage {
   src: string;
   alt: string;
-  title: string;
 }
 
 interface ClipPathCarouselProps {
@@ -30,48 +28,39 @@ export default function ClipPathCarousel({
   const defaultImages: CarouselImage[] = [
     {
       src: "/images/x.com/13.jpeg",
-      alt: "Illustrations by ©AarzooAly",
-      title: "Block Reader",
+      alt: "Hotel Interior",
     },
     {
       src: "/images/x.com/9.jpeg",
-      alt: "Illustrations by ©AarzooAly",
-      title: "Forest Fungi",
+      alt: "Luxury Room",
     },
     {
       src: "/images/x.com/20.jpeg",
-      alt: "Illustrations by ©AarzooAly",
-      title: "Golden Dusk",
+      alt: "Evening View",
     },
     {
       src: "/images/x.com/21.jpeg",
-      alt: "Illustrations by ©AarzooAly",
-      title: "Silent Peaks",
+      alt: "Hotel Exterior",
     },
     {
       src: "/images/x.com/25.jpeg",
-      alt: "Illustrations by ©AarzooAly",
-      title: "Emerald Woods",
+      alt: "Garden Area",
     },
     {
       src: "/images/x.com/32.jpeg",
-      alt: "Illustrations by ©AarzooAly",
-      title: "Falling Mist",
+      alt: "Dining Area",
     },
     {
       src: "/images/x.com/19.jpeg",
-      alt: "Illustrations by ©AarzooAly",
-      title: "Midnight Veil",
+      alt: "Night Ambience",
     },
     {
       src: "/images/x.com/3.jpeg",
-      alt: "Illustrations by ©AarzooAly",
-      title: "Azure Ridge",
+      alt: "Reception",
     },
     {
       src: "/images/x.com/2.jpeg",
-      alt: "Illustrations by ©AarzooAly",
-      title: "Cloud Summit",
+      alt: "Lobby",
     },
   ];
 
@@ -81,9 +70,9 @@ export default function ClipPathCarousel({
   const plugins = autoplay
     ? [
         Autoplay({
-          delay: 1500,
+          delay: 1000,
           stopOnInteraction: false,
-          stopOnMouseEnter: false,
+          stopOnMouseEnter: true,
         }),
       ]
     : [];
@@ -93,6 +82,8 @@ export default function ClipPathCarousel({
       loop,
       align: "center",
       slidesToScroll: 1,
+      skipSnaps: false,
+      dragFree: false,
     },
     plugins
   );
@@ -130,78 +121,67 @@ export default function ClipPathCarousel({
   return (
     <div className={`relative w-full ${className}`}>
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex h-[500px] w-full">
+        <div className="flex h-[500px] w-full touch-pan-y">
           {images.map((img, index) => (
             <div
               key={index}
               className="relative flex h-[81.5%] min-w-0 flex-[0_0_73%] items-center justify-center sm:flex-[0_0_50%] md:flex-[0_0_30%] lg:flex-[0_0_25%] xl:flex-[0_0_21%]"
             >
-              <motion.div
-                initial={false}
-                animate={{
-                  clipPath:
-                    current !== index
-                      ? "inset(15% 0% 15% 0% round 2rem)"
-                      : "inset(0% 0% 0% 0% round 2rem)",
+              <div
+                className={`h-full w-full overflow-hidden rounded-3xl transition-all duration-500 ease-out will-change-[clip-path] ${
+                  current === index
+                    ? "opacity-100"
+                    : "opacity-70"
+                }`}
+                style={{
+                  clipPath: current === index 
+                    ? "inset(0% 0% 0% 0% round 2rem)" 
+                    : "inset(10% 5% 10% 5% round 2rem)"
                 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="h-full w-full overflow-hidden rounded-3xl"
               >
-                <div className="relative h-full w-full border border-gray-200">
+                <div className="relative h-full w-full border border-gray-200/20">
                   <img
                     src={img.src}
                     alt={img.alt}
-                    className="h-full w-full scale-105 object-cover"
+                    className="h-full w-full object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
-              </motion.div>
-              <AnimatePresence mode="wait">
-                {current === index && (
-                  <motion.div
-                    initial={{ opacity: 0, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, filter: "blur(10px)" }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute bottom-0 left-2 flex h-[14%] w-full translate-y-full items-center justify-center p-2 text-center font-grotesk font-medium tracking-tight text-gray-700"
-                  >
-                    {img.title}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       {showNavigation && (
-        <div className="absolute -bottom-4 right-0 flex w-full items-center justify-between gap-2 px-4">
+        <div className="absolute -bottom-4 right-0 flex w-full items-center justify-between gap-2 px-4 pointer-events-none">
           <button
             aria-label="Previous slide"
             onClick={scrollPrev}
-            className="rounded-full bg-black/10 p-2 hover:bg-black/20 transition-colors touch-target"
+            className="pointer-events-auto rounded-full bg-white/80 backdrop-blur-sm p-3 shadow-sm hover:bg-white transition-all active:scale-95"
           >
-            <ChevronLeft className="text-gray-700 w-5 h-5" />
+            <ChevronLeft className="text-gray-800 w-5 h-5" />
           </button>
           <button
             aria-label="Next slide"
             onClick={scrollNext}
-            className="rounded-full bg-black/10 p-2 hover:bg-black/20 transition-colors touch-target"
+            className="pointer-events-auto rounded-full bg-white/80 backdrop-blur-sm p-3 shadow-sm hover:bg-white transition-all active:scale-95"
           >
-            <ChevronRight className="text-gray-700 w-5 h-5" />
+            <ChevronRight className="text-gray-800 w-5 h-5" />
           </button>
         </div>
       )}
 
       {showPagination && (
-        <div className="hidden md:flex w-full items-center justify-center mt-0">
-          <div className="flex items-center justify-center gap-4">
+        <div className="hidden md:flex w-full items-center justify-center mt-4">
+          <div className="flex items-center justify-center gap-2 bg-black/5 backdrop-blur-sm px-4 py-2 rounded-full">
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => scrollTo(index)}
-                className={`h-2 w-2 cursor-pointer rounded-full transition-all ${
-                  current === index ? "bg-black w-6" : "bg-gray-300"
+                className={`h-2 w-2 cursor-pointer rounded-full transition-all duration-300 ${
+                  current === index ? "bg-gray-900 scale-125" : "bg-gray-400 hover:bg-gray-600"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />

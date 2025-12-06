@@ -9,7 +9,7 @@ interface ScrollToTopProps {
 
 export const ScrollToTop = ({ 
   showAfter = 400, 
-  smoothDuration = 800 
+  smoothDuration = 100 
 }: ScrollToTopProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -76,16 +76,15 @@ export const ScrollToTop = ({
     const startPosition = window.scrollY;
     const startTime = performance.now();
     
-    const easeInOutCubic = (t: number): number => {
-      return t < 0.5 
-        ? 4 * t * t * t 
-        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    // Use easeOutCubic for immediate response
+    const easeOutCubic = (t: number): number => {
+      return 1 - Math.pow(1 - t, 3);
     };
 
     const animateScroll = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / smoothDuration, 1);
-      const easeProgress = easeInOutCubic(progress);
+      const easeProgress = easeOutCubic(progress);
       
       window.scrollTo(0, startPosition * (1 - easeProgress));
       
@@ -107,13 +106,13 @@ export const ScrollToTop = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ 
-            duration: 0.3, 
-            ease: [0.4, 0, 0.2, 1] 
+            duration: 0.2, 
+            ease: [0.3, 0, 0.2, 1] 
           }}
           onClick={scrollToTop}
           disabled={isScrolling}
           data-magnetic
-          className="fixed bottom-6 right-6 z-50 group
+          className="fixed bottom-6 left-6 z-50 group
             flex items-center justify-center
             w-12 h-12 md:w-14 md:h-14
             bg-gradient-to-br from-blue-600 to-blue-700
@@ -127,20 +126,7 @@ export const ScrollToTop = ({
             touch-manipulation"
           aria-label="Scroll to top"
         >
-          <motion.div
-            animate={isScrolling ? { rotate: 360 } : { rotate: 0 }}
-            transition={{ 
-              duration: 0.6, 
-              repeat: isScrolling ? Infinity : 0,
-              ease: "linear" 
-            }}
-          >
-            <ArrowUp 
-              className="w-5 h-5 md:w-6 md:h-6
-                transform group-hover:-translate-y-0.5
-                transition-transform duration-200" 
-            />
-          </motion.div>
+          <ArrowUp className="w-5 h-5 md:w-6 md:h-6" />
           
           {/* Glow effect */}
           <div className="absolute inset-0 rounded-full

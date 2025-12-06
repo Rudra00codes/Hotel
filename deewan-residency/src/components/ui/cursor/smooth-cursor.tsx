@@ -148,6 +148,7 @@ export function SmoothCursor({
   disabled = false,
 }: SmoothCursorProps) {
   const [isVisible, setIsVisible] = useState(true);
+  const [isPointer, setIsPointer] = useState(false);
   const [trail, setTrail] = useState<Position[]>([]);
   const [isDesktopDevice, setIsDesktopDevice] = useState(false);
 
@@ -305,6 +306,13 @@ export function SmoothCursor({
       }
     };
 
+    const handleMouseOver = (e: MouseEvent) => {
+      if (e.target instanceof Element) {
+        const style = window.getComputedStyle(e.target);
+        setIsPointer(style.cursor === 'pointer');
+      }
+    };
+
     let rafId: number;
     const throttledMouseMove = function (e: MouseEvent) {
       if (rafId) return;
@@ -321,6 +329,7 @@ export function SmoothCursor({
     document.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("mousedown", handleMouseDown);
     document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("mouseover", handleMouseOver);
 
     return function () {
       window.removeEventListener("mousemove", throttledMouseMove);
@@ -328,6 +337,7 @@ export function SmoothCursor({
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mousedown", handleMouseDown);
       document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mouseover", handleMouseOver);
       document.body.style.cursor = "auto";
       if (rafId) cancelAnimationFrame(rafId);
     };
@@ -391,7 +401,7 @@ export function SmoothCursor({
           filter: glowEffect ? "drop-shadow(0 0 10px " + color + "40)" : "none", // String concatenation
         }}
         initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        animate={{ scale: 1, opacity: isPointer ? 0 : 1 }}
         exit={{ scale: 0, opacity: 0 }}
         transition={{
           type: "spring",

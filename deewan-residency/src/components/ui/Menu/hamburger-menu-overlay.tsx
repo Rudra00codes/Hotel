@@ -59,6 +59,8 @@ export interface HamburgerMenuOverlayProps {
   enableBlur?: boolean;
   /** Z-index for overlay */
   zIndex?: number;
+  /** Animation type */
+  animationType?: "circle" | "drawer";
 }
 
 export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
@@ -68,13 +70,13 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   buttonLeft: _buttonLeft = "60px",
   buttonSize = "md",
-  buttonColor = "#6c8cff",
+  buttonColor = "#6c8cffff",
   overlayBackground = "#6c8cff",
   textColor = "#ffffff",
   fontSize = "md",
   fontFamily = '"Krona One", monospace',
   fontWeight = "bold",
-  animationDuration = 1.5,
+  animationDuration = 0.5,
   staggerDelay = 0.1,
   menuAlignment = "left",
   className,
@@ -88,6 +90,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
   menuDirection = "vertical",
   enableBlur = false,
   zIndex = 1000,
+  animationType = "circle",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -224,15 +227,20 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             align-items: center;
             background: ${overlayBackground};
             z-index: ${zIndex};
-            clip-path: circle(0px at calc(100% - 40px) 40px);
-            transition: clip-path ${animationDuration}s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            ${animationType === "drawer" 
+              ? `transform: translateX(100%); transition: transform ${animationDuration}s cubic-bezier(0.25, 0.46, 0.45, 0.94);` 
+              : `clip-path: circle(0px at calc(100% - 40px) 40px); transition: clip-path ${animationDuration}s cubic-bezier(0.25, 0.46, 0.45, 0.94);`
+            }
             ${enableBlur ? "backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);" : ""}
             overscroll-behavior: contain; /* Prevent scroll chaining on mobile */
             -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
           }
           
           .hamburger-overlay-${zIndex}.open {
-            clip-path: circle(150% at calc(100% - 40px) 40px);
+            ${animationType === "drawer" 
+              ? `transform: translateX(0);` 
+              : `clip-path: circle(150% at calc(100% - 40px) 40px);`
+            }
           }
           
           .hamburger-button-${zIndex} {
@@ -256,8 +264,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
           }
           
           .hamburger-button-${zIndex}:focus {
-            outline: 2px solid ${textColor};
-            outline-offset: 2px;
+            outline: none;
           }
           
           .menu-items-${zIndex} {
