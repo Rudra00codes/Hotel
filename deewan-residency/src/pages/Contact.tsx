@@ -32,7 +32,7 @@ export default function Contact() {
             alt="" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-500/50 via-gray-800/90 to-gray-900/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-600/30 via-gray-800/90 to-gray-900/90"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -137,7 +137,7 @@ export default function Contact() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300 font-grotesk">Sunday</span>
-                    <span className="text-red-300 font-grotesk font-medium bg-red-500/10 px-3 py-1 rounded-full text-sm">Closed</span>
+                    <span className="text-white-300 font-grotesk font-medium bg-green-500/30 px-3 py-1 rounded-full text-sm">Open</span>
                   </div>
                 </div>
               </div>

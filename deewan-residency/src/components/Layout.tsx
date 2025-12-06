@@ -1,5 +1,6 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import type { ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
 import { SimpleNavbar } from './Navbar';
 import Footer from './Footer';
 import ErrorBoundary from './ErrorBoundary';
@@ -13,6 +14,12 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <ErrorBoundary>
       {/* Custom Cursor - Desktop Only */}
@@ -53,7 +60,7 @@ export default function Layout({ children }: LayoutProps) {
         <ScrollToTop showAfter={400} smoothDuration={800} />
         
         {/* WhatsApp Click-to-Chat Button */}
-        <WhatsAppButton phoneNumber="01762506147" />
+        <WhatsAppButton phoneNumber="919876870298" />
       </div>
     </ErrorBoundary>
   );

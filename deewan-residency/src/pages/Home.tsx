@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import Hero from '../components/Hero';
 import Map from '../components/Map';
 import { ClipPathCarousel } from '../components/ui/Carousel';
+import GoogleReviews from '../components/GoogleReviews/GoogleReviews';
 import { ProgressiveBlur } from '../components/ui/ProgressiveBlur';
 import { useSEO } from '../utils/seo';
 
@@ -42,7 +43,7 @@ export default function Home() {
       <Hero />
 
       {/* Carousel Section */}
-      <section className="py-16 md:py-24 bg-[#f5f4f3]" id="carousel-section">
+      <section className="py-16 md:py-24 bg-[#EDEDED]" id="carousel-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-32 md:mb-32">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-stardom text-gray-900 mb-4">
@@ -65,8 +66,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Google Reviews Section */}
+      <GoogleReviews />
+
       {/* Location & Map Section */}
-      <section className="py-44" style={{ backgroundColor: '#000000' }}>
+      <section className="pt-44" style={{ backgroundColor: '#000000f2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
             <h2 className="text-3xl font-grotesk text-white mb-6 uppercase tracking-wide">
