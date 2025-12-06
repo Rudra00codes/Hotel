@@ -21,10 +21,17 @@ export default function SimpleNavbar() {
 
   const isActive = (path: string) => location.pathname === path;
 
-  // Scroll effect
+  // Optimized scroll effect
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -37,79 +44,76 @@ export default function SimpleNavbar() {
   ];
 
   return (
-    <header 
-      className="sticky top-0 z-50"
-      style={{
-        transform: scrolled ? 'translateY(8px)' : 'translateY(0)',
-        transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease',
-      }}
-    >
+    <header className="fixed top-0 left-0 w-full z-50 flex justify-center pointer-events-none">
       <div 
-        className={`transition-all duration-300 ${
-          scrolled
-            ? 'bg-white/80 backdrop-blur-md shadow-lg'
-            : 'bg-white/80 backdrop-blur-sm shadow-sm'
+        className={`pointer-events-auto transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) will-change-[width,transform,background-color,border-radius] ${
+          scrolled 
+            ? 'mt-4 w-[95%] max-w-7xl rounded-2xl bg-white/30 backdrop-blur-md shadow-lg border border-white/20' 
+            : 'mt-0 w-full bg-white/30 backdrop-blur-md border-b border-white/30 rounded-b-2xl'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-          
-          {/* Logo */}
-          <Link 
-            to="/" 
-            className="flex items-center group"
-          >
-            <h1 className="text-xl font-grotesk font-extrabold text-gray-900 uppercase tracking-wide transition-all group-hover:text-blue-600">
-              Deewan Residency
-            </h1>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-sm font-grotesk font-medium transition-all duration-200 relative ${
-                  isActive(link.path)
-                    ? 'text-blue-600'
-                    : 'text-gray-700 hover:text-blue-600'
-                }`}
-              >
-                {link.label}
-                {isActive(link.path) && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full" />
-                )}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Desktop Actions - Right Side */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link
-              to="/contact"
-              data-magnetic
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-lg text-sm font-grotesk font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+            
+            {/* Logo */}
+            <Link 
+              to="/" 
+              className="flex items-center group"
             >
-              Book Now
+              <h1 className={`text-xl font-grotesk font-extrabold uppercase tracking-wide transition-colors duration-300 group-hover:text-blue-600 ${
+                scrolled ? 'text-white-900' : 'text-gray-900'
+              }`}>
+                Deewan Residency
+              </h1>
             </Link>
+  
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-sm font-grotesk font-medium transition-all duration-300 hover:scale-105 relative group ${
+                    isActive(link.path)
+                      ? 'text-blue-200'
+                      : 'text-gray-300 hover:text-blue-200'
+                  }`}
+                >
+                  {link.label}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ${
+                    isActive(link.path) ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`} />
+                </Link>
+              ))}
+            </nav>
+  
+            {/* Desktop Actions - Right Side */}
+            <div className="hidden md:flex items-center  space-x-4">
+              <Link
+                to="/contact"
+                data-magnetic
+                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full text-sm font-grotesk font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform"
+              >
+                Book Now
+              </Link>
+            </div>
+  
+            {/* Mobile Actions: Hamburger Menu on Right Side */}
+            <div className="md:hidden">
+              <HamburgerMenuOverlay
+                items={menuItems}
+                buttonSize="md"
+                buttonColor={scrolled ? "#ffffff03" : "#ffffff03"}
+                overlayBackground="rgba(18, 26, 45, 0.97)"
+                textColor="#ffffff"
+                menuAlignment="center"
+                ariaLabel="Open navigation menu"
+                enableBlur={true}
+                // @ts-ignore - Adding new prop
+                animationType="drawer"
+              />
+            </div>
           </div>
-
-          {/* Mobile Actions: Hamburger Menu on Right Side */}
-          <div className="md:hidden">
-            <HamburgerMenuOverlay
-              items={menuItems}
-              buttonSize="md"
-              buttonColor="#2563eb"
-              overlayBackground="linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)"
-              textColor="#ffffff"
-              menuAlignment="right"
-              ariaLabel="Open navigation menu"
-              enableBlur={true}
-            />
-          </div>
-        </div>
-        
         </div>
       </div>
     </header>

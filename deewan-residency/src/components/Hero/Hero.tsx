@@ -57,7 +57,7 @@ export default function Hero() {
       {/* Split Layout Container */}
       <div className="flex flex-col lg:flex-row min-h-screen">
         {/* Left Content Section */}
-        <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-12 xl:px-16 py-8 lg:py-16 order-last lg:order-first relative">
+        <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-12 xl:px-16 py-8 lg:pt-28 lg:pb-16 order-last lg:order-first relative">
           {/* Morning Haze */}
           <div
             className="absolute inset-0 z-0"
@@ -226,14 +226,14 @@ export default function Hero() {
             </div>
 
             {/* Featured Property Card */}
-            <div className="bg-white rounded-2xl p-4 shadow-lg border border-gray-200 mb-6 lg:mb-0 hero-card-shadow">
+            <div className="bg-black rounded-2xl p-4 shadow-lg border border-white-900 mb-6 lg:mb-0 hero-card-shadow">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center animate-float">
+                <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-red-600 rounded-xl flex items-center justify-center animate-float">
                   <span className="text-white text-lg">🏨</span>
                 </div>
                 <div className="flex-1">
                   <div className="text-sm text-gray-500">Derabassi, Punjab</div>
-                  <div className="font-semibold text-gray-900">
+                  <div className="font-semibold text-grey-200">
                     Premium Location
                   </div>
                 </div>
@@ -249,7 +249,7 @@ export default function Hero() {
         </div>
 
         {/* Right Image Section */}
-        <div className="flex-1 relative min-h-[60vh] lg:min-h-screen order-first lg:order-last">
+        <div className="flex-1 relative min-h-[75vh] lg:min-h-screen order-first lg:order-last">
           {/* Background Image */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -262,7 +262,7 @@ export default function Hero() {
           </div>
 
           {/* Location Badge */}
-          <div className="absolute top-3 md-left-3 lg:top-6 lg:left-6 bg-white/20 backdrop-blur-md rounded-xl lg:rounded-2xl p-2 lg:p-3 shadow-xl border border-white/30 hover:border-white/50 transition-all duration-300 hover:scale-105 z-50">
+          <div className="absolute top-20 left-3 lg:top-28 lg:left-6 bg-white/20 backdrop-blur-md rounded-xl lg:rounded-2xl p-2 lg:p-3 shadow-xl border border-white/30 hover:border-white/50 transition-all duration-300 hover:scale-105 z-40">
             <div className="flex items-center space-x-1.5 lg:space-x-2">
               <div className="w-7 h-7 lg:w-8 lg:h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
                 <svg
@@ -290,7 +290,7 @@ export default function Hero() {
           </div>
 
           {/* Best Price Guarantee Badge */}
-          <div className="absolute top-3 right-3 lg:top-6 lg:right-6 group z-50">
+          <div className="absolute top-20 right-3 lg:top-28 lg:right-6 group z-40">
             <div className="relative">
               {/* Glassmorphism container */}
               <div className="bg-white/20 backdrop-blur-md rounded-xl lg:rounded-2xl p-2 lg:p-3 shadow-xl border border-white/30 hover:border-white/50 transition-all duration-300 hover:scale-105">
