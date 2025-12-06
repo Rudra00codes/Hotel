@@ -46,7 +46,7 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-[#EDEDED]" id="carousel-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-32 md:mb-32">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-stardom text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sinoreta text-gray-900 mb-4">
               Explore Our Hotel
             </h2>
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto font-grotesk">
@@ -73,7 +73,7 @@ export default function Home() {
       <section className="pt-44" style={{ backgroundColor: '#000000f2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
-            <h2 className="text-3xl font-grotesk text-white mb-6 uppercase tracking-wide">
+            <h2 className="text-3xl font-sinoreta text-white mb-6 uppercase tracking-wide">
               Our Location
             </h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto font-grotesk">

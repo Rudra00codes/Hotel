@@ -27,7 +27,7 @@ export default function About() {
         {/* Content */}
         <div className="relative z-10 text-white pt-44 pb-28  overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center slide-top-normal">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-grotesk font-extrabold mb-6 uppercase tracking-wide">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sinoreta font-extrabold mb-6 uppercase tracking-wide">
               About Deewan Residency
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto font-grotesk leading-relaxed" style={{ color: '#ffb703' }}>
@@ -41,7 +41,7 @@ export default function About() {
       <section className="py-18 md:py-24" style={{ backgroundColor: '#000000ff' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
-            <h2 className="text-3xl md:text-4xl font-grotesk text-white mb-4 uppercase tracking-wide">
+            <h2 className="text-3xl md:text-4xl font-sinoreta text-white mb-4 uppercase tracking-wide">
               {brandStory.title}
             </h2>
             <p className="text-xl font-grotesk" style={{ color: '#ffb703' }}>
@@ -60,7 +60,7 @@ export default function About() {
             
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 shadow-lg">
               <div className="mb-8">
-                <h3 className="text-2xl font-grotesk text-gray-900 mb-3 uppercase tracking-wide">
+                <h3 className="text-2xl font-sinoreta text-gray-900 mb-3 uppercase tracking-wide">
                   Our Vision
                 </h3>
                 <p className="text-gray-700 leading-relaxed font-grotesk">
@@ -69,7 +69,7 @@ export default function About() {
               </div>
               
               <div>
-                <h3 className="text-2xl font-grotesk text-gray-900 mb-3 uppercase tracking-wide">
+                <h3 className="text-2xl font-sinoreta text-gray-900 mb-3 uppercase tracking-wide">
                   Our Mission
                 </h3>
                 <p className="text-gray-700 leading-relaxed font-grotesk">
@@ -81,7 +81,7 @@ export default function About() {
 
           {/* Core Values */}
           <div className="mt-16 slide-top-normal">
-            <h3 className="text-3xl font-grotesk text-white mb-8 text-center uppercase tracking-wide">
+            <h3 className="text-3xl font-sinoreta text-white mb-8 text-center uppercase tracking-wide">
               Our Core Values
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -91,7 +91,7 @@ export default function About() {
                   className="border-2 rounded-xl p-6 hover:shadow-lg transition-all duration-300"
                   style={{ backgroundColor: '#1a1a1a', borderColor: '#ffb703' }}
                 >
-                  <h4 className="text-xl font-grotesk mb-2 uppercase tracking-wide" style={{ color: '#ffb703' }}>
+                  <h4 className="text-xl font-sinoreta mb-2 uppercase tracking-wide" style={{ color: '#ffb703' }}>
                     {value.title}
                   </h4>
                   <p className="text-gray-300 font-grotesk leading-relaxed">
@@ -108,7 +108,7 @@ export default function About() {
       <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
-            <h2 className="text-3xl md:text-4xl font-grotesk text-gray-900 mb-4 uppercase tracking-wide">
+            <h2 className="text-3xl md:text-4xl font-sinoreta text-gray-900 mb-4 uppercase tracking-wide">
               Awards & Recognition
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto font-grotesk">
@@ -124,7 +124,7 @@ export default function About() {
                 style={{ backgroundColor: '#1a1a1a' }}
               >
                 <div className="text-5xl mb-4">{award.icon}</div>
-                <h3 className="text-xl font-grotesk text-white mb-2 uppercase tracking-wide">
+                <h3 className="text-xl font-sinoreta text-white mb-2 uppercase tracking-wide">
                   {award.title}
                 </h3>
                 <p className="font-grotesk mb-2" style={{ color: '#ffb703' }}>
@@ -142,7 +142,7 @@ export default function About() {
 
           {/* Certifications */}
           <div className="mt-16 rounded-2xl p-8 shadow-lg slide-top-normal" style={{ backgroundColor: '#1a1a1a' }}>
-            <h3 className="text-2xl font-grotesk text-white mb-6 text-center uppercase tracking-wide">
+            <h3 className="text-2xl font-sinoreta text-white mb-6 text-center uppercase tracking-wide">
               Certifications & Licenses
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -168,7 +168,7 @@ export default function About() {
       <section className="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
-            <h2 className="text-3xl md:text-4xl font-grotesk text-gray-900 mb-4 uppercase tracking-wide">
+            <h2 className="text-3xl md:text-4xl font-sinoreta text-gray-900 mb-4 uppercase tracking-wide">
               Meet Our Team
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto font-grotesk">
@@ -187,7 +187,7 @@ export default function About() {
                   <div className="text-6xl">👤</div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-grotesk text-white mb-1 uppercase tracking-wide">
+                  <h3 className="text-xl font-sinoreta text-white mb-1 uppercase tracking-wide">
                     {member.name}
                   </h3>
                   <p className="font-grotesk mb-3" style={{ color: '#ffb703' }}>
@@ -215,7 +215,7 @@ export default function About() {
       <section id="location-advantage" className="py-16 md:py-24" style={{ backgroundColor: '#000000' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
-            <h2 className="text-3xl md:text-4xl font-grotesk text-white mb-4 uppercase tracking-wide">
+            <h2 className="text-3xl md:text-4xl font-sinoreta text-white mb-4 uppercase tracking-wide">
               Location Advantage
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto font-grotesk">
@@ -231,7 +231,7 @@ export default function About() {
                 style={{ backgroundColor: '#1a1a1a', borderColor: '#ffb703' }}
               >
                 <div className="text-4xl mb-3">{location.icon}</div>
-                <h3 className="text-lg font-grotesk text-white mb-2 uppercase tracking-wide">
+                <h3 className="text-lg font-sinoreta text-white mb-2 uppercase tracking-wide">
                   {location.title}
                 </h3>
                 <p className="text-sm text-gray-300 mb-3 font-grotesk">
@@ -249,7 +249,7 @@ export default function About() {
           {/* Neighborhood Guide */}
           <div style={{ background: 'linear-gradient(to right, #1a1a1a, #000000, #1a1a1a)' }} className="rounded-2xl p-8 md:p-12 text-white shadow-xl slide-top-normal">
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-grotesk mb-4 uppercase tracking-wide">
+              <h3 className="text-3xl font-sinoreta mb-4 uppercase tracking-wide">
                 Explore the Neighborhood
               </h3>
               <p className="text-lg max-w-3xl mx-auto font-grotesk leading-relaxed" style={{ color: '#ffb703' }}>
@@ -261,19 +261,19 @@ export default function About() {
             
             <div className="grid md:grid-cols-3 gap-6 mt-8">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                <h4 className="text-xl font-grotesk mb-2 uppercase tracking-wide">🏢 Business Hub</h4>
+                <h4 className="text-xl font-sinoreta mb-2 uppercase tracking-wide">🏢 Business Hub</h4>
                 <p className="font-grotesk" style={{ color: '#ffb703' }}>
                   Minutes away from major industrial areas and IT parks
                 </p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                <h4 className="text-xl font-grotesk mb-2 uppercase tracking-wide">🎯 Tourist Spots</h4>
+                <h4 className="text-xl font-sinoreta mb-2 uppercase tracking-wide">🎯 Tourist Spots</h4>
                 <p className="font-grotesk" style={{ color: '#ffb703' }}>
                   Quick access to Chandigarh's famous attractions and gardens
                 </p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                <h4 className="text-xl font-grotesk mb-2 uppercase tracking-wide">🛣️ Connectivity</h4>
+                <h4 className="text-xl font-sinoreta mb-2 uppercase tracking-wide">🛣️ Connectivity</h4>
                 <p className="font-grotesk" style={{ color: '#ffb703' }}>
                   Prime location on NH-22 with excellent road connectivity
                 </p>
@@ -286,7 +286,7 @@ export default function About() {
       {/* Call to Action */}
       <section className="py-16 text-white" style={{ background: 'linear-gradient(to right, #000000, #1a1a1a, #000000)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center slide-top-normal">
-          <h2 className="text-3xl md:text-4xl font-grotesk mb-6 uppercase tracking-wide">
+          <h2 className="text-3xl md:text-4xl font-sinoreta mb-6 uppercase tracking-wide">
             Experience the Deewan Difference
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto font-grotesk" style={{ color: '#ffb703' }}>

@@ -19,6 +19,7 @@ export default {
       fontFamily: {
         sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
         grotesk: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        sinoreta: ['Sinoreta', 'sans-serif'],
       },
       maxWidth: {
         '8xl': '88rem',

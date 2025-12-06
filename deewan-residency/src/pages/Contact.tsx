@@ -13,7 +13,7 @@ export default function Contact() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center slide-top-normal">
-            <h1 className="text-4xl md:text-6xl font-grotesk font-extrabold mb-6 text-white uppercase tracking-wide">
+            <h1 className="text-4xl md:text-6xl font-sinoreta font-extrabold mb-6 text-white uppercase tracking-wide">
               Get in Touch
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto font-grotesk">
@@ -41,7 +41,7 @@ export default function Contact() {
             {/* Contact Information */}
             <div className="space-y-8 slide-top-normal">
               <div>
-                <h2 className="text-3xl font-grotesk text-white mb-8 uppercase tracking-wide drop-shadow-2xl">
+                <h2 className="text-3xl font-sinoreta text-white mb-8 uppercase tracking-wide drop-shadow-2xl">
                   Contact Information
                 </h2>
                 <p className="text-gray-100 mb-8 leading-relaxed font-grotesk text-lg">
@@ -62,7 +62,7 @@ export default function Contact() {
                     </div>
                   </div>
                   <div className="pt-1">
-                    <h3 className="text-lg font-grotesk text-white mb-1 tracking-wide font-medium">Phone</h3>
+                    <h3 className="text-lg font-sinoreta text-white mb-1 tracking-wide font-medium">Phone</h3>
                     <div className="space-y-1">
                       <a 
                         href="tel:01762506147" 
@@ -91,7 +91,7 @@ export default function Contact() {
                     </div>
                   </div>
                   <div className="pt-1">
-                    <h3 className="text-lg font-grotesk text-white mb-1 tracking-wide font-medium">Email</h3>
+                    <h3 className="text-lg font-sinoreta text-white mb-1 tracking-wide font-medium">Email</h3>
                     <a 
                       href="mailto:thedeewanhotel@gmail.com" 
                       className="block text-gray-200 hover:text-white font-grotesk text-lg transition-colors"
@@ -113,7 +113,7 @@ export default function Contact() {
                     </div>
                   </div>
                   <div className="pt-1">
-                    <h3 className="text-lg font-grotesk text-white mb-1 tracking-wide font-medium">Office</h3>
+                    <h3 className="text-lg font-sinoreta text-white mb-1 tracking-wide font-medium">Office</h3>
                     <address className="text-gray-200 not-italic leading-relaxed font-grotesk text-lg">
                       Amb-Chd Highway<br />
                       Near Sukhmani College<br />
@@ -125,7 +125,7 @@ export default function Contact() {
 
               {/* Operating Hours */}
               <div className="bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 shadow-xl mt-8">
-                <h3 className="text-lg font-grotesk text-white mb-6 tracking-wide font-semibold border-b border-white/10 pb-4">Operating Hours</h3>
+                <h3 className="text-lg font-sinoreta text-white mb-6 tracking-wide font-semibold border-b border-white/10 pb-4">Operating Hours</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300 font-grotesk">Monday - Friday</span>

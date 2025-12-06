@@ -60,7 +60,7 @@ export default function SimpleNavbar() {
               to="/" 
               className="flex items-center group"
             >
-              <h1 className={`text-xl font-grotesk font-extrabold uppercase tracking-wide transition-colors duration-300 group-hover:text-blue-600 ${
+              <h1 className={`text-xl font-sinoreta font-extrabold uppercase tracking-wide transition-colors duration-300 group-hover:text-blue-600 ${
                 scrolled ? 'text-white-900' : 'text-gray-900'
               }`}>
                 Deewan Residency
@@ -73,7 +73,7 @@ export default function SimpleNavbar() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-sm font-grotesk font-medium transition-all duration-300 hover:scale-105 relative group ${
+                  className={`text-sm font-sinoreta font-medium transition-all duration-300 hover:scale-105 relative group ${
                     isActive(link.path)
                       ? 'text-blue-200'
                       : 'text-gray-300 hover:text-blue-200'
@@ -92,7 +92,7 @@ export default function SimpleNavbar() {
               <Link
                 to="/contact"
                 data-magnetic
-                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full text-sm font-grotesk font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full text-sm font-sinoreta font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform"
               >
                 Book Now
               </Link>
@@ -111,6 +111,7 @@ export default function SimpleNavbar() {
                 enableBlur={true}
                 // @ts-ignore - Adding new prop
                 animationType="drawer"
+                fontFamily="Sinoreta, sans-serif"
               />
             </div>
           </div>

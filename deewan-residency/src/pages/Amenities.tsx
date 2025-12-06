@@ -22,7 +22,7 @@ export default function Amenities() {
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-grotesk font-extrabold mb-4 uppercase tracking-wide">
+          <h1 className="text-4xl md:text-5xl font-sinoreta font-extrabold mb-4 uppercase tracking-wide">
             Hotel Amenities & Services
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto font-grotesk">
@@ -50,7 +50,7 @@ export default function Amenities() {
         {/* Business Facilities Section */}
         <div className="mt-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-grotesk text-gray-900 mb-4 uppercase tracking-wide">
+            <h2 className="text-3xl font-sinoreta text-gray-900 mb-4 uppercase tracking-wide">
               Business Facilities
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto font-grotesk">
@@ -72,7 +72,7 @@ export default function Amenities() {
 
         {/* Contact Information */}
         <div className="mt-16 bg-white rounded-lg shadow-md p-8 text-center">
-          <h2 className="text-2xl font-grotesk text-gray-900 mb-4 uppercase tracking-wide">
+          <h2 className="text-2xl font-sinoreta text-gray-900 mb-4 uppercase tracking-wide">
             Need More Information?
           </h2>
           <p className="text-gray-600 mb-6 font-grotesk">

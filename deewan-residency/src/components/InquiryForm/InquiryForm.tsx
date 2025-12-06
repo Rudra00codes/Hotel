@@ -199,7 +199,7 @@ export default function InquiryForm({ prefilledRoomType, onSuccess }: InquiryFor
 
   return (
     <div className="bg-white rounded-lg shadow-xl p-6 md:p-8">
-      <h3 className="text-2xl font-grotesk text-gray-800 mb-6 text-center uppercase tracking-wide">
+      <h3 className="text-2xl font-sinoreta text-gray-800 mb-6 text-center uppercase tracking-wide">
         Check Availability
       </h3>
       

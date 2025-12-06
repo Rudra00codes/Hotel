@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Hotel Information */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-grotesk mb-4 tracking-wide uppercase">Deewan Residency</h3>
+            <h3 className="text-2xl font-sinoreta mb-4 tracking-wide uppercase">Deewan Residency</h3>
             <p className="text-gray-300 mb-6 leading-relaxed font-grotesk">
               Experience comfort and luxury at Deewan Residency, conveniently located on 
               Amb-Chd Highway in Derabassi, Mohali. We offer exceptional hospitality 
@@ -83,7 +83,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-grotesk mb-4 tracking-wide text-gray-200">Quick Links</h4>
+            <h4 className="text-lg font-sinoreta mb-4 tracking-wide text-gray-200">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -100,7 +100,7 @@ export default function Footer() {
 
           {/* Business Hours & Social Media */}
           <div>
-            <h4 className="text-lg font-grotesk mb-4 tracking-wide text-gray-200">Business Hours</h4>
+            <h4 className="text-lg font-sinoreta mb-4 tracking-wide text-gray-200">Business Hours</h4>
             <div className="space-y-2 text-gray-300 mb-6 font-grotesk">
               <div className="flex justify-between">
                 <span>Reception:</span>
@@ -121,7 +121,7 @@ export default function Footer() {
             </div>
 
             {/* Social Media Links */}
-            <h4 className="text-lg font-grotesk mb-4 tracking-wide text-gray-200">Follow Us</h4>
+            <h4 className="text-lg font-sinoreta mb-4 tracking-wide text-gray-200">Follow Us</h4>
             <div className="flex space-x-4">
               <a
                 href="#"

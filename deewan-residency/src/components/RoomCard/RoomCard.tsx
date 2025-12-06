@@ -59,7 +59,7 @@ export default function RoomCard({ room, onViewDetails, onInquiry }: RoomCardPro
       <div className="p-6">
         {/* Room Name and Occupancy */}
         <div className="flex justify-between items-start mb-3">
-          <h3 className="text-xl font-grotesk text-gray-900 tracking-wide uppercase">{room.name}</h3>
+          <h3 className="text-xl font-sinoreta text-gray-900 tracking-wide uppercase">{room.name}</h3>
           <div className="flex items-center text-gray-600 text-sm">
             <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />

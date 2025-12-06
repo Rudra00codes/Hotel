@@ -24,7 +24,7 @@ export default function RoomDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-grotesk font-extrabold text-gray-900 mb-4 tracking-wide">Room Not Found</h1>
+          <h1 className="text-2xl font-sinoreta font-extrabold text-gray-900 mb-4 tracking-wide">Room Not Found</h1>
           <p className="text-gray-600 mb-8 font-grotesk">The room you're looking for doesn't exist.</p>
           <button
             onClick={() => navigate('/rooms')}
@@ -59,7 +59,7 @@ export default function RoomDetail() {
             <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h1 className="text-3xl font-grotesk font-extrabold text-gray-900 mb-2 tracking-wide uppercase">{room.name}</h1>
+                  <h1 className="text-3xl font-sinoreta font-extrabold text-gray-900 mb-2 tracking-wide uppercase">{room.name}</h1>
                   <div className="flex items-center text-gray-600">
                     <span className={`px-3 py-1 rounded-full text-sm font-medium text-white mr-4 ${
                       room.category === 'standard' ? 'bg-blue-600' :
@@ -93,7 +93,7 @@ export default function RoomDetail() {
 
             {/* Features */}
             <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-              <h2 className="text-xl font-grotesk text-gray-900 mb-4 tracking-wide uppercase">Room Features</h2>
+              <h2 className="text-xl font-sinoreta text-gray-900 mb-4 tracking-wide uppercase">Room Features</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {room.features.map((feature: string, index: number) => (
                   <div key={index} className="flex items-center text-gray-700">
@@ -108,7 +108,7 @@ export default function RoomDetail() {
 
             {/* Amenities */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-grotesk text-gray-900 mb-4 tracking-wide uppercase">Amenities</h2>
+              <h2 className="text-xl font-sinoreta text-gray-900 mb-4 tracking-wide uppercase">Amenities</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {room.amenities.map((amenity: string, index: number) => (
                   <div key={index} className="flex items-center text-gray-700">
@@ -125,7 +125,7 @@ export default function RoomDetail() {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-8">
-              <h3 className="text-xl font-grotesk text-gray-900 mb-4 tracking-wide uppercase">Book This Room</h3>
+              <h3 className="text-xl font-sinoreta text-gray-900 mb-4 tracking-wide uppercase">Book This Room</h3>
               <p className="text-gray-600 mb-6 font-grotesk">
                 Contact us to check availability and make a reservation for the {room.name}.
               </p>
@@ -161,7 +161,7 @@ export default function RoomDetail() {
           <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-grotesk text-gray-900 tracking-wide uppercase">Book {room.name}</h3>
+                <h3 className="text-xl font-sinoreta text-gray-900 tracking-wide uppercase">Book {room.name}</h3>
                 <button
                   onClick={() => setShowInquiryForm(false)}
                   className="text-gray-400 hover:text-gray-600"

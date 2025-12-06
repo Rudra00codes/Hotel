@@ -63,7 +63,7 @@ export default function Map({ className = '' }: MapProps) {
         
         {/* How to Reach (Left - 7 cols) */}
         <div className="lg:col-span-7 bg-white/5 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-white/10">
-          <h3 className="text-xl font-stardom text-white mb-6 flex items-center gap-2">
+          <h3 className="text-xl font-sinoreta text-white mb-6 flex items-center gap-2">
             <Navigation className="w-5 h-5 text-blue-400" />
             How to Reach
           </h3>
@@ -105,7 +105,7 @@ export default function Map({ className = '' }: MapProps) {
           
           {/* Nearby Landmarks */}
           <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-white/10 flex-1">
-            <h3 className="text-xl font-stardom text-white mb-6 flex items-center gap-2">
+            <h3 className="text-xl font-sinoreta text-white mb-6 flex items-center gap-2">
               <MapPin className="w-5 h-5 text-red-400" />
               Nearby Landmarks
             </h3>

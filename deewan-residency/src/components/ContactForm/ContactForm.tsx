@@ -189,7 +189,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
 
   return (
     <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl">
-      <h3 className="text-2xl font-grotesk text-white mb-6 text-center uppercase tracking-wide">
+      <h3 className="text-2xl font-sinoreta text-white mb-6 text-center uppercase tracking-wide">
         Send us a Message
       </h3>
       

@@ -76,7 +76,7 @@ export default function Hero() {
                 <SplitText
                   text="Reserve Your"
                   tag="h1"
-                  className="text-4xl sm:text-5xl lg:text-6xl font-grotesk text-gray-900 leading-tight block grotesk-optimized uppercase tracking-wide"
+                  className="text-4xl sm:text-5xl lg:text-6xl font-sinoreta text-gray-900 leading-tight block grotesk-optimized uppercase tracking-wide"
                   textAlign="left"
                   splitType="chars"
                   delay={50}
@@ -93,7 +93,7 @@ export default function Hero() {
                 <SplitText
                   text="Ideal Holiday"
                   tag="h1"
-                  className="text-4xl sm:text-5xl lg:text-6xl font-grotesk text-blue-600 leading-tight block mt-2 grotesk-optimized uppercase tracking-wide"
+                  className="text-4xl sm:text-5xl lg:text-6xl font-sinoreta text-blue-600 leading-tight block mt-2 grotesk-optimized uppercase tracking-wide"
                   textAlign="left"
                   splitType="chars"
                   delay={60}

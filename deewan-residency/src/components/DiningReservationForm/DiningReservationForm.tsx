@@ -80,7 +80,7 @@ ${formData.specialRequests || 'None'}
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <h3 className="text-xl font-grotesk text-gray-900 mb-6 uppercase tracking-wide">Make a Dining Reservation</h3>
+      <h3 className="text-xl font-sinoreta text-gray-900 mb-6 uppercase tracking-wide">Make a Dining Reservation</h3>
       
       {submitStatus === 'success' && (
         <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">

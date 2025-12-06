@@ -51,7 +51,7 @@ export default function EnhancedHeader() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center glassmorphism-logo" onClick={closeMobileMenu}>
-              <h1 className="text-xl lg:text-2xl font-grotesk font-extrabold text-gray-900 tracking-wide uppercase">
+              <h1 className="text-xl lg:text-2xl font-sinoreta font-extrabold text-gray-900 tracking-wide uppercase">
                 Deewan Residency
               </h1>
             </Link>
@@ -79,7 +79,7 @@ export default function EnhancedHeader() {
           <MobileNavHeader>
             {/* Mobile Logo */}
             <Link to="/" className="flex items-center glassmorphism-logo" onClick={closeMobileMenu}>
-              <h1 className="text-lg font-grotesk font-extrabold text-gray-900 tracking-wide uppercase">
+              <h1 className="text-lg font-sinoreta font-extrabold text-gray-900 tracking-wide uppercase">
                 Deewan Residency
               </h1>
             </Link>
@@ -102,7 +102,7 @@ export default function EnhancedHeader() {
                 key={item.name}
                 to={item.link}
                 onClick={closeMobileMenu}
-                className={`${getThumbFriendlyNavClasses()} glassmorphism-mobile-menu-item block rounded-md text-base font-grotesk font-medium transition-all duration-300 tracking-wide ${
+                className={`${getThumbFriendlyNavClasses()} glassmorphism-mobile-menu-item block rounded-md text-base font-sinoreta font-medium transition-all duration-300 tracking-wide ${
                   isActivePage(item.link)
                     ? 'text-blue-600 glassmorphism-active'
                     : 'text-gray-700 hover:text-blue-600'
@@ -117,7 +117,7 @@ export default function EnhancedHeader() {
               <Link
                 to="/#booking-form"
                 onClick={closeMobileMenu}
-                className={`${getTouchFriendlyClasses('large')} glassmorphism-cta block w-full text-center text-white rounded-lg font-grotesk font-medium tracking-wide`}
+                className={`${getTouchFriendlyClasses('large')} glassmorphism-cta block w-full text-center text-white rounded-lg font-sinoreta font-medium tracking-wide`}
               >
                 Check Availability
               </Link>

@@ -114,7 +114,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center glassmorphism-logo" onClick={closeMobileMenu}>
-              <h1 className={`text-xl lg:text-2xl font-grotesk font-extrabold tracking-wide uppercase transition-colors duration-300 ${
+              <h1 className={`text-xl lg:text-2xl font-sinoreta font-extrabold tracking-wide uppercase transition-colors duration-300 ${
                 isDarkSection ? 'text-white' : 'text-gray-900'
               }`}>
                 Deewan Residency
@@ -229,7 +229,7 @@ export default function Header() {
               key={item.name}
               to={item.path}
               onClick={closeMobileMenu}
-              className={`${getThumbFriendlyNavClasses()} glassmorphism-mobile-menu-item block rounded-md text-base font-grotesk font-medium transition-all duration-300 tracking-wide ${
+              className={`${getThumbFriendlyNavClasses()} glassmorphism-mobile-menu-item block rounded-md text-base font-sinoreta font-medium transition-all duration-300 tracking-wide ${
                 isActivePage(item.path)
                   ? 'text-blue-600 glassmorphism-active'
                   : 'text-gray-700 hover:text-blue-600'
@@ -261,7 +261,7 @@ export default function Header() {
                   }, 100);
                 }
               }}
-              className={`${getTouchFriendlyClasses('large')} glassmorphism-cta block w-full text-center text-white rounded-lg font-grotesk font-medium tracking-wide`}
+              className={`${getTouchFriendlyClasses('large')} glassmorphism-cta block w-full text-center text-white rounded-lg font-sinoreta font-medium tracking-wide`}
             >
               Check Availability
             </Link>

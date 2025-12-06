@@ -36,7 +36,7 @@ export default function Rooms() {
       <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-grotesk font-extrabold mb-4 uppercase tracking-wide">
+            <h1 className="text-4xl md:text-5xl font-sinoreta font-extrabold mb-4 uppercase tracking-wide">
               Rooms & Suites
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto font-grotesk">
@@ -84,7 +84,7 @@ export default function Rooms() {
         {filteredRooms.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-400 text-6xl mb-4">🏨</div>
-            <h3 className="text-xl font-grotesk font-medium text-gray-900 mb-2 tracking-wide">
+            <h3 className="text-xl font-sinoreta font-medium text-gray-900 mb-2 tracking-wide">
               No rooms found
             </h3>
             <p className="text-gray-600 font-grotesk">
@@ -95,7 +95,7 @@ export default function Rooms() {
 
         {/* Call to Action */}
         <div className="mt-16 bg-blue-600 rounded-2xl p-8 text-center text-white">
-          <h2 className="text-3xl font-grotesk mb-4 uppercase tracking-wide">
+          <h2 className="text-3xl font-sinoreta mb-4 uppercase tracking-wide">
             Need Help Choosing the Perfect Room?
           </h2>
           <p className="text-xl text-blue-100 mb-6 max-w-2xl mx-auto font-grotesk">
