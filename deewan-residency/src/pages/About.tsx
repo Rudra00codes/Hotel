@@ -1,5 +1,6 @@
 // About page component
 import { useSEO } from '../utils/seo';
+import { Target, Eye, User } from 'lucide-react';
 import { 
   brandStory, 
   awards, 
@@ -15,22 +16,33 @@ export default function About() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="w-full relative bg-black " style={{ minHeight: '30vh' }}>
+      <div className="w-full relative pt-16 bg-black overflow-hidden" style={{ minHeight: '30vh' }}>
+        {/* Background Pattern */}
+        <div className="absolute inset-0 z-0 opacity-20"
+             style={{
+                 backgroundImage: "radial-gradient(#ffb703 1px, transparent 1px)",
+                 backgroundSize: "40px 40px"
+             }}
+        />
+        
         {/* Pearl Mist Background with Top Glow */}
         <div
           className="absolute inset-0 z-0"
           style={{
-            background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(226, 232, 240, 0.15), transparent 70%), #000000",
+            background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 183, 3, 0.15), transparent 70%), #000000",
           }}
         />
         
         {/* Content */}
-        <div className="relative z-10 text-white pt-44 pb-28  overflow-hidden">
+        <div className="relative z-10 text-white h-full flex flex-col justify-center items-center pt-40 pb-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center slide-top-normal">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-sinoreta font-extrabold mb-6 uppercase tracking-wide">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-sinoreta font-extrabold mb-8 uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">
               About Deewan Residency
             </h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto font-grotesk leading-relaxed" style={{ color: '#ffb703' }}>
+            
+            <div className="w-32 h-1 mx-auto mb-8 rounded-full" style={{ backgroundColor: '#ffb703' }} />
+            
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto font-grotesk leading-relaxed tracking-wide" style={{ color: '#ffb703' }}>
               Where tradition meets modern hospitality on the Amb-Chandigarh Highway
             </p>
           </div>
@@ -38,7 +50,7 @@ export default function About() {
       </div>
 
       {/* Brand Story Section */}
-      <section className="py-18 md:py-24" style={{ backgroundColor: '#000000ff' }}>
+      <section className="pt-18 md:pt-24 pb-8" style={{ backgroundColor: '#000000ff' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
             <h2 className="text-3xl md:text-4xl font-sinoreta text-white mb-4 uppercase tracking-wide">
@@ -58,21 +70,34 @@ export default function About() {
               ))}
             </div>
             
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 shadow-lg">
-              <div className="mb-8">
-                <h3 className="text-2xl font-sinoreta text-gray-900 mb-3 uppercase tracking-wide">
-                  Our Vision
-                </h3>
-                <p className="text-gray-700 leading-relaxed font-grotesk">
+            <div className="relative rounded-2xl p-8 md:p-10 border border-[#ffb703]/20 bg-[#111] shadow-2xl overflow-hidden group hover:border-[#ffb703]/40 transition-all duration-500">
+              {/* Glow Effect */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#ffb703]/5 rounded-full blur-3xl -mr-32 -mt-32 transition-all duration-700 group-hover:bg-[#ffb703]/10" />
+              
+              <div className="relative z-10 mb-10">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 rounded-lg bg-[#ffb703]/10 text-[#ffb703]">
+                    <Eye size={24} />
+                  </div>
+                  <h3 className="text-2xl font-sinoreta text-white uppercase tracking-wide">
+                    Our Vision
+                  </h3>
+                </div>
+                <p className="text-gray-400 leading-relaxed font-grotesk pl-4 border-l-2 border-[#ffb703]/30">
                   {brandStory.vision}
                 </p>
               </div>
               
-              <div>
-                <h3 className="text-2xl font-sinoreta text-gray-900 mb-3 uppercase tracking-wide">
-                  Our Mission
-                </h3>
-                <p className="text-gray-700 leading-relaxed font-grotesk">
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 rounded-lg bg-[#ffb703]/10 text-[#ffb703]">
+                    <Target size={24} />
+                  </div>
+                  <h3 className="text-2xl font-sinoreta text-white uppercase tracking-wide">
+                    Our Mission
+                  </h3>
+                </div>
+                <p className="text-gray-400 leading-relaxed font-grotesk pl-4 border-l-2 border-[#ffb703]/30">
                   {brandStory.mission}
                 </p>
               </div>
@@ -80,7 +105,7 @@ export default function About() {
           </div>
 
           {/* Core Values */}
-          <div className="mt-16 slide-top-normal">
+          <div className="mt-16 pt-16 slide-top-normal">
             <h3 className="text-3xl font-sinoreta text-white mb-8 text-center uppercase tracking-wide">
               Our Core Values
             </h3>
@@ -105,7 +130,7 @@ export default function About() {
       </section>
 
       {/* Awards & Recognition Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="mt-16 pt-16 md:pt-24 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
             <h2 className="text-3xl md:text-4xl font-sinoreta text-gray-900 mb-4 uppercase tracking-wide">
@@ -165,12 +190,13 @@ export default function About() {
 
 
       {/* Team Introduction Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-gray-50">
+      <section className="mt-16 pt-16 md:pt-24 bg-[#f8f9fa]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 slide-top-normal">
+          <div className="text-center mb-16 slide-top-normal">
             <h2 className="text-3xl md:text-4xl font-sinoreta text-gray-900 mb-4 uppercase tracking-wide">
               Meet Our Team
             </h2>
+            <div className="w-24 h-1 mx-auto mb-6 rounded-full bg-[#ffb703]" />
             <p className="text-xl text-gray-600 max-w-3xl mx-auto font-grotesk">
               Dedicated professionals committed to making your stay exceptional
             </p>
@@ -180,25 +206,36 @@ export default function About() {
             {teamMembers.map((member) => (
               <div 
                 key={member.id}
-                className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
-                style={{ backgroundColor: '#1a1a1a' }}
+                className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-[#111] border border-transparent hover:border-[#ffb703]/30"
               >
-                <div className="aspect-square bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
-                  <div className="text-6xl">👤</div>
+                {/* Image Placeholder with Overlay */}
+                <div className="aspect-[4/5] relative overflow-hidden bg-gradient-to-b from-[#222] to-[#111]">
+                  <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-700">
+                    <User size={80} className="text-gray-600 group-hover:text-[#ffb703] transition-colors duration-500" />
+                  </div>
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-80" />
+                  
+                  {/* Hover Reveal Content */}
+                  <div className="absolute bottom-0 left-0 w-full p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-gradient-to-t from-black/90 to-transparent">
+                     <p className="text-white/90 text-sm font-grotesk leading-relaxed">
+                        {member.bio}
+                     </p>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-sinoreta text-white mb-1 uppercase tracking-wide">
+
+                <div className="p-6 relative z-10 bg-[#111] border-t border-gray-800 group-hover:border-[#ffb703]/30 transition-colors duration-300">
+                  <h3 className="text-xl font-sinoreta text-white mb-1 uppercase tracking-wide group-hover:text-[#ffb703] transition-colors duration-300">
                     {member.name}
                   </h3>
-                  <p className="font-grotesk mb-3" style={{ color: '#ffb703' }}>
+                  <p className="font-grotesk text-sm font-medium tracking-wider text-gray-400 mb-4 uppercase">
                     {member.position}
                   </p>
-                  <p className="text-sm text-gray-300 leading-relaxed mb-3 font-grotesk">
-                    {member.bio}
-                  </p>
+                  
                   {member.specialization && (
-                    <div className="rounded-lg p-2" style={{ backgroundColor: 'rgba(255, 183, 3, 0.1)' }}>
-                      <p className="text-xs font-grotesk font-semibold" style={{ color: '#ffb703' }}>
+                    <div className="inline-block rounded-full px-3 py-1 bg-[#ffb703]/10 border border-[#ffb703]/20 group-hover:bg-[#ffb703]/20 transition-colors duration-300">
+                      <p className="text-xs font-grotesk font-semibold text-[#ffb703]">
                         {member.specialization}
                       </p>
                     </div>
@@ -212,10 +249,10 @@ export default function About() {
       </section>
 
       {/* Location Advantage Section */}
-      <section id="location-advantage" className="py-16 md:py-24" style={{ backgroundColor: '#000000' }}>
+      <section id="location-advantage" className="pt-16 pb-16 md:pt-24" style={{ backgroundColor: '#000000' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
-            <h2 className="text-3xl md:text-4xl font-sinoreta text-white mb-4 uppercase tracking-wide">
+            <h2 className="text-3xl md:text-4xl font-sinoreta text-white mt-12 uppercase tracking-wide">
               Location Advantage
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto font-grotesk">
@@ -284,8 +321,8 @@ export default function About() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 text-white" style={{ background: 'linear-gradient(to right, #000000, #1a1a1a, #000000)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center slide-top-normal">
+      <section className="pt-16 text-white" style={{ background: 'linear-gradient(to right, #000000, #1a1a1a, #000000)' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 text-center slide-top-normal">
           <h2 className="text-3xl md:text-4xl font-sinoreta mb-6 uppercase tracking-wide">
             Experience the Deewan Difference
           </h2>

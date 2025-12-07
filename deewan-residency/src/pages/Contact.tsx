@@ -8,7 +8,7 @@ export default function Contact() {
     <div className="min-h-screen bg-gray-900">
       {/* Hero Section */}
       <div 
-        className="text-white pt-36 pb-16"
+        className="text-white pt-52"
         style={{ background: "radial-gradient(125% 125% at 50% 10%, #000000 40%, #0d1a36 100%)" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,10 +41,10 @@ export default function Contact() {
             {/* Contact Information */}
             <div className="space-y-8 slide-top-normal">
               <div>
-                <h2 className="text-3xl font-sinoreta text-white mb-8 uppercase tracking-wide drop-shadow-2xl">
+                <h2 className="text-3xl text-center font-sinoreta text-white mb-8 uppercase tracking-wide drop-shadow-2xl">
                   Contact Information
                 </h2>
-                <p className="text-gray-100 mb-8 leading-relaxed font-grotesk text-lg">
+                <p className="text-gray-100 text-center mb-8 leading-relaxed font-grotesk text-lg">
                   Reach out to us through any of the following channels. Our team is here to help you find your perfect stay.
                 </p>
               </div>
