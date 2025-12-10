@@ -2,10 +2,58 @@ import { diningOptions } from '../data/dining';
 import DiningCard from '../components/DiningCard';
 import DiningReservationForm from '../components/DiningReservationForm';
 import { useSEO } from '../utils/seo';
+import { useSanityContent } from '../hooks/useSanityContent';
+import { urlFor } from '../lib/urlFor';
+import { useMemo } from 'react';
 
 export default function Dining() {
   // Apply SEO for dining page
   useSEO('dining');
+
+  // Fetch dining options from Sanity
+  const { data: sanityDining, loading } = useSanityContent<any[]>(
+    `*[_type == "diningOption"] {
+      _id,
+      name,
+      description,
+      image,
+      operatingHours,
+      contactInfo,
+      cuisineType,
+      features,
+      menuUrl,
+      menuHighlights
+    }`
+  );
+
+  // Merge/Fallback logic
+  const displayDining = useMemo(() => {
+    if (loading) return diningOptions;
+    
+    if (sanityDining && sanityDining.length > 0) {
+      return sanityDining.map(item => ({
+        id: item._id,
+        name: item.name,
+        description: item.description,
+        image: item.image ? urlFor(item.image).url() : '',
+        operatingHours: item.operatingHours || '',
+        contactInfo: item.contactInfo || '',
+        cuisineType: item.cuisineType || [],
+        features: item.features || [],
+        menuHighlights: item.menuHighlights ? item.menuHighlights.map((highlight: any, index: number) => ({
+          id: `highlight-${index}`,
+          name: highlight.name,
+          description: highlight.description,
+          category: 'main-course', // Default category as it's not in schema
+          isVegetarian: highlight.isVegetarian,
+          isSpicy: highlight.isSpicy
+        })) : []
+      }));
+    }
+    
+    return diningOptions;
+  }, [sanityDining, loading]);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -35,7 +83,7 @@ export default function Dining() {
 
         {/* Dining Options */}
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
-          {diningOptions.map((option) => (
+          {displayDining.map((option) => (
             <DiningCard key={option.id} diningOption={option} />
           ))}
         </div>

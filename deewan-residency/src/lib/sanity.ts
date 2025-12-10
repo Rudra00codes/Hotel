@@ -12,7 +12,7 @@ export const sanityClient = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // Set to false if you want fresh data always
+  useCdn: false, // Set to false if you want fresh data always
 })
 
 // Query helper with error handling

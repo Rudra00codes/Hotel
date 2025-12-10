@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { amenitiesData, getAllCategories } from '../data/amenities';
 import { businessFacilities } from '../data/businessFacilities';
 import AmenityCard from '../components/AmenityCard';
@@ -6,6 +6,8 @@ import CategoryFilter from '../components/CategoryFilter';
 import BusinessFacilityCard from '../components/BusinessFacilityCard';
 import BusinessBookingForm from '../components/BusinessBookingForm';
 import { useSEO } from '../utils/seo';
+import { useSanityContent } from '../hooks/useSanityContent';
+import { urlFor } from '../lib/urlFor';
 
 export default function Amenities() {
   // Apply SEO for amenities page
@@ -13,9 +15,43 @@ export default function Amenities() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const categories = getAllCategories();
 
+  // Fetch amenities from Sanity
+  const { data: sanityAmenities, loading } = useSanityContent<any[]>(
+    `*[_type == "amenity"] {
+      _id,
+      name,
+      category,
+      description,
+      image,
+      operatingHours,
+      contactInfo,
+      features
+    }`
+  );
+
+  // Merge/Fallback logic
+  const displayAmenities = useMemo(() => {
+    if (loading) return amenitiesData;
+    
+    if (sanityAmenities && sanityAmenities.length > 0) {
+      return sanityAmenities.map(item => ({
+        id: item._id,
+        name: item.name,
+        category: item.category,
+        description: item.description,
+        image: item.image ? urlFor(item.image).url() : '', // Fallback to empty string if no image
+        features: item.features || [],
+        operatingHours: item.operatingHours,
+        contactInfo: item.contactInfo
+      }));
+    }
+    
+    return amenitiesData;
+  }, [sanityAmenities, loading]);
+
   const filteredAmenities = activeCategory
-    ? amenitiesData.filter(amenity => amenity.category === activeCategory)
-    : amenitiesData;
+    ? displayAmenities.filter(amenity => amenity.category === activeCategory)
+    : displayAmenities;
 
   return (
     <div className="min-h-screen bg-gray-50">

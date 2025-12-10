@@ -25,6 +25,11 @@ export function generateResponsiveSources(
   sizes: ImageSizes = DEFAULT_SIZES,
   formats: ('webp' | 'jpg')[] = ['webp', 'jpg']
 ) {
+  // Skip optimization for external URLs (like Sanity CDN)
+  if (baseSrc.startsWith('http://') || baseSrc.startsWith('https://')) {
+    return [];
+  }
+
   const sources: Array<{
     srcSet: string;
     sizes: string;
@@ -73,6 +78,11 @@ export function getOptimizedImageUrl(
   width: number,
   format: 'webp' | 'jpg' = 'webp'
 ): string {
+  // Return original URL for external images
+  if (baseSrc.startsWith('http://') || baseSrc.startsWith('https://')) {
+    return baseSrc;
+  }
+
   const extension = format === 'webp' ? '.webp' : '.jpg';
   const baseName = baseSrc.replace(/\.[^/.]+$/, '');
   return `${baseName}-${width}w${extension}`;

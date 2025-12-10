@@ -40,7 +40,8 @@ export default function Rooms() {
         category: room.category || 'standard', // Default category
         description: room.description,
         amenities: room.amenities || [],
-        images: room.images?.map((img: any) => urlFor(img).url()) || [],
+        // Handle nested asset object from schema
+        images: room.images?.map((img: any) => urlFor(img.asset || img).url()) || [],
         maxOccupancy: room.maxOccupancy,
         size: room.size,
         features: room.features || [],
