@@ -57,6 +57,18 @@ export default function Gallery({ images, className = '', showLightbox = true }:
     setLightboxIndex(newIndex);
   }, [filteredImages, lightboxImage]);
 
+  // Lock body scroll when lightbox is open
+  useEffect(() => {
+    if (lightboxImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [lightboxImage]);
+
   // Keyboard navigation for lightbox
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (!lightboxImage) return;
@@ -164,19 +176,20 @@ export default function Gallery({ images, className = '', showLightbox = true }:
       {/* Lightbox */}
       {lightboxImage && showLightbox && (
         <div 
-          className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
           aria-label="Image lightbox"
+          onClick={closeLightbox}
         >
           {/* Close Button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded-md p-2"
+            className="absolute top-6 right-6 text-white/70 hover:text-white z-50 transition-colors p-2 hover:bg-white/10 rounded-full focus:outline-none"
             aria-label="Close lightbox"
           >
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
 
@@ -184,44 +197,51 @@ export default function Gallery({ images, className = '', showLightbox = true }:
           {filteredImages.length > 1 && (
             <>
               <button
-                onClick={() => navigateLightbox('prev')}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded-md p-2"
+                onClick={(e) => { e.stopPropagation(); navigateLightbox('prev'); }}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white z-50 transition-all p-3 hover:bg-white/10 rounded-full focus:outline-none hidden md:block"
                 aria-label="Previous image"
               >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
               <button
-                onClick={() => navigateLightbox('next')}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded-md p-2"
+                onClick={(e) => { e.stopPropagation(); navigateLightbox('next'); }}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white z-50 transition-all p-3 hover:bg-white/10 rounded-full focus:outline-none hidden md:block"
                 aria-label="Next image"
               >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             </>
           )}
 
-          {/* Image */}
-          <div className="max-w-4xl max-h-full">
-            <OptimizedImage
-              src={lightboxImage.src}
-              alt={lightboxImage.alt}
-              className="max-h-[80vh] w-auto"
-              loading="eager"
-              sizes="80vw"
-            />
+          {/* Image Container */}
+          <div 
+            className="relative max-w-7xl max-h-full flex flex-col items-center justify-center w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative flex justify-center items-center rounded-lg shadow-2xl">
+              <OptimizedImage
+                src={lightboxImage.src}
+                alt={lightboxImage.alt}
+                className="flex justify-center items-center"
+                imgClassName="max-h-[85vh] max-w-[90vw] w-auto h-auto object-contain"
+                loading="eager"
+                sizes="90vw"
+              />
+            </div>
             
             {/* Image Info */}
-            <div className="text-center mt-4">
-              <p className="text-white text-lg font-medium">{lightboxImage.alt}</p>
+            <div className="text-center mt-6 max-w-3xl px-4 animate-fade-in-up">
               {lightboxImage.caption && (
-                <p className="text-gray-300 text-sm mt-1">{lightboxImage.caption}</p>
+                <p className="text-white text-xl font-light tracking-wide font-grotesk leading-relaxed">
+                  {lightboxImage.caption}
+                </p>
               )}
-              <p className="text-gray-400 text-sm mt-2">
-                {lightboxIndex + 1} of {filteredImages.length}
+              <p className="text-white/40 text-xs mt-3 uppercase tracking-widest font-medium">
+                {lightboxIndex + 1} / {filteredImages.length}
               </p>
             </div>
           </div>

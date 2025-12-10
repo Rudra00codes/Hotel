@@ -5,6 +5,7 @@ interface OptimizedImageProps {
   src: string;
   alt: string;
   className?: string;
+  imgClassName?: string;
   sizes?: string;
   loading?: 'lazy' | 'eager';
   placeholder?: string;
@@ -16,6 +17,7 @@ export default function OptimizedImage({
   src,
   alt,
   className = '',
+  imgClassName,
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
   loading = 'lazy',
   placeholder = '/images/placeholder.jpg',
@@ -147,9 +149,9 @@ export default function OptimizedImage({
           ref={imgRef}
           src={optimizationError ? placeholder : src}
           alt={alt}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${
+          className={`transition-opacity duration-300 ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
+          } ${imgClassName || 'w-full h-full object-cover'}`}
           loading={loading}
           onLoad={() => {
             startTimeRef.current = performance.now();

@@ -43,7 +43,7 @@ export default function GalleryPage() {
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
         <div className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
             <div className="text-center">
               <h1 className="text-4xl font-sinoreta font-extrabold text-gray-900 mb-4 uppercase tracking-wide">
                 Photo Gallery
