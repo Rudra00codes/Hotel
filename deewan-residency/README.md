@@ -10,7 +10,7 @@
 **A modern, responsive hotel website for Deewan Residency**  
 *Located on Amb-Chd Highway in Derabassi, Mohali, Punjab*
 
-[🌐 Live Demo](#) • [📋 Features](#-features) • [🚀 Quick Start](#-quick-start) • [📖 Documentation](./ARCHITECTURE.md)
+[🌐 Live Demo](#https://deewan-residency.in) • [📋 Features](#-features) • [🚀 Quick Start](#-quick-start) • [📖 Documentation](./ARCHITECTURE.md)
 
 </div>
 
