@@ -1,10 +1,42 @@
 import Gallery from '../components/Gallery';
 import { galleryImages, galleryCategories } from '../data/gallery';
 import { useSEO } from '../utils/seo';
+import { useSanityContent } from '../hooks/useSanityContent';
+import { urlFor } from '../lib/urlFor';
+import { useMemo } from 'react';
 
 export default function GalleryPage() {
   // Apply SEO for gallery page
   useSEO('gallery');
+
+  // Fetch gallery images from Sanity
+  const { data: sanityGallery, loading: galleryLoading } = useSanityContent<any[]>(
+    `*[_type == "galleryImage"] {
+      _id,
+      image,
+      alt,
+      category,
+      caption
+    }`
+  );
+
+  // Merge/Fallback logic for Gallery
+  const displayGallery = useMemo(() => {
+    if (galleryLoading) return galleryImages;
+    
+    if (sanityGallery && sanityGallery.length > 0) {
+      return sanityGallery.map(item => ({
+        id: item._id,
+        src: item.image ? urlFor(item.image).url() : '',
+        alt: item.alt || '',
+        category: item.category,
+        caption: item.caption
+      }));
+    }
+    
+    return galleryImages;
+  }, [sanityGallery, galleryLoading]);
+
   return (
     <>
 
@@ -28,7 +60,7 @@ export default function GalleryPage() {
         {/* Gallery Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Gallery 
-            images={galleryImages}
+            images={displayGallery}
             className="gallery-page"
             showLightbox={true}
           />

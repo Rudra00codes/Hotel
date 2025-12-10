@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RoomCard from '../components/RoomCard';
-import { roomsData, roomCategories } from '../data/rooms';
+import { roomsData, roomCategories as staticCategories } from '../data/rooms';
 import { useSEO } from '../utils/seo';
+import { useSanityContent } from '../hooks/useSanityContent';
+import { urlFor } from '../lib/urlFor';
+import type { Room } from '../components/RoomCard/RoomCard';
 
 export default function Rooms() {
   // Apply SEO for rooms page
@@ -10,17 +13,65 @@ export default function Rooms() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const navigate = useNavigate();
 
+  // Fetch rooms from Sanity
+  const { data: sanityRooms, loading } = useSanityContent<any[]>(
+    `*[_type == "room"] {
+      _id,
+      name,
+      category,
+      description,
+      amenities,
+      images,
+      maxOccupancy,
+      size,
+      features,
+      priceRange
+    }`
+  );
+
+  // Merge/Fallback logic
+  const displayRooms = useMemo(() => {
+    if (loading) return roomsData; // Show static data while loading (or could show skeleton)
+    
+    if (sanityRooms && sanityRooms.length > 0) {
+      return sanityRooms.map((room): Room => ({
+        id: room._id,
+        name: room.name,
+        category: room.category || 'standard', // Default category
+        description: room.description,
+        amenities: room.amenities || [],
+        images: room.images?.map((img: any) => urlFor(img).url()) || [],
+        maxOccupancy: room.maxOccupancy,
+        size: room.size,
+        features: room.features || [],
+        priceRange: room.priceRange
+      }));
+    }
+    
+    return roomsData;
+  }, [sanityRooms, loading]);
+
+  // Calculate categories with dynamic counts
+  const categories = useMemo(() => {
+    return staticCategories.map(cat => ({
+      ...cat,
+      count: cat.id === 'all' 
+        ? displayRooms.length 
+        : displayRooms.filter(r => r.category === cat.id).length
+    }));
+  }, [displayRooms]);
+
   // Filter rooms based on selected category
   const filteredRooms = selectedCategory === 'all' 
-    ? roomsData 
-    : roomsData.filter(room => room.category === selectedCategory);
+    ? displayRooms 
+    : displayRooms.filter(room => room.category === selectedCategory);
 
   const handleViewDetails = (roomId: string) => {
     navigate(`/rooms/${roomId}`);
   };
 
   const handleInquiry = (roomId: string) => {
-    const room = roomsData.find(r => r.id === roomId);
+    const room = displayRooms.find(r => r.id === roomId);
     // Navigate to contact page with room pre-selected
     navigate('/contact', { 
       state: { 
@@ -51,7 +102,7 @@ export default function Rooms() {
         {/* Category Filter */}
         <div className="mb-8">
           <div className="flex flex-wrap justify-center gap-4">
-            {roomCategories.map((category) => (
+            {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}

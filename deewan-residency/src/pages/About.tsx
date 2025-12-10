@@ -1,6 +1,9 @@
 // About page component
 import { useSEO } from '../utils/seo';
 import { Target, Eye, User } from 'lucide-react';
+import { useSanityContent } from '../hooks/useSanityContent';
+import { urlFor } from '../lib/urlFor';
+import { useMemo } from 'react';
 import { 
   brandStory, 
   awards, 
@@ -12,6 +15,36 @@ import {
 export default function About() {
   // Apply SEO for about page
   useSEO('about');
+
+  // Fetch team members from Sanity
+  const { data: sanityTeam, loading: teamLoading } = useSanityContent<any[]>(
+    `*[_type == "teamMember"] {
+      _id,
+      name,
+      position,
+      image,
+      bio,
+      specialization
+    }`
+  );
+
+  // Merge/Fallback logic for Team
+  const displayTeam = useMemo(() => {
+    if (teamLoading) return teamMembers;
+    
+    if (sanityTeam && sanityTeam.length > 0) {
+      return sanityTeam.map(member => ({
+        id: member._id,
+        name: member.name,
+        position: member.position,
+        image: member.image ? urlFor(member.image).url() : '',
+        bio: member.bio,
+        specialization: member.specialization
+      }));
+    }
+    
+    return teamMembers;
+  }, [sanityTeam, teamLoading]);
   
   return (
     <div className="min-h-screen bg-gray-50">
@@ -203,16 +236,24 @@ export default function About() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 slide-top-normal">
-            {teamMembers.map((member) => (
+            {displayTeam.map((member) => (
               <div 
                 key={member.id}
                 className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-[#111] border border-transparent hover:border-[#ffb703]/30"
               >
                 {/* Image Placeholder with Overlay */}
                 <div className="aspect-[4/5] relative overflow-hidden bg-gradient-to-b from-[#222] to-[#111]">
-                  <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-700">
-                    <User size={80} className="text-gray-600 group-hover:text-[#ffb703] transition-colors duration-500" />
-                  </div>
+                  {member.image ? (
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-700">
+                      <User size={80} className="text-gray-600 group-hover:text-[#ffb703] transition-colors duration-500" />
+                    </div>
+                  )}
                   
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-80" />
