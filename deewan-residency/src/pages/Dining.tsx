@@ -88,43 +88,6 @@ export default function Dining() {
           ))}
         </div>
 
-        {/* Menu Information Section */}
-        <div className="bg-white rounded-lg shadow-md p-8 mb-12">
-          <h2 className="text-2xl font-sinoreta text-gray-900 mb-6 text-center uppercase tracking-wide">
-            Our Cuisine Specialties
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <span className="text-2xl">🍛</span>
-              </div>
-              <h3 className="font-sinoreta text-gray-900 mb-2 tracking-wide">North Indian</h3>
-              <p className="text-sm text-gray-600 font-grotesk">Rich curries, tandoor specialties, and aromatic biryanis</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <span className="text-2xl">🥘</span>
-              </div>
-              <h3 className="font-sinoreta text-gray-900 mb-2 tracking-wide">South Indian</h3>
-              <p className="text-sm text-gray-600 font-grotesk">Authentic dosas, idlis, and traditional curries</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <span className="text-2xl">🥢</span>
-              </div>
-              <h3 className="font-sinoreta text-gray-900 mb-2 tracking-wide">Chinese</h3>
-              <p className="text-sm text-gray-600 font-grotesk">Indo-Chinese favorites and authentic preparations</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <span className="text-2xl">🍽️</span>
-              </div>
-              <h3 className="font-sinoreta text-gray-900 mb-2 tracking-wide">Continental</h3>
-              <p className="text-sm text-gray-600 font-grotesk">International dishes and comfort food classics</p>
-            </div>
-          </div>
-        </div>
-
         {/* Reservation Form */}
         <div className="max-w-4xl mx-auto">
           <DiningReservationForm />
