@@ -27,7 +27,7 @@ export default function ClipPathCarousel({
 }: ClipPathCarouselProps) {
   const defaultImages: CarouselImage[] = [
     {
-      src: "/images/x.com/13.jpeg",
+      src: "deewan-residency/public/images/carousel/13.jpg",
       alt: "Hotel Interior",
     },
     {
