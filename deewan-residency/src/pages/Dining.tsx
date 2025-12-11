@@ -106,7 +106,7 @@ export default function Dining() {
               href="tel:01762-506147"
               className="bg-amber-600 text-white px-6 py-3 rounded-lg font-grotesk font-medium hover:bg-amber-700 transition-colors tracking-wide"
             >
-              📞 Restaurant: 01762-506147
+              📞 Restaurant: 9955442822
             </a>
             <a
               href="tel:01762-506146"
