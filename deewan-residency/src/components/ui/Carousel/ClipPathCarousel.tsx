@@ -27,39 +27,35 @@ export default function ClipPathCarousel({
 }: ClipPathCarouselProps) {
   const defaultImages: CarouselImage[] = [
     {
-      src: "deewan-residency/public/images/carousel/13.jpg",
+      src: "/images/carousel/13.jpg",
       alt: "Hotel Interior",
     },
     {
-      src: "/images/x.com/9.jpeg",
-      alt: "Luxury Room",
+      src: "/images/carousel/9.jpg",
+      alt: "Waiting Lounge",
     },
     {
-      src: "/images/x.com/20.jpeg",
-      alt: "Evening View",
+      src: "/images/carousel/20.jpg",
+      alt: "Ambient View",
     },
     {
-      src: "/images/x.com/21.jpeg",
+      src: "/images/carousel/21.png",
       alt: "Hotel Exterior",
     },
     {
-      src: "/images/x.com/25.jpeg",
-      alt: "Garden Area",
+      src: "/images/carousel/32.png",
+      alt: "Rooftop Dining Area",
     },
     {
-      src: "/images/x.com/32.jpeg",
-      alt: "Dining Area",
-    },
-    {
-      src: "/images/x.com/19.jpeg",
+      src: "/images/carousel/19.jpg",
       alt: "Night Ambience",
     },
     {
-      src: "/images/x.com/3.jpeg",
-      alt: "Reception",
+      src: "/images/carousel/3.jpg",
+      alt: "Room corridor",
     },
     {
-      src: "/images/x.com/2.jpeg",
+      src: "/images/carousel/2.jpg",
       alt: "Lobby",
     },
   ];
@@ -70,7 +66,7 @@ export default function ClipPathCarousel({
   const plugins = autoplay
     ? [
         Autoplay({
-          delay: 1000,
+          delay: 2000,
           stopOnInteraction: false,
           stopOnMouseEnter: true,
         }),
