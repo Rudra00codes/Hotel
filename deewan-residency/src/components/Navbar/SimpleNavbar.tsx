@@ -88,13 +88,13 @@ export default function SimpleNavbar() {
             </nav>
   
             {/* Desktop Actions - Right Side */}
-            <div className="hidden md:flex items-center  space-x-4">
+            <div className="hidden md:flex items-center space-x-4">
               <Link
-                to="/contact"
-                data-magnetic
-                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full text-sm font-sinoreta font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform"
+              to="/contact"
+              data-magnetic
+              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-xl text-sm font-sinoreta font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform align-middle"
               >
-                Book Now
+              Book Now
               </Link>
             </div>
   
