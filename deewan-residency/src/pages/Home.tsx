@@ -1,14 +1,14 @@
-import { useEffect, useRef } from 'react';
-import Hero from '../components/Hero';
-import Map from '../components/Map';
-import { ClipPathCarousel } from '../components/ui/Carousel';
-import GoogleReviews from '../components/GoogleReviews/GoogleReviews';
-import { ProgressiveBlur } from '../components/ui/ProgressiveBlur';
-import { useSEO } from '../utils/seo';
+import { useEffect, useRef } from "react";
+import Hero from "../components/Hero";
+import Map from "../components/Map";
+import { ClipPathCarousel } from "../components/ui/Carousel";
+import GoogleReviews from "../components/GoogleReviews/GoogleReviews";
+import { ProgressiveBlur } from "../components/ui/ProgressiveBlur";
+import { useSEO } from "../utils/seo";
 
 export default function Home() {
   // Apply SEO for home page
-  useSEO('home');
+  useSEO("home");
 
   // Animation refs
   const sectionsRef = useRef<HTMLDivElement[]>([]);
@@ -16,13 +16,13 @@ export default function Home() {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px',
+      rootMargin: "0px 0px -100px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('slide-top-normal');
+          entry.target.classList.add("slide-top-normal");
           observer.unobserve(entry.target);
         }
       });
@@ -38,8 +38,12 @@ export default function Home() {
   return (
     <div className="relative">
       {/* Progressive Blur Effect - Top */}
-      <ProgressiveBlur position="top" backgroundColor="#000000e8" blurAmount="10px" />
-      
+      <ProgressiveBlur
+        position="top"
+        backgroundColor="#000000e8"
+        blurAmount="10px"
+      />
+
       <Hero />
 
       {/* Carousel Section */}
@@ -70,17 +74,18 @@ export default function Home() {
       <GoogleReviews />
 
       {/* Location & Map Section */}
-      <section className="pt-44" style={{ backgroundColor: '#000000f2' }}>
+      <section className="pt-44" style={{ backgroundColor: "#000000f2" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 slide-top-normal">
             <h2 className="text-3xl font-sinoreta text-white mb-6 uppercase tracking-wide">
               Our Location
             </h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto font-grotesk">
-              Find us on Amb-Chd Highway in Derabassi, Mohali. Easily accessible from major cities with excellent connectivity.
+              Find us on Amb-Chd Highway in Derabassi, Mohali. Easily accessible
+              from major cities with excellent connectivity.
             </p>
           </div>
-          
+
           <div className="max-w-5xl mx-auto slide-top-normal">
             <Map />
           </div>
