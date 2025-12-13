@@ -15,6 +15,8 @@ const Dining = lazy(() => import('./pages/Dining'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const SanityTest = lazy(() => import('./pages/SanityTest'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
@@ -65,6 +67,16 @@ function App() {
               <Route path="/contact" element={
                 <ErrorBoundary>
                   <Contact />
+                </ErrorBoundary>
+              } />
+              <Route path="/privacy-policy" element={
+                <ErrorBoundary>
+                  <PrivacyPolicy />
+                </ErrorBoundary>
+              } />
+              <Route path="/terms-of-service" element={
+                <ErrorBoundary>
+                  <TermsOfService />
                 </ErrorBoundary>
               } />
               <Route path="/sanity-test" element={

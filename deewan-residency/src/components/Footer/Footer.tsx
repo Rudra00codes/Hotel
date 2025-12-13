@@ -160,10 +160,10 @@ export default function Footer() {
               &copy; {currentYear} Deewan Residency. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-gray-400 hover:text-blue-400 text-sm transition-colors font-grotesk">
+              <Link to="/privacy-policy" className="text-gray-400 hover:text-blue-400 text-sm transition-colors font-grotesk">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-gray-400 hover:text-blue-400 text-sm transition-colors font-grotesk">
+              <Link to="/terms-of-service" className="text-gray-400 hover:text-blue-400 text-sm transition-colors font-grotesk">
                 Terms of Service
               </Link>
             </div>
