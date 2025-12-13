@@ -3,8 +3,8 @@ import type { Room } from '../components/RoomCard/RoomCard';
 export const roomsData: Room[] = [
   {
     id: 'standard-single',
-    name: 'Standard Single Room',
-    category: 'standard',
+    name: 'Deluxe Single Room',
+    category: 'deluxe',
     description: 'Comfortable and well-appointed single room perfect for solo travelers. Features modern amenities and a cozy atmosphere with all essential facilities for a pleasant stay.',
     amenities: [
       'Free Wi-Fi',
@@ -26,8 +26,8 @@ export const roomsData: Room[] = [
   },
   {
     id: 'standard-double',
-    name: 'Standard Double Room',
-    category: 'standard',
+    name: 'Deluxe Double Room',
+    category: 'deluxe',
     description: 'Spacious double room ideal for couples or business travelers. Equipped with modern amenities and comfortable furnishings to ensure a relaxing stay.',
     amenities: [
       'Free Wi-Fi',
@@ -50,8 +50,8 @@ export const roomsData: Room[] = [
   },
   {
     id: 'deluxe-room',
-    name: 'Deluxe Room',
-    category: 'deluxe',
+    name: 'Super Deluxe Room',
+    category: 'super deluxe',
     description: 'Enhanced comfort with premium amenities and elegant décor. Perfect for guests seeking a more luxurious experience with additional space and upgraded facilities.',
     amenities: [
       'Free Wi-Fi',
@@ -77,8 +77,8 @@ export const roomsData: Room[] = [
   },
   {
     id: 'deluxe-family',
-    name: 'Deluxe Family Room',
-    category: 'deluxe',
+    name: 'Super Deluxe Family Room',
+    category: 'super deluxe',
     description: 'Spacious family room designed for comfort and convenience. Features separate sleeping areas and ample space for families traveling together.',
     amenities: [
       'Free Wi-Fi',
@@ -104,7 +104,7 @@ export const roomsData: Room[] = [
   {
     id: 'executive-suite',
     name: 'Executive Suite',
-    category: 'suite',
+    category: 'super deluxe',
     description: 'Luxurious suite offering the finest accommodations with separate living and sleeping areas. Perfect for business executives and discerning travelers.',
     amenities: [
       'Free Wi-Fi',
@@ -133,7 +133,7 @@ export const roomsData: Room[] = [
   {
     id: 'presidential-suite',
     name: 'Presidential Suite',
-    category: 'suite',
+    category: 'super deluxe',
     description: 'The ultimate luxury experience with premium amenities and exceptional service. Features the finest furnishings and exclusive access to hotel facilities.',
     amenities: [
       'Free Wi-Fi',
@@ -165,7 +165,6 @@ export const roomsData: Room[] = [
 
 export const roomCategories = [
   { id: 'all', name: 'All Rooms', count: roomsData.length },
-  { id: 'standard', name: 'Standard', count: roomsData.filter(room => room.category === 'standard').length },
   { id: 'deluxe', name: 'Deluxe', count: roomsData.filter(room => room.category === 'deluxe').length },
-  { id: 'suite', name: 'Suite', count: roomsData.filter(room => room.category === 'suite').length }
+  { id: 'super deluxe', name: 'Super Deluxe', count: roomsData.filter(room => room.category === 'super deluxe').length }
 ];

@@ -38,7 +38,7 @@ export default function Rooms() {
       return sanityRooms.map((room): Room => ({
         id: room._id,
         name: room.name,
-        category: room.category || 'standard', // Default category
+        category: room.category || 'deluxe', // Default category
         description: room.description,
         amenities: room.amenities || [],
         // Handle nested asset object from schema

@@ -62,9 +62,8 @@ export default function RoomDetail() {
                   <h1 className="text-3xl font-sinoreta font-extrabold text-gray-900 mb-2 tracking-wide uppercase">{room.name}</h1>
                   <div className="flex items-center text-gray-600">
                     <span className={`px-3 py-1 rounded-full text-sm font-medium text-white mr-4 ${
-                      room.category === 'standard' ? 'bg-blue-600' :
-                      room.category === 'deluxe' ? 'bg-purple-600' :
-                      'bg-gold-600'
+                      room.category === 'deluxe' ? 'bg-amber-600' :
+                      'bg-gray-900 border border-amber-500'
                     }`}>
                       {room.category.charAt(0).toUpperCase() + room.category.slice(1)}
                     </span>

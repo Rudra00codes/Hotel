@@ -3,7 +3,7 @@ import OptimizedImage from '../OptimizedImage';
 export interface Room {
   id: string;
   name: string;
-  category: 'standard' | 'deluxe' | 'suite';
+  category: 'deluxe' | 'super deluxe';
   description: string;
   amenities: string[];
   images: string[];
@@ -44,7 +44,6 @@ export default function RoomCard({ room, onViewDetails, onInquiry }: RoomCardPro
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
           <span className={`px-4 py-1.5 rounded-full text-xs font-bold font-grotesk text-white tracking-widest uppercase backdrop-blur-md shadow-lg ${
-            room.category === 'standard' ? 'bg-blue-600/90' :
             room.category === 'deluxe' ? 'bg-amber-600/90' :
             'bg-gray-900/90 border border-amber-500/50'
           }`}>
