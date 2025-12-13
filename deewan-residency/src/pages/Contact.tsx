@@ -68,7 +68,7 @@ export default function Contact() {
                         href="tel:01762506147" 
                         className="block text-gray-200 hover:text-white font-grotesk text-lg transition-colors"
                       >
-                        01762-506147
+                        9955442822
                       </a>
                       <a 
                         href="tel:01762506146" 
@@ -77,7 +77,7 @@ export default function Contact() {
                         01762-506146
                       </a>
                     </div>
-                    <p className="text-sm text-gray-400 mt-2 font-grotesk">Mon-Fri 8am to 6pm</p>
+                    <p className="text-sm text-gray-400 mt-2 font-grotesk">Mon-Sat 11am to 11pm</p>
                   </div>
                 </div>
 
@@ -129,11 +129,11 @@ export default function Contact() {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300 font-grotesk">Monday - Friday</span>
-                    <span className="text-white font-grotesk font-medium">9:00 AM - 6:00 PM</span>
+                    <span className="text-white font-grotesk font-medium">11:00 AM - 11:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300 font-grotesk">Saturday</span>
-                    <span className="text-white font-grotesk font-medium">10:00 AM - 4:00 PM</span>
+                    <span className="text-white font-grotesk font-medium">11:00 AM - 11:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300 font-grotesk">Sunday</span>

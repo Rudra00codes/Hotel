@@ -284,7 +284,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps = {}) {
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            placeholder="+1 (555) 123-4567"
+            placeholder="+91 0123456789"
             className={`w-full ${getTouchFriendlyInputClasses()} bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
               errors.phone ? 'border-red-500' : 'border-white/10'
             }`}

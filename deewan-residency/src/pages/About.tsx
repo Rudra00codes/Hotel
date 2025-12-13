@@ -401,7 +401,7 @@ export default function About() {
           <div className="mt-12 pt-8 border-t" style={{ borderColor: '#ffb703' }}>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-blue-100">
               <a href="tel:01762-506147" className="hover:text-white transition-colors font-grotesk">
-                📞 01762-506147
+                📞 9955442822
               </a>
               <span className="hidden sm:inline">|</span>
               <a href="tel:01762-506146" className="hover:text-white transition-colors font-grotesk">
