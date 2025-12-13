@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import OptimizedImage from '../OptimizedImage';
 
 interface RoomGalleryProps {
@@ -26,7 +26,7 @@ export default function RoomGallery({ images, roomName, className = '' }: RoomGa
     } else {
       setSelectedImageIndex(prev => prev < images.length - 1 ? prev + 1 : 0);
     }
-  }, [images.length]);
+  }, [images?.length]);
 
   // Keyboard navigation
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -46,12 +46,12 @@ export default function RoomGallery({ images, roomName, className = '' }: RoomGa
   }, [showLightbox, closeLightbox, navigateLightbox]);
 
   // Add keyboard event listener
-  useState(() => {
+  useEffect(() => {
     if (showLightbox) {
       document.addEventListener('keydown', handleKeyDown);
       return () => document.removeEventListener('keydown', handleKeyDown);
     }
-  });
+  }, [showLightbox, handleKeyDown]);
 
   if (!images || images.length === 0) {
     return (

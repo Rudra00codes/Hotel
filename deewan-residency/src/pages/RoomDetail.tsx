@@ -65,7 +65,18 @@ export default function RoomDetail() {
   }
 
   // Convert Sanity images to URLs
-  const imageUrls = room.images?.map((img: any) => urlFor(img).url()) || [];
+  const imageUrls = room.images
+    ?.map((img: any) => {
+      try {
+        // Handle both direct image objects and wrapper objects with 'asset' field
+        const source = img.asset || img;
+        return urlFor(source).url();
+      } catch (e) {
+        console.error('Error generating image URL:', e);
+        return null;
+      }
+    })
+    .filter((url: string | null): url is string => !!url) || [];
 
   return (
     <div className="min-h-screen bg-gray-50">
