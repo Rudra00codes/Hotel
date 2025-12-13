@@ -330,9 +330,9 @@ export const SEO_CONFIGS = {
     ]
   },
   rooms: {
-    title: 'Hotel Rooms & Suites in Derabassi | Deluxe & Standard Rooms - Deewan Residency',
-    description: 'Choose from 25+ comfortable rooms at Deewan Residency Derabassi. Standard rooms, Deluxe rooms & Suites with AC, WiFi, TV. Book direct for best rates on Amb-Chandigarh Highway.',
-    keywords: 'hotel rooms derabassi, suite accommodation mohali, deluxe rooms punjab, standard rooms amb chandigarh highway, budget rooms near chandigarh, ac rooms derabassi',
+    title: 'Hotel Rooms in Derabassi | Deluxe & Super Deluxe Rooms - Deewan Residency',
+    description: 'Choose from 25+ comfortable rooms at Deewan Residency Derabassi. Deluxe & Super Deluxe rooms with AC, WiFi, TV. Book direct for best rates on Amb-Chandigarh Highway.',
+    keywords: 'hotel rooms derabassi, super deluxe rooms mohali, deluxe rooms punjab, luxury rooms amb chandigarh highway, budget rooms near chandigarh, ac rooms derabassi',
     structuredData: [
       generateBreadcrumbStructuredData([
         { name: 'Home', url: HOTEL_INFO.url },
@@ -341,7 +341,7 @@ export const SEO_CONFIGS = {
       generateFAQStructuredData([
         {
           question: 'What types of rooms are available at Deewan Residency?',
-          answer: 'We offer Standard Rooms, Deluxe Rooms, and Suites. All rooms include AC, free WiFi, LED TV, hot water, and 24/7 room service.'
+          answer: 'We offer Deluxe Rooms and Super Deluxe Rooms. All rooms include AC, free WiFi, LED TV, hot water, and 24/7 room service.'
         },
         {
           question: 'What is included in the room price?',

@@ -4,7 +4,7 @@ import MobilePhone from '../MobilePhone';
 export default function Footer() {
   const quickLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Rooms & Suites', path: '/rooms' },
+    { name: 'Rooms', path: '/rooms' },
     { name: 'Dining', path: '/dining' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'About Us', path: '/about' },
