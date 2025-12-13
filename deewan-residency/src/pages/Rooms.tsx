@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RoomCard from '../components/RoomCard';
 import { roomsData, roomCategories as staticCategories } from '../data/rooms';
+import { ProgressiveBlur } from "../components/ui/ProgressiveBlur";
 import { useSEO } from '../utils/seo';
 import { useSanityContent } from '../hooks/useSanityContent';
 import { urlFor } from '../lib/urlFor';
@@ -84,8 +85,14 @@ export default function Rooms() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Progressive Blur Effect - Top */}
+        <ProgressiveBlur
+          position="top"
+          backgroundColor="#000000e8"
+          blurAmount="10px"
+        />
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-amber-900 to-orange-700 text-white py-16">
+      <div className="bg-gradient-to-r from-amber-900 to-orange-700 text-white pt-28 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-sinoreta font-extrabold mb-4 uppercase tracking-wide">
