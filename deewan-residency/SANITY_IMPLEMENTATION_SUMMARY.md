@@ -61,7 +61,7 @@ src/
 ```bash
 VITE_SANITY_PROJECT_ID=project_id  # Placeholder, replace after project init
 VITE_SANITY_DATASET=production
-VITE_SANITY_API_VERSION=2024-01-01
+VITE_SANITY_API_VERSION=2025-11-01
 ```
 
 ---
@@ -209,7 +209,7 @@ npx sanity deploy
 1. Visit https://manage.sanity.io/
 2. Select project "deewan-residency"
 3. Go to Team → Invite Members
-4. Enter client email: `thedeewanhotel@gmail.com`
+4. Enter client email: `abc@gmail.com`
 5. Role: Editor
 6. Send invitation
 
@@ -245,15 +245,6 @@ npx sanity deploy
    
 9. ✅ **Build verification completed**
    - Project builds successfully with Sanity integration
-
-### ⏳ Pending (1 major task)
-
-1. **⏳ Update components to use Sanity** (deferred for your control)
-   - Reason: Current components still use static data
-   - This gives you full control over when to switch to CMS
-   - Can be done gradually (one page at a time)
-   - Static data remains as fallback until migration complete
-
 ---
 
 ## 📁 Files Created/Modified
