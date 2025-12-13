@@ -33,10 +33,9 @@
 - 🗂️ **Code Splitting** - Optimized bundle sizes
 
 ### 🏨 **Hotel Features**
-- 🛏️ **Room Showcase** - Standard, Deluxe, and Suite options
+- 🛏️ **Room Showcase** - Deluxe and Super Deluxe options
 - 🍽️ **Dining Options** - Restaurant and room service
 - 🏢 **Business Facilities** - Meeting rooms and business center
-- 🎯 **Amenities Display** - Comprehensive facility overview
 - 📸 **Photo Gallery** - High-quality hotel imagery
 
 ---
@@ -50,6 +49,7 @@
 │   ├── 🤖 robots.txt            # Search engine directives
 │   ├── 📱 manifest.json         # PWA manifest
 │   └── ⚙️ sw.js                 # Service worker
+├── 📁 sanity/                    # Sanity CMS Studio
 ├── 📁 src/
 │   ├── 📁 components/           # Reusable UI components
 │   │   ├── 🧩 Header/          # Navigation header
@@ -64,20 +64,20 @@
 │   ├── 📁 pages/               # Page components
 │   │   ├── 🏠 Home.tsx         # Homepage
 │   │   ├── 🛏️ Rooms.tsx        # Rooms & suites
-│   │   ├── 🏨 Amenities.tsx    # Hotel amenities
 │   │   ├── 🍽️ Dining.tsx       # Dining options
 │   │   ├── 📸 Gallery.tsx      # Photo gallery
 │   │   ├── ℹ️ About.tsx        # About the hotel
-│   │   └── 📞 Contact.tsx      # Contact information
+│   │   ├── 📞 Contact.tsx      # Contact information
+│   │   ├── 🔒 PrivacyPolicy.tsx # Privacy Policy
+│   │   └── 📜 TermsOfService.tsx # Terms of Service
 │   ├── 📁 utils/               # Utility functions
 │   │   ├── 📧 emailService.ts  # EmailJS integration
 │   │   ├── 🔍 seo.ts           # SEO utilities
 │   │   ├── ⚡ performance.ts   # Performance optimization
 │   │   ├── 📱 mobileOptimization.ts # Mobile enhancements
 │   │   └── 🗺️ sitemap.ts       # Sitemap generation
-│   ├── 📁 data/                # Static data
+│   ├── 📁 data/                # Static data (Legacy/Fallback)
 │   │   ├── 🛏️ rooms.ts         # Room information
-│   │   ├── 🏨 amenities.ts     # Amenities data
 │   │   ├── 🍽️ dining.ts        # Dining options
 │   │   └── 📸 gallery.ts       # Gallery images
 │   └── 📁 assets/              # Static assets

@@ -140,8 +140,8 @@ export default function RoomDetail() {
                 <div className="text-center text-gray-500">
                   <p className="text-sm font-grotesk">Or call us directly:</p>
                   <div className="mt-2 space-y-1">
-                    <a href="tel:01762506147" className="block text-blue-600 hover:text-blue-700 font-grotesk font-medium">
-                      01762-506147
+                    <a href="tel:9955442822" className="block text-blue-600 hover:text-blue-700 font-grotesk font-medium">
+                      9955442822
                     </a>
                     <a href="tel:01762506146" className="block text-blue-600 hover:text-blue-700 font-grotesk font-medium">
                       01762-506146

@@ -357,9 +357,8 @@ export default function Hero() {
                       aria-label="Select room type"
                     >
                       <option value="">Select Type</option>
-                      <option value="standard">Standard Room</option>
                       <option value="deluxe">Deluxe Room</option>
-                      <option value="suite">Suite</option>
+                      <option value="super deluxe">Super Deluxe Room</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <svg

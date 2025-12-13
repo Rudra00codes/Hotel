@@ -30,6 +30,7 @@ graph TB
         EmailJS[EmailJS Service]
         GoogleMaps[Google Maps API]
         Analytics[Analytics Services]
+        Sanity[Sanity CMS]
     end
 
     subgraph "Performance & SEO"
@@ -54,6 +55,7 @@ graph TB
     Utils --> EmailJS
     Utils --> GoogleMaps
     Utils --> Analytics
+    Utils --> Sanity
     
     React --> SEO
     React --> Performance
@@ -81,11 +83,12 @@ graph TD
         Home[Home Page]
         Rooms[Rooms Page]
         RoomDetail[Room Detail Page]
-        Amenities[Amenities Page]
         Dining[Dining Page]
         Gallery[Gallery Page]
         About[About Page]
         Contact[Contact Page]
+        Privacy[Privacy Policy]
+        Terms[Terms of Service]
     end
 
     subgraph "Shared Components"
@@ -97,7 +100,6 @@ graph TD
         InquiryForm[Inquiry Form]
         Map[Map Component]
         LazyImage[Lazy Image Component]
-        AmenityCard[Amenity Card]
         DiningCard[Dining Card]
         Gallery_Component[Gallery Component]
         CategoryFilter[Category Filter]

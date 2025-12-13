@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useMemo, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import RoomCard from '../components/RoomCard';
 import { roomsData, roomCategories as staticCategories } from '../data/rooms';
 import { ProgressiveBlur } from "../components/ui/ProgressiveBlur";
@@ -11,8 +11,9 @@ import type { Room } from '../components/RoomCard/RoomCard';
 export default function Rooms() {
   // Apply SEO for rooms page
   useSEO('rooms');
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const navigate = useNavigate();
+  const location = useLocation();
+  const [selectedCategory, setSelectedCategory] = useState(location.state?.roomType || 'all');
 
   // Fetch rooms from Sanity
   const { data: sanityRooms, loading } = useSanityContent<any[]>(
@@ -29,6 +30,13 @@ export default function Rooms() {
       priceRange
     }`
   );
+
+  // Update category from navigation state if present
+  useEffect(() => {
+    if (location.state?.roomType) {
+      setSelectedCategory(location.state.roomType);
+    }
+  }, [location.state]);
 
   // Merge/Fallback logic
   const displayRooms = useMemo(() => {

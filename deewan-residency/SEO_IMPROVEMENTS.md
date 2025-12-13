@@ -10,7 +10,7 @@
 - **Keywords**: hotel derabassi, hotels near sukhmani college, amb chandigarh highway hotels, budget hotels mohali, business hotel punjab, derabassi accommodation, hotels near zirakpur, hotels near chandigarh airport, hotels near pca stadium mohali
 
 #### All Pages Optimized
-- Rooms, Amenities, Dining, Gallery, About, Contact
+- Rooms, Dining, Gallery, About, Contact
 - Each page has unique, location-specific content
 - Keywords target local search intent
 
