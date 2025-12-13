@@ -2,16 +2,33 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import RoomGallery from '../components/RoomGallery';
 import InquiryForm from '../components/InquiryForm';
-import { roomsData } from '../data/rooms';
-import type { Room } from '../components/RoomCard/RoomCard';
 import { useSEO } from '../utils/seo';
+import { useSanityContent } from '../hooks/useSanityContent';
+import { urlFor } from '../lib/urlFor';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function RoomDetail() {
   const { roomId } = useParams<{ roomId: string }>();
   const navigate = useNavigate();
   const [showInquiryForm, setShowInquiryForm] = useState(false);
 
-  const room = roomsData.find((r: Room) => r.id === roomId);
+  // Fetch room details from Sanity using the slug (roomId)
+  const { data: room, loading, error } = useSanityContent<any>(
+    `*[_type == "room" && roomId.current == $roomId][0] {
+      _id,
+      roomId,
+      name,
+      category,
+      description,
+      amenities,
+      images,
+      maxOccupancy,
+      size,
+      features,
+      priceRange
+    }`,
+    { roomId }
+  );
 
   // Apply dynamic SEO for room detail page
   useSEO('rooms', room ? {
@@ -20,12 +37,22 @@ export default function RoomDetail() {
     keywords: `${room.name.toLowerCase()}, ${room.category} room derabassi, hotel room booking mohali, deewan residency accommodation`
   } : undefined);
 
-  if (!room) {
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (error || !room) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-sinoreta font-extrabold text-gray-900 mb-4 tracking-wide">Room Not Found</h1>
-          <p className="text-gray-600 mb-8 font-grotesk">The room you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-8 font-grotesk">
+            {error ? 'An error occurred while loading the room.' : "The room you're looking for doesn't exist."}
+          </p>
           <button
             onClick={() => navigate('/rooms')}
             className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-grotesk tracking-wide"
@@ -37,13 +64,16 @@ export default function RoomDetail() {
     );
   }
 
+  // Convert Sanity images to URLs
+  const imageUrls = room.images?.map((img: any) => urlFor(img).url()) || [];
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Room Gallery */}
       <div className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <RoomGallery
-            images={room.images}
+            images={imageUrls}
             roomName={room.name}
             className="mb-8"
           />
@@ -65,7 +95,7 @@ export default function RoomDetail() {
                       room.category === 'deluxe' ? 'bg-amber-600' :
                       'bg-gray-900 border border-amber-500'
                     }`}>
-                      {room.category.charAt(0).toUpperCase() + room.category.slice(1)}
+                      {room.category ? (room.category.charAt(0).toUpperCase() + room.category.slice(1)) : 'Room'}
                     </span>
                     <span className="text-lg font-grotesk font-semibold tracking-wide">{room.priceRange}</span>
                   </div>
@@ -91,34 +121,38 @@ export default function RoomDetail() {
             </div>
 
             {/* Features */}
-            <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-              <h2 className="text-xl font-sinoreta text-gray-900 mb-4 tracking-wide uppercase">Room Features</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {room.features.map((feature: string, index: number) => (
-                  <div key={index} className="flex items-center text-gray-700">
-                    <svg className="w-4 h-4 mr-2 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span className="font-grotesk">{feature}</span>
-                  </div>
-                ))}
+            {room.features && room.features.length > 0 && (
+              <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <h2 className="text-xl font-sinoreta text-gray-900 mb-4 tracking-wide uppercase">Room Features</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {room.features.map((feature: string, index: number) => (
+                    <div key={index} className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 mr-2 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      <span className="font-grotesk">{feature}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Amenities */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-sinoreta text-gray-900 mb-4 tracking-wide uppercase">Amenities</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {room.amenities.map((amenity: string, index: number) => (
-                  <div key={index} className="flex items-center text-gray-700">
-                    <svg className="w-4 h-4 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span className="font-grotesk">{amenity}</span>
-                  </div>
-                ))}
+            {room.amenities && room.amenities.length > 0 && (
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h2 className="text-xl font-sinoreta text-gray-900 mb-4 tracking-wide uppercase">Amenities</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {room.amenities.map((amenity: string, index: number) => (
+                    <div key={index} className="flex items-center text-gray-700">
+                      <svg className="w-4 h-4 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      <span className="font-grotesk">{amenity}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Sidebar */}

@@ -19,6 +19,7 @@ export default function Rooms() {
   const { data: sanityRooms, loading } = useSanityContent<any[]>(
     `*[_type == "room"] {
       _id,
+      roomId,
       name,
       category,
       description,
@@ -44,7 +45,7 @@ export default function Rooms() {
     
     if (sanityRooms && sanityRooms.length > 0) {
       return sanityRooms.map((room): Room => ({
-        id: room._id,
+        id: room.roomId?.current || room._id,
         name: room.name,
         category: room.category || 'deluxe', // Default category
         description: room.description,
