@@ -85,13 +85,13 @@ export default function Rooms() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
+      <div className="bg-gradient-to-r from-amber-900 to-orange-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-sinoreta font-extrabold mb-4 uppercase tracking-wide">
               Rooms & Suites
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto font-grotesk">
+            <p className="text-xl md:text-2xl text-amber-100 max-w-3xl mx-auto font-grotesk">
               Discover comfort and luxury in our thoughtfully designed accommodations at Deewan Residency
             </p>
           </div>
@@ -101,20 +101,22 @@ export default function Rooms() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Category Filter */}
-        <div className="mb-8">
+        <div className="mb-12">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-grotesk font-medium transition-all duration-200 tracking-wide ${
+                className={`px-6 py-3 rounded-full font-grotesk font-bold transition-all duration-300 tracking-wide uppercase text-sm ${
                   selectedCategory === category.id
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                    ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-500/30 scale-105'
+                    : 'bg-white text-gray-600 border border-gray-200 hover:border-amber-500 hover:text-amber-600'
                 }`}
               >
                 {category.name}
-                <span className="ml-2 text-sm opacity-75">({category.count})</span>
+                <span className={`ml-2 text-xs ${selectedCategory === category.id ? 'text-amber-100' : 'text-gray-400'}`}>
+                  ({category.count})
+                </span>
               </button>
             ))}
           </div>
@@ -146,26 +148,41 @@ export default function Rooms() {
         )}
 
         {/* Call to Action */}
-        <div className="mt-16 bg-blue-600 rounded-2xl p-8 text-center text-white">
-          <h2 className="text-3xl font-sinoreta mb-4 uppercase tracking-wide">
-            Need Help Choosing the Perfect Room?
-          </h2>
-          <p className="text-xl text-blue-100 mb-6 max-w-2xl mx-auto font-grotesk">
-            Our team is here to help you find the ideal accommodation for your stay at Deewan Residency.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => navigate('/contact')}
-              className="bg-white text-blue-600 px-8 py-3 rounded-lg font-grotesk font-medium hover:bg-gray-100 transition-colors duration-200 tracking-wide"
-            >
-              Contact Us
-            </button>
-            <a
-              href="tel:01762-506147"
-              className="bg-blue-700 text-white px-8 py-3 rounded-lg font-grotesk font-medium hover:bg-blue-800 transition-colors duration-200 tracking-wide"
-            >
-              Call: 01762-506147
-            </a>
+        <div className="mt-16 relative overflow-hidden rounded-2xl bg-gray-900 py-16 px-8 text-center shadow-2xl">
+          {/* Background Pattern */}
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: "radial-gradient(#fbbf24 1px, transparent 1px)",
+              backgroundSize: "32px 32px",
+            }}
+          ></div>
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900/95 to-amber-900/30"></div>
+
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-sinoreta text-white mb-6 uppercase tracking-wider">
+              Need Help Choosing the Perfect Room?
+            </h2>
+            <p className="text-lg text-gray-300 mb-10 font-grotesk leading-relaxed">
+              Our team is here to help you find the ideal accommodation for your stay at Deewan Residency.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button
+                onClick={() => navigate('/contact')}
+                className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-gray-900 bg-white rounded-full shadow-lg hover:shadow-white/20 hover:-translate-y-1 transition-all duration-300 tracking-wide font-grotesk w-full sm:w-auto"
+              >
+                Contact Us
+              </button>
+              <a
+                href="tel:01762-506147"
+                className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-amber-600 to-orange-600 rounded-full shadow-lg hover:shadow-amber-500/40 hover:-translate-y-1 transition-all duration-300 tracking-wide font-grotesk overflow-hidden w-full sm:w-auto"
+              >
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-600 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="relative">Call: 01762-506147</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
