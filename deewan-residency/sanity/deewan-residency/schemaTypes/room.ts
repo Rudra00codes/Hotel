@@ -37,9 +37,8 @@ export const room = defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Standard', value: 'standard'},
           {title: 'Deluxe', value: 'deluxe'},
-          {title: 'Suite', value: 'suite'},
+          {title: 'Super Deluxe', value: 'super deluxe'},
         ],
       },
       validation: (Rule) => Rule.required(),
@@ -124,7 +123,7 @@ export const room = defineType({
       group: 'pricing',
     }),
 
-    defineField({
+    defineField({ 
       name: 'images',
       title: 'Room Images',
       type: 'array',
