@@ -88,7 +88,6 @@ export default function Header() {
   const navigationItems = [
     { name: 'Home', path: '/' },
     { name: 'Rooms', path: '/rooms' },
-    { name: 'Amenities', path: '/amenities' },
     { name: 'Dining', path: '/dining' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'About', path: '/about' },

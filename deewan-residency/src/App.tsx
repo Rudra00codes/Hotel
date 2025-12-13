@@ -11,7 +11,6 @@ import { initializePerformanceOptimizations } from './utils/performance';
 const Home = lazy(() => import('./pages/Home'));
 const Rooms = lazy(() => import('./pages/Rooms'));
 const RoomDetail = lazy(() => import('./pages/RoomDetail'));
-const Amenities = lazy(() => import('./pages/Amenities'));
 const Dining = lazy(() => import('./pages/Dining'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const About = lazy(() => import('./pages/About'));
@@ -46,11 +45,6 @@ function App() {
               <Route path="/rooms/:roomId" element={
                 <ErrorBoundary>
                   <RoomDetail />
-                </ErrorBoundary>
-              } />
-              <Route path="/amenities" element={
-                <ErrorBoundary>
-                  <Amenities />
                 </ErrorBoundary>
               } />
               <Route path="/dining" element={

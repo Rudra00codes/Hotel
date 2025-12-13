@@ -354,27 +354,6 @@ export const SEO_CONFIGS = {
       ])
     ]
   },
-  amenities: {
-    title: 'Hotel Amenities & Facilities in Derabassi | Free WiFi, Parking - Deewan Residency',
-    description: 'Premium amenities at Deewan Residency: Restaurant, Business Center, Free WiFi, 24/7 Room Service, Free Parking, Laundry. Everything for comfortable stay near Chandigarh.',
-    keywords: 'hotel amenities derabassi, business facilities mohali, restaurant hotel punjab, wifi parking room service, hotel facilities near chandigarh, 24/7 service derabassi',
-    structuredData: [
-      generateBreadcrumbStructuredData([
-        { name: 'Home', url: HOTEL_INFO.url },
-        { name: 'Amenities', url: `${HOTEL_INFO.url}/amenities` }
-      ]),
-      generateFAQStructuredData([
-        {
-          question: 'What amenities does Deewan Residency offer?',
-          answer: 'We offer free WiFi, free parking, restaurant, 24/7 room service, business center, laundry service, and more for a comfortable stay.'
-        },
-        {
-          question: 'Is breakfast included?',
-          answer: 'Breakfast can be added to your booking or ordered separately from our restaurant. We serve Indian and Continental breakfast options.'
-        }
-      ])
-    ]
-  },
   dining: {
     title: 'Restaurant & Dining in Derabassi | 24/7 Room Service - Deewan Residency',
     description: 'Enjoy delicious North Indian, South Indian & Continental cuisine at Deewan Residency restaurant. 24/7 room service available. Best dining experience on Amb-Chandigarh Highway.',

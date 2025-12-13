@@ -22,12 +22,6 @@ export const SITEMAP_URLS: SitemapURL[] = [
     lastmod: new Date().toISOString().split('T')[0]
   },
   {
-    loc: '/amenities',
-    changefreq: 'monthly',
-    priority: 0.8,
-    lastmod: new Date().toISOString().split('T')[0]
-  },
-  {
     loc: '/dining',
     changefreq: 'monthly',
     priority: 0.8,

@@ -8,7 +8,6 @@ import HamburgerMenuOverlay from '../ui/Menu/hamburger-menu-overlay';
 const navLinks = [
   { path: '/', label: 'Home' },
   { path: '/rooms', label: 'Rooms' },
-  { path: '/amenities', label: 'Amenities' },
   { path: '/dining', label: 'Dining' },
   { path: '/gallery', label: 'Gallery' },
   { path: '/about', label: 'About' },
